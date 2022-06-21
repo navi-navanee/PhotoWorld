@@ -1,0 +1,19 @@
+{
+  "name": "photo-world",
+  "version": "1.0.0",
+  "description": "for finding the photographers",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon backend/server.js",
+    "server": "nodemon backend/server.js"
+  },
+  "author": "Navaneeth devan",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.0",
+    "nodemon": "^2.0.16"
+  }
+}
