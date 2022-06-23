@@ -7,7 +7,7 @@ const User = require('../models/userModel')
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, phonenumber } = req.body
 
-    if (!name || !email || !password || !phonenumber) {
+    if (!name || !email || !password) {
         res.status(400)
         throw new Error('please add all field ')
     }
@@ -36,7 +36,6 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
-            password: user.password,
             token:generateToken(user._id)
         })
     }
@@ -83,7 +82,7 @@ const generateToken = (id) => {
 
 
 const editUser = asyncHandler(async (req, res) => {
-    res.json({ message: 'User registered' })
+    res.json({ message: 'User edited' })
 
 })
 

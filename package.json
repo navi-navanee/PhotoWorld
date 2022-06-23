@@ -1,11 +1,13 @@
 {
   "name": "photo-world",
   "version": "1.0.0",
+  "proxy" : "http://localhost:5000",
   "description": "for finding the photographers",
   "main": "server.js",
   "scripts": {
     "start": "nodemon backend/server.js",
-    "server": "nodemon backend/server.js"
+    "server": "nodemon backend/server.js",
+    "client" : "npm start --prefix frontend"
   },
   "author": "Navaneeth devan",
   "license": "ISC",
