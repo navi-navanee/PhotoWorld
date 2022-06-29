@@ -4,8 +4,17 @@ import LanguageIcon from '@mui/icons-material/Language';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../../../features/admin/auth/adminauthSlice';
 const Navbar = () => {
+
+  const dispatch =useDispatch()
+  const navigate =useNavigate()
+  const onLogout = ()=>{
+    dispatch(logout())
+    navigate('/admin')
+  }
   return (
     <div className='navbar'>
         <div className="wrapper">
@@ -26,8 +35,8 @@ const Navbar = () => {
               <DarkModeRoundedIcon className='icon'/>
               Darkmode
             </div>
-            <div className="item">
-              <LogoutRoundedIcon className='icon'/>
+            <div className="item" >
+              <LogoutRoundedIcon onClick={onLogout} className='icon'/>
               Logout
             </div>
             <div className="item">

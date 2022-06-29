@@ -5,7 +5,15 @@ import PhotoCameraFrontIcon from '@mui/icons-material/PhotoCameraFront';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate } from 'react-router-dom';
 const Sidebar = () => {
+  const navigate=useNavigate()
+  const onUser = ()=>{
+    navigate('/admin/users')
+  }
+  const onDashboard = ()=>{
+    navigate('/admin/home')
+  }
   return (
     <div className='sidebar'>
       <div className="top">
@@ -16,13 +24,13 @@ const Sidebar = () => {
         <ul>
           
           <p className="title">Main</p>
-          <li>
+          <li onClick={onDashboard}>
             <DashboardCustomizeIcon className='icon'/>
             <span>Dashboard</span>
           </li>
           <p className="title">Lists</p>
-          <li>
-            <PersonIcon className='icon'/>
+          <li onClick={onUser}>
+            <PersonIcon  className='icon'/>
             <span>Users</span>
           </li>
           <li>

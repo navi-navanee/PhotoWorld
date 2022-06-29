@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppBar, Tab, Tabs, Toolbar, Typography } from "@mui/material";
 import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, reset } from "../features/auth/authSlice";
+import { logout, reset } from "../features/user/auth/authSlice";
 
 function Header() {
   const dispatch = useDispatch();

@@ -16,7 +16,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { register, reset } from '../../../features/auth/authSlice'
+import { register, reset } from '../../../features/user/auth/authSlice'
 import Spinner from '../../../components/Spinner';
 import Header from '../../../components/Header';
 

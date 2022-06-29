@@ -9,7 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
 import {NavLink , useNavigate} from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { login,reset } from '../../../features/auth/authSlice';
+import { login,reset } from '../../../features/user/auth/authSlice';
 
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
