@@ -9,7 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
 import {NavLink , useNavigate} from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { login,reset } from '../features/auth/authSlice';
+import { login,reset } from '../../../features/auth/authSlice';
 
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -18,7 +18,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSelector,useDispatch } from 'react-redux';
-import Spinner from '../components/Spinner';
+import Spinner from '../../../components/Spinner';
+import Header from '../../../components/Header';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -39,6 +40,7 @@ function Login() {
     useEffect(() => {
       if (isError) {
         toast.error(message)
+        return 
       }
   
       if (isSuccess || user) {
@@ -73,6 +75,10 @@ function Login() {
 
   const theme = createTheme();
   return (
+    <div>
+
+ 
+    <Header/>
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
@@ -156,6 +162,7 @@ function Login() {
         </Grid>
       </Grid>
     </ThemeProvider>
+    </div>
   )
 }
 

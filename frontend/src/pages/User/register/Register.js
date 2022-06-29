@@ -16,8 +16,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { register, reset } from '../features/auth/authSlice'
-import Spinner from '../components/Spinner';
+import { register, reset } from '../../../features/auth/authSlice'
+import Spinner from '../../../components/Spinner';
+import Header from '../../../components/Header';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -78,6 +79,8 @@ function Register() {
 
   const theme = createTheme();
   return (
+    <div>
+      <Header/>
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
@@ -183,6 +186,7 @@ function Register() {
         </Grid>
       </Grid>
     </ThemeProvider>
+    </div>
   )
 }
 
