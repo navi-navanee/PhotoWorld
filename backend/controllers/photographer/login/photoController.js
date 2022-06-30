@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
-const Photographer = require('../models/photoModel')
+const Photographer = require('../../../models/photoModel')
 
 //Authenticating the Photographer
 

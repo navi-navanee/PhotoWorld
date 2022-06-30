@@ -1,7 +1,7 @@
 const jwt =require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
-const Admin = require ('../models/adminModel')
+const Admin = require ('../../../models/adminModel')
 
 //Authenticating admin
 const registerAdmin =asyncHandler(async(req,res)=>{

@@ -16,7 +16,8 @@ const login =async (adminData) =>{
 
 //logout admin
 const logout = async() => {
-    await localStorage.removeItem('admin')
+ 
+ await localStorage.removeItem('admin')
 }
 
 

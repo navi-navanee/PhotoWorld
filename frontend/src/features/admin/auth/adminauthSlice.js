@@ -34,7 +34,6 @@ export const login = createAsyncThunk(
 export const logout =createAsyncThunk(
     'adminauth/logout',
     async () =>{
-        console.log("im logout")
       await adminauthService.logout()
     }
 )
