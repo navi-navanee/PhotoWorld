@@ -34,11 +34,11 @@ const Login = () => {
     
 
   return (
-    <section className='common'>
+    <section className='common' >
         <div className="register">
             <div className="col-1">
                 <h2>Sign In</h2>
-                <span>register and enjoy the service</span>
+                <span>Please enter the details</span>
 
                 <form id='form' className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
                     <input type="text" {...register("email")} placeholder='username' />

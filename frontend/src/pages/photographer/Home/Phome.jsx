@@ -11,7 +11,11 @@ const Phome = () => {
         <Header/>
     
       <Carosel/>
-  
+       <Body/>
+       <Body/>
+       <Body/>
+       <Body/>
+       <Body/>
   
       <Footer/>
 
