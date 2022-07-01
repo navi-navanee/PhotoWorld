@@ -11,6 +11,10 @@ import { AdminLogin } from './pages/admin/login/AdminLogin';
 import Single from './pages/admin/single/Single';
 import New from './pages/admin/new/New';
 import List from './pages/admin/list/List';
+import Plogin from './pages/photographer/login/Plogin';
+import Phome from './pages/photographer/Home/Phome';
+
+
 
 
 function App() {
@@ -42,6 +46,13 @@ function App() {
               </Route>
             </Route>
 
+            {/* {==============================Photographer================} */}
+
+            <Route path='/photographer'>
+               <Route index element={<Plogin/>} />
+               <Route path='home' element={<Phome/>}/>
+
+            </Route>
 
           </Routes>
         </div>
