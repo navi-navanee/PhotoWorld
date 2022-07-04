@@ -19,9 +19,16 @@ function Header() {
 
   return (
     <header>
-      <AppBar sx={{ background: "#063970" }}>
+      <AppBar style={{backgroundColor:'black'}}  position="static" sx={{ color:"white" }}>
         <Toolbar>
-          <LinkedCameraIcon />
+        <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+          >
+            PHOTOWORLD
+          </Typography>
           <Tabs sx={{ marginLeft: "auto" }} textColor="inherit">
             {user ? (
               <Tab label="logout" onClick={onLogout} />

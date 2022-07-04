@@ -1,0 +1,62 @@
+.cover-photo{
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    height: 22rem;
+
+    .left{
+      background-color: antiquewhite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img{
+        border-radius: 50%;
+        width: 15rem;
+        height: 15rem;
+      }
+
+    }
+    .right{
+        background-color: rgb(186, 186, 129);
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+        padding-left: 1rem;
+
+        .name{
+            font-size: 5rem;
+        }
+        .address{
+            padding-left: 2rem;
+        }
+        .phone{
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        .right-button{
+
+            .call{
+                background-color: blue;
+                width: 11rem;
+                margin-right: 2rem;
+               border-style: none;
+               height: 2rem;
+            }
+            .chat{
+                background-color: aquamarine;
+                width: 11rem;
+                border-style: none;
+                height: 2rem;
+            }
+        }
+
+        .category{
+         margin-top: 2rem;
+         display: flex;
+         gap: 0.5rem;
+        }
+    }
+    }
+
+ 
+

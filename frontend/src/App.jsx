@@ -13,6 +13,10 @@ import New from './pages/admin/new/New';
 import List from './pages/admin/list/List';
 import Plogin from './pages/photographer/login/Plogin';
 import Phome from './pages/photographer/Home/Phome';
+import Spliting from './components/Spliting/Spliting';
+import Pregister from './pages/photographer/register/Pregister';
+import Pmain from './components/photographer/main/Pmain';
+
 
 
 
@@ -50,7 +54,17 @@ function App() {
 
             <Route path='/photographer'>
                <Route index element={<Plogin/>} />
+               <Route path='register' element={<Pregister/>}/>
                <Route path='home' element={<Phome/>}/>
+               <Route path='main' element={<Pmain/>}/>
+             
+
+            </Route>
+            {/* ========================Spliting======================= */}
+
+            <Route path='Spliting'>
+              <Route index element={<Spliting/>}/>
+
 
             </Route>
 
