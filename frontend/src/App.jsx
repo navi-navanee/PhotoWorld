@@ -56,7 +56,11 @@ function App() {
                <Route index element={<Plogin/>} />
                <Route path='register' element={<Pregister/>}/>
                <Route path='home' element={<Phome/>}/>
-               <Route path='main' element={<Pmain/>}/>
+               <Route path='main' element={<Pmain/>}>
+                 <Route path='about' element={''}/>
+                 <Route path='album' element={''}/>
+                 <Route path='Review' element={''}/>
+              </Route>
              
 
             </Route>
