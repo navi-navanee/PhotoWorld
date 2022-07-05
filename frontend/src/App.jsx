@@ -16,6 +16,9 @@ import Phome from './pages/photographer/Home/Phome';
 import Spliting from './components/Spliting/Spliting';
 import Pregister from './pages/photographer/register/Pregister';
 import Pmain from './components/photographer/main/Pmain';
+import { About } from './components/photographer/about/About';
+import Album from './components/photographer/album/Album';
+import Review from './components/photographer/review/Review';
 
 
 
@@ -57,9 +60,9 @@ function App() {
                <Route path='register' element={<Pregister/>}/>
                <Route path='home' element={<Phome/>}/>
                <Route path='main' element={<Pmain/>}>
-                 <Route path='about' element={''}/>
-                 <Route path='album' element={''}/>
-                 <Route path='Review' element={''}/>
+                 <Route index element={<About/>}/>
+                 <Route path='album' element={<Album/>}/>
+                 <Route path='review' element={<Review/>}/>
               </Route>
              
 
