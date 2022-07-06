@@ -1,7 +1,8 @@
 .cover-photo{
     display: grid;
-    grid-template-columns: 15rem 1fr;
-    height: 22rem;
+    grid-template-columns: 1fr;
+    height: 20rem;
+
 
     .left{
       background-color: antiquewhite;
@@ -11,17 +12,24 @@
 
       img{
         border-radius: 50%;
-        width: 15rem;
-        height: 15rem;
+        width: 100%;
+        height: auto;
       }
 
     }
     .right{
-        background-color: rgb(186, 186, 129);
+        background-color: black;
+        color: aliceblue;
         display: flex;
         flex-direction: column;
         padding-top: 10px;
         padding-left: 1rem;
+
+        h1{
+            color: red;
+    font-family: cursive;
+    font-size: 3rem;
+        }
 
         .name{
             font-size: 5rem;
@@ -36,15 +44,17 @@
         .right-button{
 
             .call{
-                background-color: blue;
-                width: 11rem;
+                background-color: #fff;
+                color: black;
+                width: 10rem;
                 margin-right: 2rem;
                border-style: none;
                height: 2rem;
             }
             .chat{
-                background-color: aquamarine;
-                width: 11rem;
+                background-color: #fff;
+                color: black;
+                width: 10rem;
                 border-style: none;
                 height: 2rem;
             }
@@ -62,7 +72,20 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
+}
+
+nav{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+   
+    font-size: 1.5rem;
+
+    .link{
+        color: blue;
+
+        text-decoration: none;
+    }
 }
 
 

@@ -4,6 +4,7 @@ import './pmain.scss'
 import image from '../images/cover.jpg'
 import { Link,Outlet } from 'react-router-dom'
 import Footer from '../footer/Footer'
+import { Button } from '@mui/material'
 
 const Pmain = () => {
 
@@ -12,16 +13,18 @@ const Pmain = () => {
     <div>
        <Header/>
         <div className='cover-photo' >
-            <div className='left'>
+            {/* <div className='left'>
                 <img src={image} alt="" />
-            </div>
+            </div> */}
             <div className='right'>
                 <h1>Shadow</h1>
                 <div className='address'>Ernakulam kerala</div>
                 <div className='phone'>9497502035</div>
                 <div className='right-button'>
-                    <button className='call'>call</button>
-                    <button className='chat'>chat</button>
+                    {/* <button className='call'>call</button>
+                    <button className='chat'>chat</button> */}
+                    <Button className='call' variant="outlined">call</Button>
+                    <Button className='chat' variant="outlined">Chat</Button>
                 </div>
                 <div className='category'>
                     <button className=''>wedding</button>
@@ -31,9 +34,9 @@ const Pmain = () => {
             
         </div>
         <nav>
-            <Link to={''}>About</Link>
-            <Link to={'album'}>Album</Link>
-            <Link to={'review'}>Review</Link>
+            <Link className='link' to={''}>About</Link>
+            <Link className='link' to={'album'}>Album</Link>
+            <Link className='link' to={'review'}>Review</Link>
         </nav>
         <Outlet/>  
         <Footer/>
