@@ -19,7 +19,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSelector,useDispatch } from 'react-redux';
 import Spinner from '../../../components/Spinner';
-import Header from '../../../components/Header';
+import Header from '../../../components/users/header/Header';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -78,7 +78,6 @@ function Login() {
     <div>
 
  
-    <Header/>
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />

@@ -10,7 +10,9 @@ const Photographerlogin = () => {
   const avatarStyle={backgroundColor:'#1bbd7e'}
 
   return (
-    <Grid>
+    <div>
+      
+    <Grid >
       <Paper elevation={10} style={paperStyle} >
         <Grid  style={{marginTop:"2rem"}} align='center'>
       <Avatar style={avatarStyle}><LockIcon/></Avatar>
@@ -24,6 +26,7 @@ const Photographerlogin = () => {
                   </NavLink></Typography>
       </Paper>
     </Grid>
+    </div>
   )
 }
 

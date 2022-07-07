@@ -15,10 +15,11 @@ import Plogin from './pages/photographer/login/Plogin';
 import Phome from './pages/photographer/Home/Phome';
 import Spliting from './components/Spliting/Spliting';
 import Pregister from './pages/photographer/register/Pregister';
-import Pmain from './components/photographer/main/Pmain';
+// import Pmain from './components/photographer/main/Pmain';
 import { About } from './components/photographer/about/About';
 import Album from './components/photographer/album/Album';
 import Review from './components/photographer/review/Review';
+import Filter from './pages/User/filter/Filter';
 
 
 
@@ -34,6 +35,7 @@ function App() {
             <Route exact path='/' element={<Landing />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/register' element={<Register />} />
+            <Route exact path='/filter' element={<Filter/>} />
 
             {/* ====================Admin======================= */}
 
@@ -58,8 +60,8 @@ function App() {
             <Route path='/photographer'>
                <Route index element={<Plogin/>} />
                <Route path='register' element={<Pregister/>}/>
-               <Route path='home' element={<Phome/>}/>
-               <Route path='main' element={<Pmain/>}>
+               {/* <Route path='home' element={<Phome/>}/> */}
+               <Route path='home' element={<Phome/>}>
                  <Route index element={<About/>}/>
                  <Route path='album' element={<Album/>}/>
                  <Route path='review' element={<Review/>}/>

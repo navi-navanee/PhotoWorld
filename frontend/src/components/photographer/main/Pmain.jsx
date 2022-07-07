@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../../Header'
+import Header from "../header/Pheader"
 import './pmain.scss'
-import image from '../images/cover.jpg'
+// import image from '../images/cover.jpg'
 import { Link,Outlet } from 'react-router-dom'
 import Footer from '../footer/Footer'
 import { Button } from '@mui/material'
@@ -21,8 +21,6 @@ const Pmain = () => {
                 <div className='address'>Ernakulam kerala</div>
                 <div className='phone'>9497502035</div>
                 <div className='right-button'>
-                    {/* <button className='call'>call</button>
-                    <button className='chat'>chat</button> */}
                     <Button className='call' variant="outlined">call</Button>
                     <Button className='chat' variant="outlined">Chat</Button>
                 </div>

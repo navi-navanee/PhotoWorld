@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 
 const photographerRegister = () => {
-    const paperStyle ={padding:20, height:"60vh",width:280,margin:"20px auto"}
+    const paperStyle ={padding:20, height:"60vh",width:280,margin:"-202px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
   return (
     <div className='main'>

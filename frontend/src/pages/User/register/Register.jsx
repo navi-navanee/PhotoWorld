@@ -18,7 +18,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { register, reset } from '../../../features/user/auth/authSlice'
 import Spinner from '../../../components/Spinner';
-import Header from '../../../components/Header';
+import Header from '../../../components/users/header/Header';
 
 function Register() {
   const [formData, setFormData] = useState({
