@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../../../components/photographer/footer/Footer'
 import { Body } from '../../../components/users/body/Body'
 import Carosel from '../../../components/users/carosel/Carosel'
 import Header from '../../../components/users/header/Header'
@@ -9,6 +10,8 @@ function landing() {
       <Header />
         <Carosel/>
         <Body/>
+        <Footer/>
+        
     </div>
   )
 }
