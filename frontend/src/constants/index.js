@@ -42,7 +42,7 @@ export const categoryList = [
   export const dataList = [
     {
       id: 1,
-      title: 'lounge resort',  
+      title: 'Wedding Photo',  
       category: 'wedding',
       cuisine: 'Kerala',
       rating: 5,
@@ -51,7 +51,7 @@ export const categoryList = [
     },
     {
       id: 2,
-      title: 'door urban',
+      title: 'Wedding Photo',
       category: 'wedding',
       cuisine: 'chennai',
       rating: 4,
@@ -60,7 +60,7 @@ export const categoryList = [
     },
     {
       id: 3,
-      title: 'chow',
+      title: 'Wedding Photo',
       category: 'wedding',
       cuisine: 'banglure',
       rating: 3,
@@ -69,7 +69,7 @@ export const categoryList = [
     },
     {
       id: 4,
-      title: 'wharf seafood',
+      title: 'Wedding Photo',
       category: 'other',
       cuisine: 'Kerala',
       rating: 1,
@@ -78,7 +78,7 @@ export const categoryList = [
     },
     {
       id: 5,
-      title: 'Tossin',
+      title: 'Wedding Photo',
       category: 'other',
       cuisine: 'chennai',
       rating: 5,
@@ -87,7 +87,7 @@ export const categoryList = [
     },
     {
       id: 6,
-      title: 'stories noodles',
+      title: 'Wedding Photo',
       category: 'other',
       cuisine: 'banglure',
       rating: 5,

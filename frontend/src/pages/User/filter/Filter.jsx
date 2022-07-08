@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import FilterPanel from '../../../components/users/filterPanel/FilterPanel'
 import List from '../../../components/users/list/List'
 import SearchBar from '../../../components/users/searchBar/SearchBar'
+import { dataList } from '../../../constants'
 import './filter.scss'
 
 
@@ -9,6 +10,7 @@ const Filter = () => {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [selectedRating, setSelectedRating] = useState(null)
   const [selectedPrice, setSelectedPrice] = useState([1000,100000])
+  const [list, setList] = useState(dataList)
   
   const [place, setPlace] = useState([
     { id: 1, checked: false, label: 'Kerala' },
@@ -57,7 +59,7 @@ const Filter = () => {
         </div>
         <div className="home_list-wrap">
           {/* List & Empty */}
-          <List />
+          <List list={list} />
         </div>
       </div>
     </div>
