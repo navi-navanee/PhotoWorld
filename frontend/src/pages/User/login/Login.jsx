@@ -18,8 +18,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSelector,useDispatch } from 'react-redux';
-import Spinner from '../../../components/Spinner';
+
 import Header from '../../../components/users/header/Header';
+import './login.scss'
+import Spinner from '../../../components/spinner/Spinner';
+
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -64,13 +67,14 @@ function Login() {
     e.preventDefault()
     const userData = {
       email,
-      password,
+      password
     }
+    console.log("user",userData);
     dispatch(login(userData))
   }
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner/>
   }
 
   const theme = createTheme();
@@ -107,8 +111,9 @@ function Login() {
           >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
+              
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography  component="h1" variant="h5">
               Sign in
             </Typography>
             <Box component="form" noValidate  sx={{ mt: 1 }} onSubmit={onSubmit}>
@@ -146,8 +151,8 @@ function Login() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <NavLink to={''}>
-                    Forgot password?
+                  <NavLink to={'/photographer'}>
+                 PHOTOGRAPHER Click here
                   </NavLink>
                 </Grid>
                 <Grid item>

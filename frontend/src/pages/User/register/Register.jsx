@@ -17,8 +17,9 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { register, reset } from '../../../features/user/auth/authSlice'
-import Spinner from '../../../components/Spinner';
+
 import Header from '../../../components/users/header/Header';
+import Spinner from '../../../components/spinner/Spinner';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -74,7 +75,7 @@ function Register() {
   }
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner/>
   }
 
   const theme = createTheme();

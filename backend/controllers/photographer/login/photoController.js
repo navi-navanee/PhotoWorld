@@ -7,6 +7,7 @@ const Photographer = require('../../../models/photoModel')
 
 const registerPhoto = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
+    console.log("register called");
 
     if (!name || !email || !password) {
         res.status(400)
@@ -51,6 +52,7 @@ const registerPhoto = asyncHandler(async (req, res) => {
 //login
 const loginPhoto = asyncHandler(async (req, res) => {
     const { email, password } = req.body
+
 
     const photographer = await Photographer.findOne({ email })
     if (photographer && (await bcrypt.compare(password, photographer.password))) {
