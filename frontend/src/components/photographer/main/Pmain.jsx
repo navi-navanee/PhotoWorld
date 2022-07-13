@@ -6,7 +6,13 @@ import { Link,Outlet } from 'react-router-dom'
 import Footer from '../footer/Footer'
 import { Button } from '@mui/material'
 
+
 const Pmain = () => {
+
+    
+
+
+     
 
   return (
     <>

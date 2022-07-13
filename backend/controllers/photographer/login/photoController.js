@@ -7,10 +7,13 @@ const Photographer = require('../../../models/photoModel')
 
 const registerPhoto = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
-    console.log("register called");
+
+    console.log("bodyy",req.body);
+    
 
     if (!name || !email || !password) {
         res.status(400)
+        console.log("register called");
         throw new Error('please add all field')
     }
 

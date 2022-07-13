@@ -1,20 +1,41 @@
 import './plogin.scss'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Avatar, Button, Grid, Paper, TextField, Typography } from '@mui/material'
 import LockIcon from '@mui/icons-material/Lock';
 import { NavLink, useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-toastify'
+import { login ,reset } from '../../../features/photographer/auth/photographerauthSlice';
+import { useSelector,useDispatch } from 'react-redux';
+import Spinner from '../../spinner/Spinner';
 
 
 const Photographerlogin = () => {
 
   const [formData, setFormData] = useState({
-
     email: '',
     password: ''
   })
 
   const {email , password} = formData
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const {photographer , isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.photographerauth
+  )
+
+
+  useEffect(() => {
+ 
+    if(isError) {
+      toast.error(message)
+    }
+    if(isSuccess && photographer) {
+      navigate('/photographer/home')
+    }
+
+  },[photographer, isError, isSuccess, message, navigate, dispatch])
 
  
 
@@ -36,6 +57,11 @@ const Photographerlogin = () => {
       password
     }
     console.log("helooo",userData);
+    dispatch(login(userData))
+  }
+
+  if (isLoading) {
+    return <Spinner/>
   }
 
   return (
@@ -49,7 +75,7 @@ const Photographerlogin = () => {
           </Grid >
           <TextField name='email' id="standard-basic" label="UserName" variant="standard" placeholder='Enter Your Email'
           onChange={onChange} fullWidth />
-          <TextField name='password' style={{ marginTop: "1rem" }} id="standard-basic" label="Password" variant="standard" placeholder='Enter Your Email' 
+          <TextField name='password' type={'password'} style={{ marginTop: "1rem" }} id="standard-basic" label="Password" variant="standard" placeholder='Enter Your Email' 
           onChange={onChange} fullWidth />
           <Button style={{ marginTop: "2rem" }} type='submit' color='primary' variant='contained' fullWidth>Sign In</Button>
           <Typography style={{ marginTop: "2rem" }}>Create an account ?  <NavLink to={'register'}>

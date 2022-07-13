@@ -1,0 +1,68 @@
+
+.contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+ 
+
+
+    .container.contact__container{
+        width:58%;
+        display: grid;
+        grid-template-columns: 30% 58%;
+        gap: 2%;
+    }
+    
+
+    
+    /* ========================================== */
+    
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+
+        .location{
+            display: flex;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .dropdown-container{
+            width: 50%;
+        }
+    
+    }
+    
+    input,textarea{
+        width: 100%;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        border:2px solid;
+        resize: none;
+        color: var(--color-white);
+    } 
+    
+    /* ==================Mediun device==================== */
+    
+    @media screen and (max-width:1024px) {
+        .container.contact__container{
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+     }
+     
+     
+     /* ==================small device==================== */
+     
+     @media screen and (max-width:600px) {
+        .container.contact__container{
+         width: var(--container-width-sm);
+        }
+     }
+    
+}
+
+
+
+
