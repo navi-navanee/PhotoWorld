@@ -14,14 +14,39 @@ const photographerSchema = mongoose .Schema ({
         type:String,
         require:[true,'please add a password']
     },
-    // Phonenumber: {
-    //     type:Number,
-    //     // require:[true,'please add a phonenumber']
-    // },
     password2: {
         type:String,
         require:[true,'please add a password']
     },
+    // Phonenumber: {
+    //     type:Number,
+    //     // require:[true,'please add a phonenumber']
+    // },
+    image: {
+        type:String,
+        require:[true,'please add a image']
+    },
+    message: {
+        type:String,
+        require:[true,'please add a message']
+    },
+    address: {
+        type:String,
+        require:[true,'please add a address']
+    },
+    city: {
+        type:String,
+        require:[true,'please add a city']
+    },
+    state: {
+        type:String,
+        require:[true,'please add a state']
+    },
+    category: {
+        type:Array,
+        require:[true,'please add a category']
+    },
+ 
 
 },
 {

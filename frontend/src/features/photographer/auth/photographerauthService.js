@@ -2,6 +2,19 @@ import axios from "axios";
 
 const API_URL = '/api/photo/'
 
+//register photographer
+
+const register = async (photographerData) => {
+    const response =await axios.post(API_URL+'register',photographerData)
+    if(response.data){
+
+        localStorage.setItem('photographer',JSON.stringify(response.data))
+    }
+    return response.data
+}
+
+
+
 //login Photographer
 
 const login =async (photographerData) => {
@@ -22,7 +35,8 @@ const logout =async() => {
 
 const photographerauthService ={
     login,
-    logout
+    logout,
+    register,
 
 }
 

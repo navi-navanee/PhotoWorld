@@ -6,7 +6,15 @@ const Photographer = require('../../../models/photoModel')
 //Authenticating the Photographer
 
 const registerPhoto = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body
+    const { name, 
+        email, 
+        password , 
+        image,
+        message,
+        address,
+        city,
+        state,
+        category } = req.body
 
     console.log("bodyy",req.body);
     
@@ -32,7 +40,13 @@ const registerPhoto = asyncHandler(async (req, res) => {
     const photo = await Photographer.create({
         name,
         email,
-        password:hashpassword
+        password:hashpassword,
+        image,
+        message,
+        address,
+        city,
+        state,
+        category,
     })
 
     if (photo) {

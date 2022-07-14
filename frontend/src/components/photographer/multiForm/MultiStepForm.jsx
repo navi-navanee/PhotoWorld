@@ -8,14 +8,11 @@ const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
-    email:"",
-    password2:"",
-    image:"",
-    overview:"",
-    address:"",
-    city:"",
-    state:"",
-    category:[], 
+    email: "",
+    street: "",
+    city: "",
+    postcode: "",
+    comments: "",    
   });
   const handleChange = (event) => {
     setFormData({
