@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import FilterPanel from '../../../components/users/filterPanel/FilterPanel'
 import List from '../../../components/users/list/List'
 import SearchBar from '../../../components/users/searchBar/SearchBar'
@@ -37,6 +38,53 @@ const Filter = () => {
 
   const handleSelectPrice=(event,value) => setSelectedPrice(value)
 
+  const applyFilter = () => {
+    let updatedList =dataList;
+
+
+    //Rating filter
+    if(selectedRating){
+      updatedList=updatedList.filter(
+        (item) => parseInt(item.rating)===parseInt(selectedRating)
+        )
+    }
+
+    //categoryfilter
+
+    if(selectedCategory){
+      updatedList=updatedList.filter(
+        item => item.category === selectedCategory
+        )
+    }
+
+    //place filter
+//[kerala,chennai]
+    const plceChecked =place.filter(
+      (item) => item.checked)
+      .map((item) => item.label.toLowerCase())
+
+      if(plceChecked.length){
+        updatedList=updatedList.filter(
+          item => plceChecked.includes(item.cuisine)
+          )
+      }
+
+      //pricefilter
+
+      const minPrice=selectedPrice[0]
+      const maxPrice=selectedPrice[1]
+
+      updatedList = updatedList.filter(
+        (item) => item.price >= minPrice && item.price <= maxPrice
+      )
+
+
+    setList(updatedList)
+  }
+
+  useEffect(()=> {
+    applyFilter()
+  },[selectedRating,selectedCategory,place,selectedPrice])
 
   return (
     <div className='home_panel'>

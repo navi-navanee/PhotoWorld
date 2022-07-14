@@ -93,7 +93,50 @@ const generateToken = (id) => {
     })
 }
 
+//fetching details
+
+const details = asyncHandler(async(req,res) => {
+
+    console.log("called",req.body);
+    
+    const {id} =req.body
+
+    console.log("im body id...",id);
+
+    const photographerDetails =await Photographer.findById(id)
+    if(photographerDetails){
+        console.log("im photo",photographerDetails);
+        res.json({
+            _id:photographerDetails._id,
+            name: photographerDetails.name,
+            email: photographerDetails.email,
+            image:photographerDetails.image,
+            message:photographerDetails.message,
+            address:photographerDetails.address,
+            city:photographerDetails.city,
+            state:photographerDetails.state,
+            category:photographerDetails.category,
+
+        })
+    }else{
+        res.status(400)
+        throw new Error ('cant find the photographer')
+    }
+
+})
+
+
+
+
+
+
+
+
+
+
+
 module.exports = {
     registerPhoto,
-    loginPhoto
+    loginPhoto,
+    details,
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import './listItem.scss'
 
 const ListItem = ({item:{coverSrc,title,price,rating}}) => {
@@ -10,7 +10,7 @@ const ListItem = ({item:{coverSrc,title,price,rating}}) => {
             <span>🌟{rating}</span>
         </header>
         <footer>
-            <p><b>{price}</b></p>
+            <p><b>₹{price}</b></p>
         </footer>
     </div>
   )

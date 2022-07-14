@@ -5,7 +5,7 @@ import './list.scss'
 
 const List = ({list}) => (
 
-      <div className='list-wrap'>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"2rem"}} className='list-wrapppp'>
       {list.map(item => <ListItem key={item.id} item={item} />)}
     
       </div>
