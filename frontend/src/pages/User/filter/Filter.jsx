@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { EmptyView } from '../../../components/users/common/emptyView/EmptyView'
 import FilterPanel from '../../../components/users/filterPanel/FilterPanel'
 import List from '../../../components/users/list/List'
 import SearchBar from '../../../components/users/searchBar/SearchBar'
@@ -12,6 +13,8 @@ const Filter = () => {
   const [selectedRating, setSelectedRating] = useState(null)
   const [selectedPrice, setSelectedPrice] = useState([1000,100000])
   const [list, setList] = useState(dataList)
+  const [inputSearch, setInputSearch] = useState('')
+  const [resultFound, setResultFound] = useState(false)
   
   const [place, setPlace] = useState([
     { id: 1, checked: false, label: 'Kerala' },
@@ -78,18 +81,35 @@ const Filter = () => {
         (item) => item.price >= minPrice && item.price <= maxPrice
       )
 
+      //search
+      if(inputSearch){
+        updatedList = updatedList.filter(
+          (item) =>
+           item.title.toLowerCase().search(inputSearch.toLowerCase().trim()) !== 
+           -1
+          )
+        
+      }
+
+ 
+
+
+
 
     setList(updatedList)
+
+
+    !updatedList.length ? setResultFound(false) : setResultFound(true)
   }
 
   useEffect(()=> {
     applyFilter()
-  },[selectedRating,selectedCategory,place,selectedPrice])
+  },[selectedRating,selectedCategory,place,selectedPrice,inputSearch])
 
   return (
     <div className='home_panel'>
       {/* search bar */}
-      <SearchBar /> 
+      <SearchBar value={inputSearch} changeInput={e=>setInputSearch(e.target.value)} /> 
       <div className="home_panelList-wrap">
         <div className="home_panel-wrap">
           {/* Side panel */}
@@ -107,7 +127,7 @@ const Filter = () => {
         </div>
         <div className="home_list-wrap">
           {/* List & Empty */}
-          <List list={list} />
+         {setResultFound ?  <List list={list} /> : <EmptyView/> }
         </div>
       </div>
     </div>
