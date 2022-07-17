@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { details, photographerDetails } from '../../../features/photographer/details/photographerSlice'
 import Spinner from '../../spinner/Spinner'
 import { isLoading } from '../../../features/photographer/details/photographerSlice'
-import { useState } from 'react'
+
 
 
 const Pmain = () => {
@@ -24,9 +24,9 @@ const Pmain = () => {
     const data= useSelector(photographerDetails)
     
     
-    // console.log("complete data", category);
-    // console.log("im category",category);
+  const category =data.category
 
+  console.log("im  category",category);
 
 
     // const individual =category.map(({label})=>label)
@@ -54,9 +54,9 @@ const Pmain = () => {
             <div>
                 <Header />
                 <div className='cover-photo' >
-                    {/* <div className='left'>
-                <img src={image} alt="" />
-            </div> */}
+                    <div className='left'>
+                   <img src={data.image} alt="" />
+                    </div>
                     <div className='right'>
                         <h1>{data.name}</h1>
                         <div className='address'>{data.address}</div>
@@ -65,23 +65,24 @@ const Pmain = () => {
                             <Button className='call' variant="outlined">call</Button>
                             <Button className='chat' variant="outlined">Chat</Button>
                         </div>
-                        {/* <div className='category'>
+                        <div className='category'>
                          
 
-                            {category?.value && category.map((item) => (
+                            {category && category.map((item) => (
                             
-                                <h1>{item.value ? item.label : "333333"}</h1>
+                                // <h1>{item.value ? item.label : "333333"}</h1>
+                                <button>{item.label}</button>
                                 
                            
                             ))}
                            
 
-                        </div> */}
+                        </div>
                     </div>
 
                 </div>
                 <nav>
-                    <Link className='link' to={''}>About</Link>
+                    <Link className='link' to={''}>About</Link >
                     <Link className='link' to={'album'}>Album</Link>
                     <Link className='link' to={'review'}>Review</Link>
                 </nav>

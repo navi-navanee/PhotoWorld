@@ -10,28 +10,28 @@ import Spinner from '../../spinner/Spinner'
 
 
 const options = [
-  { label: "wedding ", value: "grapes" },
-  { label: "Babies&kids", value: "Babies&kids" },
-  { label: "Special Occation", value: "Special Occation" },
-  { label: "Commercial", value: "Commercial" },
-  { label: "Corporative event", value: "Corporative even" },
-  { label: "Fashion Portfolio", value: "Fashion Portfolio" },
-  { label: "Nature", value: "Nature" },
-  { label: "Travel", value: "Travel" },
+    { label: "wedding ", value: "grapes" },
+    { label: "Babies&kids", value: "Babies&kids" },
+    { label: "Special Occation", value: "Special Occation" },
+    { label: "Commercial", value: "Commercial" },
+    { label: "Corporative event", value: "Corporative even" },
+    { label: "Fashion Portfolio", value: "Fashion Portfolio" },
+    { label: "Nature", value: "Nature" },
+    { label: "Travel", value: "Travel" },
 ];
 
 const Step2 = (props) => {
 
     const { data, handleChange, next, back } = props;
 
-    console.log("im data",data);
-    
+    console.log("im data", data);
+
     const [imageSrc, setImageSrc] = useState()
     const [pic, setPic] = useState('')
     const [load, setLoad] = useState(false)
 
-       //dump the image into cloudinary ImageUpload
-       const postDetails = async (ProfilePicture) => {
+    //dump the image into cloudinary ImageUpload
+    const postDetails = async (ProfilePicture) => {
         try {
             setLoad(true)
             const data = await imageUpload(ProfilePicture);
@@ -45,19 +45,19 @@ const Step2 = (props) => {
 
 
     const handleImageSelect = (e) => {
-      console.log("helooo");
-      setImageSrc(URL.createObjectURL(e.target.files[0]))
-      postDetails(e.target.files[0])
+        console.log("helooo");
+        setImageSrc(URL.createObjectURL(e.target.files[0]))
+        postDetails(e.target.files[0])
 
-  }
+    }
 
-  console.log("im pic......", pic);
-  data.image=pic
+    console.log("im pic......", pic);
+    data.image = pic
 
 
-  // for wedding category
+    // for wedding category
     const [selected, setSelected] = useState([]);
-    data.category=selected
+    data.category = selected
 
 
     if (load) {
@@ -67,7 +67,7 @@ const Step2 = (props) => {
 
     return (
 
-       <section className='contact'>
+        <section className='contact'>
 
             <div className='container contact__container'>
                 <div className="contact__options">
@@ -88,37 +88,37 @@ const Step2 = (props) => {
                 {/* ==================END================ */}
                 <form >
                     <h3>Overview</h3>
-                    <textarea 
-                    name='overview'
-                     id='' cols={30} 
-                     rows="7"
-                      placeholder='Your message' 
-                      required
-                       value={data.message}
-                       onChange={handleChange}
+                    <textarea
+                        name='overview'
+                        id='' cols={30}
+                        rows="7"
+                        placeholder='Your message'
+                        required
+                        value={data.message}
+                        onChange={handleChange}
                     ></textarea>
                     <h3>Location</h3>
                     <div className='location'>
                         <input
-                         type="text" 
-                         name='address'
-                          placeholder='ADDRESS ' 
-                          value={data.address}
-                       onChange={handleChange}
-                          />
-                        <input 
-                        type="text"
-                         name='city' 
-                         placeholder='CITY' 
-                         value={data.city}
-                       onChange={handleChange}
-                         />
-                        <input 
-                        type="text" 
-                        name='state' 
-                        placeholder='STATE' 
-                        value={data.state}
-                       onChange={handleChange}
+                            type="text"
+                            name='address'
+                            placeholder='ADDRESS '
+                            value={data.address}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="text"
+                            name='city'
+                            placeholder='CITY'
+                            value={data.city}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="text"
+                            name='state'
+                            placeholder='STATE'
+                            value={data.state}
+                            onChange={handleChange}
                         />
                     </div>
                     <h1>Service</h1>
@@ -127,17 +127,17 @@ const Step2 = (props) => {
                         value={selected}
                         // onChange={setSelected}
                         onChange={setSelected}
-                    
+
                         labelledBy="Select" />
-                        
-                        
+
+
                     {/* <button type='submit' className='btn btn-primary' >Send Message</button> */}
-                    <button onClick={back}>Back</button> 
-      <button onClick={next}>Next</button>
-                </form>
+                    <button style={{color:"blue" , height:"2rem"}}  onClick={back}>Back</button>
+                    <button style={{color:"blue" , height:"2rem"}}  onClick={next}>Next</button>
+                </form> 
             </div>
         </section>
 
     );
-  };
-  export default Step2;
+};
+export default Step2;

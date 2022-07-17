@@ -26,7 +26,7 @@ const photographerSchema = mongoose .Schema ({
         type:String,
         require:[true,'please add a image']
     },
-    message: {
+    overview: {
         type:String,
         require:[true,'please add a message']
     },

@@ -23,10 +23,10 @@ const Step1 = (props) => {
           <TextField name='email' style={{ marginTop: "1rem" }} id="standard-basic" label="Email" variant="standard" placeholder='Enter Your Email'
              value={data.email}
              onChange={handleChange} fullWidth />
-          <TextField name='password' style={{ marginTop: "1rem" }} id="standard-basic" label="Password" variant="standard" placeholder='Password'
+          <TextField name='password' type={"password"} style={{ marginTop: "1rem" }} id="standard-basic" label="Password" variant="standard" placeholder='Password'
              value={data.password}
              onChange={handleChange} fullWidth />
-          <TextField name='password2' style={{ marginTop: "1rem" }} id="standard-basic" label="Password" variant="standard" placeholder='reenterPassword'
+          <TextField name='password2' type={"password"}  style={{ marginTop: "1rem" }} id="standard-basic" label="Password" variant="standard" placeholder='reenterPassword'
              value={data.password2}
              onChange={handleChange} fullWidth />
           <Button style={{ marginTop: "2rem" }} type='submit' color='primary' variant='contained' onClick={next} fullWidth>Continue</Button>

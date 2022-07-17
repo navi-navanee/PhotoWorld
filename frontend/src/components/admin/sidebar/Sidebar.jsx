@@ -14,6 +14,9 @@ const Sidebar = () => {
   const onDashboard = ()=>{
     navigate('/admin/home')
   }
+  const onPhotographer = () => {
+    navigate('/admin/photographer')
+  }
   return (
     <div className='sidebar'>
       <div className="top">
@@ -33,7 +36,7 @@ const Sidebar = () => {
             <PersonIcon  className='icon'/>
             <span>Users</span>
           </li>
-          <li>
+          <li onClick={onPhotographer}>
             <PhotoCameraFrontIcon className='icon'/>
             <span>Photographer</span>
           </li>

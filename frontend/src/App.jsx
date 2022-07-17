@@ -11,6 +11,7 @@ import { AdminLogin } from './pages/admin/login/AdminLogin';
 import Single from './pages/admin/single/Single';
 import New from './pages/admin/new/New';
 import List from './pages/admin/list/List';
+import Photographer from './pages/admin/photographer/phtographer';
 import Plogin from './pages/photographer/login/Plogin';
 import Phome from './pages/photographer/Home/Phome';
 
@@ -53,6 +54,9 @@ function App() {
                   <Route index element={<List/>}/>
                   <Route path=':userId' element={<Single/>} />
                   <Route path='new' element={<New/>} />
+              </Route>
+              <Route path='photographer'>
+                <Route index element={<Photographer/>}/>
               </Route>
 
               <Route path="products" >

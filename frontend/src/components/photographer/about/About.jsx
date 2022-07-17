@@ -4,19 +4,32 @@ import DatePicker from "react-multi-date-picker"
 import DatePanel from "react-multi-date-picker/plugins/date_panel"
 import React from 'react'
 import './about.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { photographerDetails } from '../../../features/photographer/details/photographerSlice'
 
 
 export const About = () => {
 
+    const photographer = JSON.parse(localStorage.getItem('photographer'))
 
+    const  dispatch =useDispatch()
+    
+    const data =useSelector(photographerDetails)
+
+    console.log("aboutttttttttttt",data);
+
+
+    const category =data.category
+
+    console.log("im  categoryyyyyyyyyyy",category);
 
     return (
         <Container>
             <div className='about'>
                 <div className='overview'>
                     <h1>Overview</h1>
-                    <p>We are a professional photography services company based in Chennai . We have been running a professional photography business for 7 years, specializing in Reception, Theme Wedding, Kashmiri Wedding, Brahmin Wedding, Jain Wedding, Punjabi Wedding, Rajasthani Wedding, Bengali Wedding, Muslim Wedding, Indian Wedding, Christian Wedding, North Indian Wedding, Pre-wedding Shoots, Bridal Portraits, Candid Wedding, South Indian Wedding, Concept Wedding, Couple Portraits, Engagement, Tamil Wedding, Hindu Wedding, Gujarati Wedding, Destination Wedding, Contemporary Wedding , Marwadi Wedding, Wedding, Birthday, New Born, Kindergarten, Kids Portraits, Graduation Ceremony, School Events, Babies & Kids, Show & Pageant, Model Portfolio, Celebrity & Glamour, Portraits, Fashion & Portfolio, Convocation, Housewarming, Maternity, Anniversary, Special Occasion, Concerts, Expo/Exhibitions, Campaigns, Team Building Event, Conferences and Corporate Events photography. We undertake customized photography requirements. Some of our products and services include HD Videos, Montage, T-Shirt, Shortfilms, Enlargement, Cinematography, Promo Videos, Calendar, Documentary, Frames, CD / DVD, Poster, Brochure, Lamination, Photobook, Live Streaming, Blueray Disc, Coffee Table Book, Coffee Mug and HD Highlights. We provide services in Tamil Nadu, All Over India and All Over World. We are proficient in Tamil, Telugu, English, Hindi and Malayalam.
-
+                    <p>
+                        {data.overview}
                     </p>
                 </div>
 
@@ -31,12 +44,13 @@ export const About = () => {
 
                 <div className='service'>
                     <h1>Services</h1>
-                    <Button variant="outlined" color="error">
-                        Wedding
+
+                    {category && category.map((item) =>(
+                        <Button variant="outlined" color="error">
+                        {item.label}
                     </Button>
-                    <Button variant="outlined" color="error">
-                        cinematography
-                    </Button>
+                    ))}
+                    
                 </div>
                 <div>
                     <h1>Booking dates</h1>

@@ -51,7 +51,7 @@ const Submit = (props) => {
  
   
   return (
-    <div>
+    <div style={{display:"flex",justifyContent:"center" ,}}>
   
       <button onClick={onSubmit} type="submit">Submit</button>
     </div>

@@ -1,3 +1,4 @@
+import { bgcolor } from "@mui/system";
 import React from "react";
 
 
@@ -10,16 +11,16 @@ const Step3 = (props) => {
 
   return (
     <form>
-      <p>
-        <label htmlFor="comments">Comments:</label>
+      <div>
+        <label htmlFor="comments">Payment:</label>
         <textarea
           name="comments"
           value={data.comments}
           onChange={handleChange}
         ></textarea>
-      </p>      
-      <button onClick={back}>Back</button> 
-      <button onClick={next}>Next</button>
+      </div>      
+      <button style={{color:"blue" , height:"2rem"}} onClick={back}>Back</button> 
+      <button style={{color:"blue" , height:"2rem"}} onClick={next}>Next</button>
     </form>
   );
 };

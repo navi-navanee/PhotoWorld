@@ -5,6 +5,7 @@ const API_URL = '/api/photo/'
 //register photographer
 
 const register = async (photographerData) => {
+    console.log("im sending data");
     const response =await axios.post(API_URL+'register',photographerData)
     if(response.data){
 
