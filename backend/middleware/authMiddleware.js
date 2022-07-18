@@ -1,21 +1,24 @@
 const jwt=require('jsonwebtoken')
 const asyncHandler=require('express-async-handler')
 const User=require('../models/userModel')
+const photoModel = require('../models/photoModel')
 
 const protect =asyncHandler(async(req,res,next)=>{
     let token 
-
+    console.log("im headers  ",req.headers.authorization);
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         try {
             //Get token from header
-            token =req.headers.authorization.split('')[1]
+            token =await req.headers.authorization.split(' ')[1]
+
+            console.log("Get token from header",token);
 
             //verify the token
-            const decoded =jwt.verify(token,process.env.JWT_SECRET)
-
+            const decoded =await jwt.verify(token,process.env.JWT_SECRET)
+            console.log("im decode",decoded);
             //Get user from the token
-            req.user =await User.findById(decoded.id).select('-password')
-
+            req.photographer =await photoModel.findById(decoded.id).select('-password')
+            console.log("im photographer", req.photographer);
             next()
         } catch (error) {
             console.log(error);

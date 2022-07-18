@@ -17,6 +17,7 @@ const Pmain = () => {
     // const [ test,setTest]=useState("")
 
     const photographer = JSON.parse(localStorage.getItem('photographer'))
+    console.log("im full photographer",photographer);
 
     const dispatch = useDispatch()
     const loading = useSelector(isLoading)
@@ -40,7 +41,7 @@ const Pmain = () => {
     useEffect(() => {
 
 
-        dispatch(details(photographer._id))
+        dispatch(details())
 
     }, [photographer._id, dispatch])
 

@@ -96,10 +96,8 @@ const generateToken = (id) => {
 //fetching details
 
 const details = asyncHandler(async(req,res) => {
-
-    console.log("called",req.body);
     
-    const {id} =req.body
+    const id =req.photographer._id
 
     console.log("im body id...",id);
 

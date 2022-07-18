@@ -10,4 +10,4 @@ const API=axios.create({
 
 export const register =(photographerData) => API.post(REGISTER,photographerData)
 export const login =(photographerData) => API.post(LOGIN,photographerData)
-export const details =(photographerData) => API.post(DETAILS,photographerData)
+export const details =(photographerData) => API.get(DETAILS,photographerData)

@@ -14,10 +14,13 @@ const initialState = {
 export const details =createAsyncThunk(
     'photographerDetails/details',
   
-    async(id,thunkAPI) =>{
+    async(_,thunkAPI) =>{
+        console.log("called........................");
         try {
-
-            return await photographerService.details(id)
+        
+            const token =await thunkAPI.getState().photographerauth.photographer.token
+            console.log("im tokennnn",token);
+            return await photographerService.details(token)
         } catch (error) {
             const message = (error.response && error.response.data
                 && error.data.message) || error.message || error.toString()
