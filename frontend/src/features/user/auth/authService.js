@@ -1,9 +1,11 @@
-import axios from 'axios' 
-const API_URL = '/api/user/'
+
+import *as api from '../../../api/User'
+
+
 
 //Register user
 const register = async (userData) =>{
-    const response =await axios.post(API_URL +'register',userData)
+    const response =await api.registerUser(userData)
     if(response.data) {
         localStorage.setItem('user',JSON.stringify(response.data))
     }
@@ -12,8 +14,8 @@ const register = async (userData) =>{
 
 //login user
 const login = async (userData) =>{
-    const response =await axios.post(API_URL,userData)
     console.log("im calledd");
+    const response =await api.loginUser(userData)
     if(response.data) {
         localStorage.setItem('user',JSON.stringify(response.data))
     }

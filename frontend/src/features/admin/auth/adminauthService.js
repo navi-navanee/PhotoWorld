@@ -1,11 +1,10 @@
-import axios from 'axios'
 
-const API_URL = '/api/admin/'
+import *as api from '../../../api/Admin'
 
 //login user
 
 const login =async (adminData) =>{
-    const response =await axios.post(API_URL+'login',adminData)
+    const response =await api.login(adminData)
     if(response.data){
         localStorage.setItem('admin',JSON.stringify(response.data))
     }

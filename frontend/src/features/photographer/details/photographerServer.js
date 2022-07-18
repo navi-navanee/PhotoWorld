@@ -1,14 +1,14 @@
 import axios from 'axios'
 
+import *as api from '../../../api/Photographer'
 
-const API_URL = '/api/photo/'
 
 const details = async (id) => {
     const data = {
         id
     }
 
-    const response = await axios.post(API_URL + 'details', data)
+    const response = await api.details(data)
     console.log("im response", response);
     if (response.data) {
         console.log("im response", response.data);
