@@ -1,11 +1,15 @@
 const urls = {
     REGISTER : '/register',
     LOGIN :'/login',
-    DETAILS:'/details'
+    DETAILS:'/details',
+    ALBUMS:'/albums',
+    FETCH:'/fetch'
 }
 
 export const {
     REGISTER,
     LOGIN,
-    DETAILS
+    DETAILS,
+    ALBUMS,
+    FETCH
 } = urls

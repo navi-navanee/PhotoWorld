@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const Photographer = require('../../../models/photoModel')
+const albumModel = require('../../../models/albumModel')
 
 //Authenticating the Photographer
 
@@ -124,17 +125,50 @@ const details = asyncHandler(async(req,res) => {
 })
 
 
+//updating album
 
+const album = asyncHandler(async(req,res)=> {
+    const {image,
+        category
+    } =req.body
 
+    if(!image || !category){
+        res.status(400)
+        console.log("register called");
+        throw new Error('please add all field')
+    }
+    console.log("im the bodyyyyy",category);
+    const userId =req.photographer._id
+    const album = await albumModel.create({
+        image,
+        category,
+        userId,
+    })
+})
 
+//fetching album
 
+const fetch =asyncHandler(async(req,res) => {
+    const id =req.photographer._id
+    console.log("im body id...",id);
 
-
-
+    const albums=await albumModel.find({id})
+    if(albums){
+        console.log("im album")
+        res.json({
+           albums
+        })
+    }
+    else{
+        albums
+    }
+})
 
 
 module.exports = {
     registerPhoto,
     loginPhoto,
     details,
+    album,
+    fetch
 }

@@ -13,6 +13,7 @@ export const store = configureStore({
     userDetails:userSlice,
     photographerauth : photographerauthSlice,
     photographerDetails : photographerSlice
+    
 
   },
 });

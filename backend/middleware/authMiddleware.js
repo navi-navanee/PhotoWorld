@@ -5,7 +5,7 @@ const photoModel = require('../models/photoModel')
 
 const protect =asyncHandler(async(req,res,next)=>{
     let token 
-    console.log("im headers  ",req.headers.authorization);
+    console.log("im headers mahnnn ",req.headers.authorization);
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         try {
             //Get token from header

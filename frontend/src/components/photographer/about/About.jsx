@@ -16,12 +16,11 @@ export const About = () => {
     
     const data =useSelector(photographerDetails)
 
-    console.log("aboutttttttttttt",data);
+
 
 
     const category =data.category
 
-    console.log("im  categoryyyyyyyyyyy",category);
 
     return (
         <Container>

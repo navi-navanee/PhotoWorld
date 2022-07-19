@@ -52,6 +52,7 @@ const Step2 = (props) => {
     }
 
     console.log("im pic......", pic);
+    
     data.image = pic
 
 

@@ -1,96 +1,198 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Card, Container, IconButton, ImageListItemBar } from '@mui/material';
+import { Button, Card, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, ImageListItemBar, Rating, TextField } from '@mui/material';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
+import ImageUpload from 'image-upload-react'
+import Select from 'react-select';
+import { imageUpload } from '../../../util/imageUpload';
+import Spinner from '../../spinner/Spinner';
+import { useDispatch, useSelector } from 'react-redux'
+import {  albumsSubmit, fetch, fetchAlbum, fetchSuccess } from '../../../features/photographer/details/photographerSlice';
+import { useEffect } from 'react';
+
+const options = [
+    { category: 'wedding', label: 'wedding' },
+    { category: 'Helooo', label: 'Heloo' },
+    { category: 'vanilla', label: 'Vanilla' },
+];
+
 const Album = () => {
-    const itemData = [
-        {
-            img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-            title: 'Breakfast',
-            count: "02"
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-            title: 'Burger',
-            count: 5
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-            title: 'Camera',
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-            title: 'Coffee',
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-            title: 'Hats',
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-            title: 'Honey',
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-            title: 'Basketball',
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-            title: 'Fern',
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-            title: 'Mushrooms',
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-            title: 'Tomato basil',
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-            title: 'Sea star',
-        },
-        {
-            img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-            title: 'Bike',
-        },
-    ];
-    const click = () => {
-        console.log("hei");
+
+    const  dispatch =useDispatch()
+
+    const {albums} = useSelector(fetchAlbum)
+
+
+    console.log("im state album",albums);
+
+ 
+    console.log("im albumsddd",albums);
+
+
+
+    useEffect(() => {
+        dispatch(fetch())
+      
+    },[dispatch])
+
+ 
+    const [open, setOpen] = React.useState(false);
+    
+
+
+
+
+
+
+    const [selectedOption, setSelectedOption] = useState("");
+    const {category} =selectedOption;
+
+    // imagee.....
+    
+    const [imageSrc, setImageSrc] = useState()
+    const [image, setPic] = useState('')
+    const [load, setLoad] = useState(false)
+
+
+    // dialogue box submit
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+const submit = () => {
+    const data ={
+        image,
+        category
     }
+    console.log(data);
+    dispatch(albumsSubmit(data))
+    dispatch(fetch())
+    
+
+}
+
+    const handleClose = () => {
+        setOpen(false);
+        submit()
+       
+    }
+
+    //dump the image into cloudinary ImageUpload
+    const postDetails = async (ProfilePicture) => {
+        try {
+            setLoad(true)
+            const data = await imageUpload(ProfilePicture);
+            setPic(data.secure_url.toString());
+            console.log("im return", image);
+            setLoad(false)
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleImageSelect = (e) => {
+        console.log("helooo");
+        setImageSrc(URL.createObjectURL(e.target.files[0]))
+        postDetails(e.target.files[0])
+
+    }
+
+    if (load) {
+        return <Spinner />
+    }
+
+    
+
     return (
         <Container>
+
+            <div className='head'>
+                <h2>Review</h2>
+                <div>
+                    <Button variant="outlined" onClick={handleClickOpen}>
+                        Submit your review
+                    </Button>
+                    <div>
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                            maxWidth="sm"
+                        >
+                            <DialogTitle id="alert-dialog-title">
+                                {"Add Photo "}
+                            </DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Please Add your photo......
+                                </DialogContentText>
+
+                                <ImageUpload
+                                    handleImageSelect={handleImageSelect}
+                                    imageSrc={imageSrc}
+                                    setImageSrc={setImageSrc}
+                                    style={{
+                                        width: 200,
+                                        height: 200,
+                                        background: 'green'
+                                    }}
+                                />
+                                <div style={{ marginTop: "2rem" }}>
+                                    <Select
+                                        defaultValue={selectedOption}
+                                        onChange={setSelectedOption}
+                                        options={options}
+                                    />
+                                </div>
+
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} autoFocus>
+                                    Submit
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                </div>
+            </div>
+
+
             <ImageList
                 gap={12}
-                sx={{ mb: 8,
-                 gridTemplateColumns:
-                 "repeat(auto-fill,minmax(280px,1fr)) !important"
+                sx={{
+                    mb: 8,
+                    gridTemplateColumns:
+                        "repeat(auto-fill,minmax(280px,1fr)) !important",
+                        
                 }}
-                
-           >
+            >
                 {
-                    itemData.map((item) => (
-                        <Card key={item.img}>
+                  albums && albums.map((item) => (
+                        <Card key={item.image} sx={{maxWidth:"100%",
+                     maxHeight:"100%"}}>
                             <ImageListItem sx={{ height: '100% !import' }}>
                                 <ImageListItemBar
+                                    position='top'
                                     sx={{
                                         background:
                                             'linear-gradient(to bottom, rgba(0,0,0,0.7)0%, rgba(0,0,0,0.3)70%, rgba(0,0,0,0)100%)',
                                     }}
+                                    title={item.category ? item.category : 'NO titlle'}
                                 />
                                 <img
-                                    src={item.img}
-                                    alt={item.title}
+                                    src={item.image}
+                                    alt={item.category}
                                     loading="lazy"
                                     style={{ cursor: "pointer" }}
                                 />
                                 <ImageListItemBar
-                                
-                                    title={ <FavoriteBorderOutlinedIcon/>}
-                                    subtitle={item.count}
-                                   
+
+                                    title={<FavoriteBorderOutlinedIcon />}
+                                    subtitle={item.like}
+
                                 />
                             </ImageListItem>
                         </Card>
