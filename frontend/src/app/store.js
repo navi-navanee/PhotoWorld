@@ -4,6 +4,7 @@ import authReducer from '../features/user/auth/authSlice';
 import userSlice from '../features/admin/userData/userSlice';
 import photographerauthSlice from '../features/photographer/auth/photographerauthSlice';
 import  photographerSlice  from   '../features/photographer/details/photographerSlice';
+import  userFilterSlice  from '../features/user/details/userSlice';
 
 
 export const store = configureStore({
@@ -12,7 +13,8 @@ export const store = configureStore({
     adminauth:adminauthSlice,
     userDetails:userSlice,
     photographerauth : photographerauthSlice,
-    photographerDetails : photographerSlice
+    photographerDetails : photographerSlice,
+    userFilter:userFilterSlice
     
 
   },

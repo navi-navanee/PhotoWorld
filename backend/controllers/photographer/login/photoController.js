@@ -149,10 +149,11 @@ const album = asyncHandler(async(req,res)=> {
 //fetching album
 
 const fetch =asyncHandler(async(req,res) => {
-    const id =req.photographer._id
-    console.log("im body id...",id);
+    const userId =req.photographer._id
+    console.log("im body id...",userId);
 
-    const albums=await albumModel.find({id})
+    const albums=await albumModel.find({userId})
+    console.log(albums);
     if(albums){
         console.log("im album")
         res.json({

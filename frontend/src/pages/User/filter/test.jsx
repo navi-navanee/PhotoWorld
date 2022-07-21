@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { EmptyView } from '../../../components/users/common/emptyView/EmptyView'
 import FilterPanel from '../../../components/users/filterPanel/FilterPanel'
 import List from '../../../components/users/list/List'
 import SearchBar from '../../../components/users/searchBar/SearchBar'
 import { dataList } from '../../../constants'
-import { filter, filterData } from '../../../features/user/details/userSlice'
 import './filter.scss'
 
 
@@ -14,28 +12,18 @@ const Filter = () => {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [selectedRating, setSelectedRating] = useState(null)
   const [selectedPrice, setSelectedPrice] = useState([1000,100000])
-  // const [list, setList] = useState(null)
+  const [list, setList] = useState(dataList)
   const [inputSearch, setInputSearch] = useState('')
   const [resultFound, setResultFound] = useState(false)
   
   const [place, setPlace] = useState([
-    { id: 1, checked: false, label: 'kerala' },
-    { id: 2, checked: false, label: 'Tamilnadu' },
+    { id: 1, checked: false, label: 'Kerala' },
+    { id: 2, checked: false, label: 'chennai' },
     { id: 3, checked: false, label: 'banglure' },
   ]);
 
-  const data= useSelector(filterData)
-  const [list, setList] = useState(data)
 
- console.log("im data........",list)
   
-
-  // const {filterData} = useSelector((state) => state.userFilter.filterData)
-
-//  console.log("im filter data",data);
-
- const dispatch = useDispatch()
-
 
 
   const handleSelectCategory= (event,value) =>
@@ -44,7 +32,6 @@ const Filter = () => {
   
   const handleSelectRating= (event,value) =>
   !value ? null : setSelectedRating(value);
-
 
   const handleChangeChecked=(id) => {
     const placeStateList=place;
@@ -58,23 +45,23 @@ const Filter = () => {
   const handleSelectPrice=(event,value) => setSelectedPrice(value)
 
   const applyFilter = () => {
-    let updatedList =data;
+    let updatedList =dataList;
 
 
     //Rating filter
-    // if(selectedRating){
-    //   updatedList=updatedList.filter(
-    //     (item) => parseInt(item.rating)===parseInt(selectedRating)
-    //     )
-    // }
+    if(selectedRating){
+      updatedList=updatedList.filter(
+        (item) => parseInt(item.rating)===parseInt(selectedRating)
+        )
+    }
 
     //categoryfilter
 
-    // if(selectedCategory){
-    //   updatedList=updatedList.filter(
-    //     item => item.category === selectedCategory
-    //     )
-    // }
+    if(selectedCategory){
+      updatedList=updatedList.filter(
+        item => item.category === selectedCategory
+        )
+    }
 
     //place filter
 //[kerala,chennai]
@@ -84,7 +71,7 @@ const Filter = () => {
 
       if(plceChecked.length){
         updatedList=updatedList.filter(
-          item => plceChecked.includes(item.state)
+          item => plceChecked.includes(item.cuisine)
           )
       }
 
@@ -101,11 +88,15 @@ const Filter = () => {
       if(inputSearch){
         updatedList = updatedList.filter(
           (item) =>
-           item.name.toLowerCase().search(inputSearch.toLowerCase().trim()) !== 
+           item.title.toLowerCase().search(inputSearch.toLowerCase().trim()) !== 
            -1
           )
         
       }
+
+ 
+
+
 
 
     setList(updatedList)
@@ -116,7 +107,7 @@ const Filter = () => {
 
   useEffect(()=> {
     applyFilter()
-  },[place,selectedPrice,inputSearch])
+  },[selectedRating,selectedCategory,place,selectedPrice,inputSearch])
 
   return (
     <div className='home_panel'>
@@ -126,10 +117,10 @@ const Filter = () => {
         <div className="home_panel-wrap">
           {/* Side panel */}
           <FilterPanel
-            // selectToggle={handleSelectCategory}
-            // selectedCategory={selectedCategory}
-            // selectRating={handleSelectRating}
-            // selectedRating={selectedRating}
+            selectToggle={handleSelectCategory}
+            selectedCategory={selectedCategory}
+            selectRating={handleSelectRating}
+            selectedRating={selectedRating}
             place={place}
             changeChecked={handleChangeChecked}
             selectedPrice={selectedPrice}

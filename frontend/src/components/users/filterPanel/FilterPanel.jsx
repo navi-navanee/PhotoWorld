@@ -19,14 +19,15 @@ const FilterPanel = ({
   return (
     <div>
         {/* category */}
-        <div className="input-group">
+
+        {/* <div className="input-group">
             <p className="label">Category</p>
             <FilterListToggle 
             options={categoryList} 
             value={selectedCategory} 
             selectToggle={selectToggle} 
             />
-        </div>
+        </div> */}
         {/* place */}
         <div className="input-group">
         <p className="label">Place</p>  
@@ -47,14 +48,15 @@ const FilterPanel = ({
          />
           </div>
         {/* star Rating */}
-        <div className="input-group">
+
+        {/* <div className="input-group">
         <p className="label">Star rating</p>
         <FilterListToggle 
             options={ratingList} 
             value={selectedRating} 
             selectToggle={selectRating} 
             />
-        </div>
+        </div> */}
         
     </div>
   )

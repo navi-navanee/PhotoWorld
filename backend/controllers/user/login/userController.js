@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const User = require('../../../models/userModel')
+const photoModel = require('../../../models/photoModel')
 
 // Authenticate a user
 const registerUser = asyncHandler(async (req, res) => {
@@ -79,8 +80,6 @@ const generateToken = (id) => {
 
 
 
-
-
 const editUser = asyncHandler(async (req, res) => {
     res.json({ message: 'User edited' })
 
@@ -91,10 +90,23 @@ const deleterUser = asyncHandler(async (req, res) => {
 
 })
 
+const filterData = asyncHandler(async (req, res) => {
+   const photographers=await photoModel.find()
+   console.log(photographers)
+   if(photographers){
+    res.json(photographers)
+   }else{
+    res.status(400)
+    throw new Error ('no Photographer')
+   }
+
+})
+
 
 module.exports = {
     registerUser,
     loginUser,
     editUser,
-    deleterUser
+    deleterUser,
+    filterData
 }

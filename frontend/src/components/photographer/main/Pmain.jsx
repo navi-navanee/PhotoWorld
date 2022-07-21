@@ -43,7 +43,7 @@ const Pmain = () => {
 
         dispatch(details())
 
-    }, [photographer._id, dispatch])
+    }, [ dispatch])
 
 
     if (loading) {
