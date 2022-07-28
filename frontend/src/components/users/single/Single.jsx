@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { details, photographerDetails } from '../../../features/photographer/details/photographerSlice'
 import Spinner from '../../spinner/Spinner'
 import { isLoading } from '../../../features/photographer/details/photographerSlice'
-import { singleData, singleLoading, singleSearch } from '../../../features/user/details/userSlice'
+import { singleData, singleFetch, singleFetchData, singleLoading, singleSearch } from '../../../features/user/details/userSlice'
 
 
 const Single = () => {
@@ -17,19 +17,27 @@ const Single = () => {
 
     let { id } = useParams();
 
-    console.log("im the sent id",id);
-
     const {data}= useSelector(singleData)
+
+    // const image= useSelector(singleFetchData)
+
+    // const album=image ? image.data : '' 
+
+    // console.log("i the imag",album);
+
+    
 
     const category = data ? data.category : ''
 
-    console.log("im sigle data",data);
+    // console.log("im sigle data",data);
+
+
 
     
     useEffect(()=>{
-        
 
         dispatch(singleSearch(id))
+        dispatch(singleFetch(id))
 
     },[dispatch])
 

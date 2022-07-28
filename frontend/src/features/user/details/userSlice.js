@@ -16,6 +16,14 @@ const initialState = {
     singleLoading:false,
     singleMessage:'',
 
+    //...................
+
+    singleFetchAlbum :[],
+    singleFetchError:false,
+    singleFetchSuccess:false,
+    singleFetchLoading:false,
+    singleFetchMessage:'',
+
 }
 
 
@@ -40,6 +48,20 @@ export const singleSearch = createAsyncThunk (
             const token = await thunkAPI.getState().auth.user.token
             return await userService.singleSearch(userData,token)
         }catch (error){
+            const message = (error.response && error.response.data
+                && error.data.message) || error.message || error.toString()
+              return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+export const singleFetch =createAsyncThunk(
+    'user/singleFetch',
+    async(userData,thunkAPI) => {
+        try{
+            const token = await thunkAPI.getState().auth.user.token
+            return await userService.singleFetch(userData,token)
+        }catch(error) {
             const message = (error.response && error.response.data
                 && error.data.message) || error.message || error.toString()
               return thunkAPI.rejectWithValue(message)
@@ -86,6 +108,22 @@ export const userFilterSlice = createSlice({
             state.singleMessage=action.payload
             state.singleData=null
         })
+
+        .addCase(singleFetch.pending,(state)=>{
+            state.singleFetchLoading=true
+        })
+        .addCase(singleFetch.fulfilled,(state,action)=>{
+            state.singleFetchLoading =false
+            state.singleFetchSuccess=true
+            state.singleFetchData=action.payload
+            
+        })
+        .addCase(singleFetch.rejected,(state,action)=> {
+            state.singleFetchLoading=false
+            state.singleFetchError=true
+            state.singleFetchMessage=action.payload
+            state.singleFetchData=null
+        })
     }
 })
 
@@ -96,5 +134,8 @@ export const filterMessage = (state) => state.userFilter.filterMessage
 
 export const singleData =(state) => state.userFilter.singleData
 export const singleLoading =(state) => state.userFilter.singleLoading
+
+export const singleFetchData =(state) => state.userFilter.singleFetchData
+export const singleFetchLoading =(state) => state.userFilter.singleFetchLoading
 
 export default userFilterSlice.reducer

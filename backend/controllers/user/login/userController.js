@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const User = require('../../../models/userModel')
 const photoModel = require('../../../models/photoModel')
+const albumModel = require('../../../models/albumModel')
 
 // Authenticate a user
 const registerUser = asyncHandler(async (req, res) => {
@@ -105,18 +106,33 @@ const filterData = asyncHandler(async (req, res) => {
 //single photographer
 
 const singlePhotographer =asyncHandler((async(req,res)=>{
-    console.log("im the body...........",req.params);
+ 
     const {id} =req.params
     const _id =id
     const singlePhotographers = await photoModel.findOne({_id})
-
-    console.log("myrrrrr.....",singlePhotographers);
 
     if(singlePhotographers){
         res.json(singlePhotographers)
     }else{
         res.status(400)
         throw new Error ('no Photographer')  
+    }
+}))
+
+
+const singleFetch =asyncHandler((async(req,res)=>{
+    console.log("im the body...........",req.params);
+    const {id} =req.params
+    const userId =id
+    const albums = await albumModel.find({userId})
+
+    console.log("myrrrrr.....",albums);
+
+    if(albums){
+        res.json(albums)
+    }else{
+        res.status(400)
+        throw new Error ('no Photos')  
     }
 }))
 
@@ -129,5 +145,6 @@ module.exports = {
     editUser,
     deleterUser,
     filterData,
-    singlePhotographer
+    singlePhotographer,
+    singleFetch
 }

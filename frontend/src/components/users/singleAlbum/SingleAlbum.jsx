@@ -1,12 +1,17 @@
-import { Container, ImageList, ImageListItem, ImageListItemBar } from '@mui/material'
+import { Card, Container, ImageList, ImageListItem, ImageListItemBar } from '@mui/material'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { useSelector } from 'react-redux';
+import { singleFetchData } from '../../../features/user/details/userSlice';
 
 
 const SingleAlbum = () => {
 
+  const image= useSelector(singleFetchData)
 
+  const albums=image ? image.data : '' 
 
-  
+  console.log("i the imag",albums);
+
   return (
     <div>
        <Container>
@@ -19,7 +24,7 @@ const SingleAlbum = () => {
             
     }}
 >
-    {/* {
+    {
       albums && albums.map((item) => (
             <Card key={item.image} sx={{maxWidth:"100%",
          maxHeight:"100%"}}>
@@ -47,7 +52,7 @@ const SingleAlbum = () => {
                 </ImageListItem>
             </Card>
         ))
-    } */}
+    }
 
 </ImageList>
 </Container>

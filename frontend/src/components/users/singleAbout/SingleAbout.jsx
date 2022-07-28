@@ -16,6 +16,7 @@ const SingleAbout = () => {
 
     const category =data ? data.category : ''
 
+
     console.log("im sigle data",data);
 
   return (
