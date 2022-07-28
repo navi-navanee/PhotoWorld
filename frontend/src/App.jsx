@@ -23,6 +23,10 @@ import Review from './components/photographer/review/Review';
 import Filter from './pages/User/filter/Filter';
 import MultiStepForm from './components/photographer/multiForm/MultiStepForm';
 import { useSelector } from 'react-redux';
+import SinglePhotographer from './pages/User/single/SinglePhotographer';
+import SingleAbout from './components/users/singleAbout/SingleAbout';
+import SingleAlbum from './components/users/singleAlbum/SingleAlbum';
+import SingleReview from './components/users/singleReview/SingleReview';
 // import Register2 from './components/photographer/pregister/Register2';
 
 
@@ -44,7 +48,11 @@ function App() {
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/register' element={<Register />} />
             <Route exact path='/filter' element={<Filter/>} />
-            <Route exact path='/singlePhotographer' element={''} />
+            <Route exact path='/singlePhotographer/:id' element={<SinglePhotographer/>} >
+            <Route index element={<SingleAbout/>}/>
+                 <Route path='singlealbum' element={<SingleAlbum/>}/>
+                 <Route path='singlereview' element={<SingleReview/>}/>
+            </Route>
 
             {/* ====================Admin======================= */}
 
@@ -68,6 +76,7 @@ function App() {
             </Route>
 
             {/* {==============================Photographer================} */}
+
 
             <Route path='/photographer'>
                <Route index element={<Plogin/>} />

@@ -39,12 +39,6 @@ const Album = () => {
 
  
     const [open, setOpen] = React.useState(false);
-    
-
-
-
-
-
 
     const [selectedOption, setSelectedOption] = useState("");
     const {category} =selectedOption;

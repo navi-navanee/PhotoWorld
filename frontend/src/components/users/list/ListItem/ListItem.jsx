@@ -23,8 +23,9 @@ const navigate =useNavigate()
   const onSubmit = (e) =>{
     console.log("im clicked",e);
 
-    dispatch(singleSearch(e))
-    navigate('/singlePhotographer')
+    // dispatch(singleSearch(e))
+    
+    navigate(`/singlePhotographer/${e}`)
 
   }
 
