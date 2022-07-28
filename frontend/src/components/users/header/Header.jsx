@@ -1,6 +1,6 @@
 
 import { Link, useNavigate } from "react-router-dom";
-import { AppBar, Tab, Tabs, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button,Toolbar, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../../../features/user/auth/authSlice";
 function Header() {
@@ -15,10 +15,19 @@ function Header() {
     navigate("/");
   };
 
+  const onLogin =() =>{
+    navigate("/login");
+  }
+  const onRegister =() =>{
+    navigate("/Register");
+  }
+
+
+
   return (
     <header>
       <AppBar style={{backgroundColor:'black'}}  position="static" sx={{ color:"white" }}>
-        <Toolbar>
+        <Toolbar style={{display:"flex",justifyContent:"space-between"}}>
         <Typography
             variant="h6"
             noWrap
@@ -27,16 +36,21 @@ function Header() {
           >
             PHOTOWORLD
           </Typography>
-          <Tabs sx={{ marginLeft: "auto" }} textColor="inherit">
+          <div>
+
+          
             {user ? (
-              <Tab label="logout" onClick={onLogout} />
+              // <Tab label="logout" onClick={onLogout} />
+              <Button variant="text" onClick={onLogout}>logout</Button>
             ) : (
               <>
-                <Tab label="Login" to="/login" component={Link} />
-                <Tab label="Register" to="/Register" component={Link} />
+                {/* <Tab label="Login" to="/login"  component={Link} />
+                <Tab label="Register" to="/Register" component={Link} /> */}
+                    <Button variant="text" onClick={onLogin}>Login</Button>
+                    <Button variant="text" onClick={onRegister}>Register</Button>
               </>
             )}
-          </Tabs>
+        </div>
         </Toolbar>
       </AppBar>
     </header>

@@ -9,13 +9,10 @@ const List = ({list}) => {
 
   return (
       <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"2rem"}} className='list-wrapppp'>
-        <div>
-        </div>
+      
       {list.map(item => <ListItem key={item._id} item={item} />)}
     
       </div>
   )
   }
-
-
 export default List

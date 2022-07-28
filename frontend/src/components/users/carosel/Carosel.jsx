@@ -12,6 +12,12 @@ import { useNavigate } from 'react-router-dom';
 
 const Carosel = () => {
 
+
+  const onclick =((e) =>{
+    e.preventDefault();
+
+    navigate('/filter')
+  })
   
 const navigate =useNavigate()
 
@@ -19,13 +25,7 @@ const navigate =useNavigate()
      <div className="content">
        <h1>Search photographer.....</h1>
        <div className="search">
-            {/* <input type="text" placeholder='search' style={{color:'white'}} />
-            <SearchIcon onClick={onSubmit} style={{color:'red'}}/> */}
-
-            <button onClick={(e)=>{
-              e.preventDefault();
-              navigate('/filter')
-            }}>
+            <button onClick={onclick}>
               Click here
             </button>
            </div>

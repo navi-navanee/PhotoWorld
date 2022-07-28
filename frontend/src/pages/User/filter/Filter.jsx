@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,17 +8,19 @@ import FilterPanel from '../../../components/users/filterPanel/FilterPanel'
 import List from '../../../components/users/list/List'
 import SearchBar from '../../../components/users/searchBar/SearchBar'
 import { dataList } from '../../../constants'
-import { filter, filterData } from '../../../features/user/details/userSlice'
 import './filter.scss'
+import { filter, filterData } from '../../../features/user/details/userSlice'
+
 
 
 const Filter = () => {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [selectedRating, setSelectedRating] = useState(null)
   const [selectedPrice, setSelectedPrice] = useState([1000,100000])
-  // const [list, setList] = useState(null)
   const [inputSearch, setInputSearch] = useState('')
   const [resultFound, setResultFound] = useState(false)
+  // const [list, setList] = useState(dataList)
+  
   
   const [place, setPlace] = useState([
     { id: 1, checked: false, label: 'kerala' },
@@ -24,17 +28,22 @@ const Filter = () => {
     { id: 3, checked: false, label: 'banglure' },
   ]);
 
+  //.....................................
+  const dispatch = useDispatch()
+
   const data= useSelector(filterData)
-  const [list, setList] = useState(data)
 
- console.log("im data........",list)
-  
+  console.log("myre...........",data);
 
-  // const {filterData} = useSelector((state) => state.userFilter.filterData)
+    useEffect(() => {
+      
+    dispatch(filter())
+    console.log("im calll");
 
-//  console.log("im filter data",data);
+}, [dispatch])
+//......................................
 
- const dispatch = useDispatch()
+const [list, setList] = useState( data ? data : [] )
 
 
 
@@ -44,7 +53,6 @@ const Filter = () => {
   
   const handleSelectRating= (event,value) =>
   !value ? null : setSelectedRating(value);
-
 
   const handleChangeChecked=(id) => {
     const placeStateList=place;
@@ -58,23 +66,23 @@ const Filter = () => {
   const handleSelectPrice=(event,value) => setSelectedPrice(value)
 
   const applyFilter = () => {
-    let updatedList =data;
+    let updatedList =data ? data : [];
 
 
     //Rating filter
-    // if(selectedRating){
-    //   updatedList=updatedList.filter(
-    //     (item) => parseInt(item.rating)===parseInt(selectedRating)
-    //     )
-    // }
+    if(selectedRating){
+      updatedList=updatedList.filter(
+        (item) => parseInt(item.rating)===parseInt(selectedRating)
+        )
+    }
 
     //categoryfilter
 
-    // if(selectedCategory){
-    //   updatedList=updatedList.filter(
-    //     item => item.category === selectedCategory
-    //     )
-    // }
+    if(selectedCategory){
+      updatedList=updatedList.filter(
+        item => item.category === selectedCategory
+        )
+    }
 
     //place filter
 //[kerala,chennai]
@@ -101,12 +109,12 @@ const Filter = () => {
       if(inputSearch){
         updatedList = updatedList.filter(
           (item) =>
+    
            item.name.toLowerCase().search(inputSearch.toLowerCase().trim()) !== 
            -1
           )
         
       }
-
 
     setList(updatedList)
 
@@ -117,6 +125,7 @@ const Filter = () => {
   useEffect(()=> {
     applyFilter()
   },[place,selectedPrice,inputSearch])
+
 
   return (
     <div className='home_panel'>

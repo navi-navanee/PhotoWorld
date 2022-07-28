@@ -44,6 +44,7 @@ function App() {
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/register' element={<Register />} />
             <Route exact path='/filter' element={<Filter/>} />
+            <Route exact path='/singlePhotographer' element={''} />
 
             {/* ====================Admin======================= */}
 

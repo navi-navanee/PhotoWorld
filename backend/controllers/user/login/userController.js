@@ -91,7 +91,7 @@ const deleterUser = asyncHandler(async (req, res) => {
 })
 
 const filterData = asyncHandler(async (req, res) => {
-   const photographers=await photoModel.find()
+   const photographers = await photoModel.find()
    console.log(photographers)
    if(photographers){
     res.json(photographers)
@@ -102,11 +102,32 @@ const filterData = asyncHandler(async (req, res) => {
 
 })
 
+//single photographer
+
+const singlePhotographer =asyncHandler((async(req,res)=>{
+    console.log("im the body...........",req.params);
+    const {id} =req.params
+    const _id =id
+    const singlePhotographers = await photoModel.findOne({_id})
+
+    console.log("myrrrrr.....",singlePhotographers);
+
+    if(singlePhotographers){
+        res.json(singlePhotographers)
+    }else{
+        res.status(400)
+        throw new Error ('no Photographer')  
+    }
+}))
+
+
+
 
 module.exports = {
     registerUser,
     loginUser,
     editUser,
     deleterUser,
-    filterData
+    filterData,
+    singlePhotographer
 }

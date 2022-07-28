@@ -1,4 +1,4 @@
-import * as api from '../../../api/User'
+
 
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,15 +11,16 @@ import { filter, filterData } from '../../../features/user/details/userSlice'
 
 function Landing() {
 
-  const dispatch = useDispatch()
-  const data= useSelector(filterData)
+//   const dispatch = useDispatch()
+  
+//   const data= useSelector(filterData)
 
-  console.log(data);
+//   console.log(data);
 
-  useEffect(() => {
-    dispatch(filter())
+//   useEffect(() => {
+//     dispatch(filter())
 
-}, [dispatch])
+// }, [dispatch])
 
 
 

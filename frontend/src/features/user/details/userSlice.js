@@ -6,7 +6,16 @@ const initialState = {
     filterError:false,
     filterSuccess:false,
     filterLoading:false,
-    filterMessage:''
+    filterMessage:'',
+
+    //............
+    
+    singleData :[],
+    singleError:false,
+    singleSuccess:false,
+    singleLoading:false,
+    singleMessage:'',
+
 }
 
 
@@ -20,6 +29,20 @@ export const filter = createAsyncThunk(
             return await userService.filter(token)
         } catch (error) {
             
+        }
+    }
+)
+
+export const singleSearch = createAsyncThunk (
+    'user/singleSearch',
+    async (userData,thunkAPI) => {
+        try {
+            const token = await thunkAPI.getState().auth.user.token
+            return await userService.singleSearch(userData,token)
+        }catch (error){
+            const message = (error.response && error.response.data
+                && error.data.message) || error.message || error.toString()
+              return thunkAPI.rejectWithValue(message)
         }
     }
 )
@@ -48,6 +71,21 @@ export const userFilterSlice = createSlice({
             state.filterMessage=action.payload
             state.filterData=null
         })
+        .addCase(singleSearch.pending,(state)=>{
+            state.singleLoading=true
+        })
+        .addCase(singleSearch.fulfilled,(state,action)=>{
+            state.singleLoading =false
+            state.singleSuccess=true
+            state.singleData=action.payload
+            
+        })
+        .addCase(singleSearch.rejected,(state,action)=> {
+            state.singleLoading=false
+            state.singleError=true
+            state.singleMessage=action.payload
+            state.singleData=null
+        })
     }
 })
 
@@ -55,5 +93,8 @@ export const filterData = (state) => state.userFilter.filterData.data
 export const isLoading = (state) => state.userFilter.filterLoading
 export const filterSuccess = (state) => state.userFilter.filterSuccess
 export const filterMessage = (state) => state.userFilter.filterMessage
+
+export const singleData =(state) => state.userFilter.singleData
+export const singleLoading =(state) => state.userFilter.singleLoading
 
 export default userFilterSlice.reducer

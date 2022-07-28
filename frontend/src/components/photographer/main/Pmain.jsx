@@ -83,7 +83,7 @@ const Pmain = () => {
 
                 </div>
                 <nav>
-                    <Link className='link' to={''}>About</Link >
+                    <Link className='link' to={''} >About</Link >
                     <Link className='link' to={'album'}>Album</Link>
                     <Link className='link' to={'review'}>Review</Link>
                 </nav>
