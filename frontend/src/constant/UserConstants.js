@@ -3,7 +3,8 @@ const urls = {
     USER_LOGIN : '/',
     USER_FILTER : '/filter',
     SINGLE_SEARCH: '/singleSearch',
-    SINGLE_FETCH: '/singlefetch'
+    SINGLE_FETCH: '/singlefetch',
+    WEDDING: '/wedding'
 
 
 }
@@ -13,6 +14,7 @@ export const {
     USER_LOGIN,
     USER_FILTER,
     SINGLE_SEARCH,
-    SINGLE_FETCH
+    SINGLE_FETCH,
+    WEDDING
 
 } = urls

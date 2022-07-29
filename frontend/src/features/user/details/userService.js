@@ -20,22 +20,39 @@ const singleSearch = async (userData,token) => {
     return response
 }
 const singleFetch = async (userData,token) => {
-    console.log("im user data",userData);
     const config = {
         headers : {
             Authorization : `Bearer ${token}`  
         }
     }
-    console.log("im the config",config);
     const response = await api.singleFetch(userData,config)
-    console.log("im the single response",response);
     return response
 }
+
+//...................................................
+
+const wedding =async ()=>{
+    // console.log("im the token",token);
+    // const config = {
+    //     headers : {
+    //         Authorization : `Bearer ${token}`  
+    //     }
+    //  }
+    //  console.log("im the config",config);
+     const response = await api.wedding()
+     console.log("im the response.....",response);
+     return response
+}
+
+//.....................................................
+
+
 
 const userService = {
     filter,
     singleSearch,
-    singleFetch
+    singleFetch,
+    wedding,
 }
 
 

@@ -10,6 +10,8 @@ import SearchBar from '../../../components/users/searchBar/SearchBar'
 import { dataList } from '../../../constants'
 import './filter.scss'
 import { filter, filterData } from '../../../features/user/details/userSlice'
+import Header from '../../../components/users/header/Header'
+import Footer from '../../../components/photographer/footer/Footer'
 
 
 
@@ -128,6 +130,8 @@ const [list, setList] = useState( data ? data : [] )
 
 
   return (
+    <>
+   <Header/>
     <div className='home_panel'>
       {/* search bar */}
       <SearchBar value={inputSearch} changeInput={e=>setInputSearch(e.target.value)} /> 
@@ -152,6 +156,8 @@ const [list, setList] = useState( data ? data : [] )
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   )
 }
 

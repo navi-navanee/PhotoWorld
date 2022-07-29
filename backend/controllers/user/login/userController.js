@@ -136,6 +136,20 @@ const singleFetch =asyncHandler((async(req,res)=>{
     }
 }))
 
+//.........................................................
+
+const wedding =asyncHandler((async(req,res)=>{
+    const weddingImage = await albumModel.find({category:"Helooo"})
+    console.log("im wedding image.........",weddingImage)
+    if(weddingImage){
+     res.json(weddingImage)
+    }else{
+     res.status(400)
+     throw new Error ('no Images')
+    }
+ 
+}))
+
 
 
 
@@ -146,5 +160,6 @@ module.exports = {
     deleterUser,
     filterData,
     singlePhotographer,
-    singleFetch
+    singleFetch,
+    wedding
 }

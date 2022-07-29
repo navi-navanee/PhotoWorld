@@ -21,20 +21,12 @@ const Pmain = () => {
 
     const dispatch = useDispatch()
     const loading = useSelector(isLoading)
-
     const data= useSelector(photographerDetails)
     
     
   const category =data.category
 
   console.log("im  category",category);
-
-
-    // const individual =category.map(({label})=>label)
-
-    // console.log("im individual",individual)
-
-
 
 
 

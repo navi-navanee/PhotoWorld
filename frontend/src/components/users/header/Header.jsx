@@ -15,6 +15,11 @@ function Header() {
     navigate("/");
   };
 
+  const onLanding = () => {
+    console.log("im triggerd");
+    navigate('/')
+  }
+
   const onLogin =() =>{
     navigate("/login");
   }
@@ -33,6 +38,8 @@ function Header() {
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
+            onClick={onLanding}
+            style={{cursor:"pointer"}}
           >
             PHOTOWORLD
           </Typography>

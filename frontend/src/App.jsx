@@ -37,6 +37,7 @@ import SingleReview from './components/users/singleReview/SingleReview';
 function App() {
 
   const {photographer} = useSelector((state)=>state.photographerauth)
+  const {user} = useSelector((state)=>state.auth)
   
   return (
     <>
@@ -47,8 +48,8 @@ function App() {
             <Route exact path='/' element={<Landing />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/register' element={<Register />} />
-            <Route exact path='/filter' element={<Filter/>} />
-            <Route exact path='/singlePhotographer/:id' element={<SinglePhotographer/>} >
+            <Route exact path='/filter' element={user ?<Filter/> : <Login /> } />
+            <Route exact path='/singlePhotographer/:id' element={ user ?<SinglePhotographer/> :<Login />} >
             <Route index element={<SingleAbout/>}/>
                  <Route path='singlealbum' element={<SingleAlbum/>}/>
                  <Route path='singlereview' element={<SingleReview/>}/>
