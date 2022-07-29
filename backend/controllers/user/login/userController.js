@@ -62,7 +62,8 @@ const loginUser = asyncHandler(async (req, res) => {
     _id:user.id,
     name:user.name,
     email:user.email,
-    token:generateToken(user._id)
+    token:generateToken(user._id),
+    profile_image:user. profile_image
   })
 }else{
     res.status(400)
