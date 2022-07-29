@@ -23,6 +23,7 @@ const albums =async (data,token) => {
         }
     }
     const response =await api.albums(data,config) 
+    return response
 }
 
 
@@ -32,17 +33,25 @@ const fetch=async (token) => {
             Authorization : `Bearer ${token}`  
         }
      }
-    console.log("im configgg",config);
     const response = await api.fetch(config)
-    console.log("im response", response);
-
     if (response.data) {
-        console.log("im response", response.data);
     }
     return response.data
-   
-   
 }
+
+
+//deleting the photo
+
+const deletephotos=async(id ,token)=>{
+    const config = {
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    }
+    const {data} = await api.deletephotos(id ,config)
+    console.log("delete data response......",data);
+    return data
+  }
 
 
 
@@ -50,6 +59,7 @@ const photographerService = {
     details,
     albums,
     fetch,
+    deletephotos
 }
 
 export default photographerService

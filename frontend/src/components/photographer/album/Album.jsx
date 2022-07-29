@@ -10,7 +10,7 @@ import Select from 'react-select';
 import { imageUpload } from '../../../util/imageUpload';
 import Spinner from '../../spinner/Spinner';
 import { useDispatch, useSelector } from 'react-redux'
-import { albumsSubmit, fetch, fetchAlbum, fetchSuccess } from '../../../features/photographer/details/photographerSlice';
+import { albumsSubmit, deletephotos, fetch, fetchAlbum, fetchSuccess } from '../../../features/photographer/details/photographerSlice';
 import { useEffect } from 'react';
 import { Box } from '@mui/system';
 
@@ -40,10 +40,14 @@ const Album = () => {
     const ahandleClose = () => setaopen(false);
     const dispatch = useDispatch()
     const { albums } = useSelector(fetchAlbum)
+    const { isDelete} = useSelector((state) => state.photographerDetails)
 
-    console.log("im the comming data",albums);
+    console.log("im the is delete.......myrrr",isDelete);
+
+
 
     useEffect(() => {
+
         dispatch(fetch())
 
     }, [dispatch])
@@ -72,8 +76,9 @@ const Album = () => {
             image,
             category
         }
-        console.log(data);
+  
         dispatch(albumsSubmit(data))
+
         dispatch(fetch())
     }
     const handleClose = () => {
@@ -104,7 +109,9 @@ const Album = () => {
 
     const deletephoto = (id)=>{
         console.log("im the delet id",id);
-        dispatch(deletephoto(id))
+        dispatch(deletephotos(id))
+
+        ahandleClose()
        
       }
       const deleteOpen=(id)=>{

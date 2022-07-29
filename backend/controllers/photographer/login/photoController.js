@@ -165,11 +165,27 @@ const fetch =asyncHandler(async(req,res) => {
     }
 })
 
+//delete photo.......
+
+// Delete-plan
+const deletePhoto = asyncHandler(async(req,res)=>{
+    console.log("malare...............",req.params.id);
+    const plan = await albumModel.findById(req.params.id)
+    if(plan){
+      await plan.remove()
+      res.status(200).json({id:req.params.id})
+    }else{
+       res.status(400)
+       throw new Error("plan not found")
+    }
+  })
+
 
 module.exports = {
     registerPhoto,
     loginPhoto,
     details,
     album,
-    fetch
+    fetch,
+    deletePhoto
 }

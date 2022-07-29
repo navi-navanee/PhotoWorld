@@ -3,7 +3,8 @@ const urls = {
     LOGIN :'/login',
     DETAILS:'/details',
     ALBUMS:'/albums',
-    FETCH:'/fetch'
+    FETCH:'/fetch',
+    DELETE_PHOTO:"/deletephoto"
 }
 
 export const {
@@ -11,5 +12,6 @@ export const {
     LOGIN,
     DETAILS,
     ALBUMS,
-    FETCH
+    FETCH,
+    DELETE_PHOTO
 } = urls
