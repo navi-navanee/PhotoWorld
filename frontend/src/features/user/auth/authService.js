@@ -9,6 +9,7 @@ const register = async (userData) =>{
     if(response.data) {
         localStorage.setItem('user',JSON.stringify(response.data))
     }
+    
     return response.data
 }
 
@@ -22,6 +23,21 @@ const login = async (userData) =>{
     return response.data
 }
 
+// Edituser
+const editUser = async (token, userData) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const { data } = await api.editUserDetails(userData, config);
+    if (data) {
+      localStorage.setItem('user', JSON.stringify(data));
+    }
+    console.log("im the return resopnse............",data);
+    return data;
+  };
+
 //Logout user
 
 const logout = () => {
@@ -32,7 +48,8 @@ const logout = () => {
 const authService = {
     register,
     logout,
-    login
+    login,
+    editUser
 }
 
 export default authService 

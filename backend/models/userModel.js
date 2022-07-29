@@ -10,6 +10,9 @@ const userSchema = mongoose .Schema ({
         require:[true,'please add an email'],
         unique:true
     },
+    profile_image:{
+        type:String,
+    },
     password: {
         type:String,
         require:[true,'please add a password']

@@ -79,12 +79,37 @@ const generateToken = (id) => {
     })
 }
 
-
-
+// @desc  Edit User Details
+// @rout  PUT /api/edit-userDetails/:id
 const editUser = asyncHandler(async (req, res) => {
-    res.json({ message: 'User edited' })
+    const userId = req.user.id;
+    console.log("im the user data.............................",userId);
 
-})
+    try {
+      const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+        profile_image: req.body.profile_image,
+      };
+      const user = await User.findByIdAndUpdate(userId, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+      });
+      
+      console.log("im the updated user",user);
+
+      res.status(200).json({
+        _id: user.id,
+        name: user.name,
+        email: user.email,
+        token: generateToken(user._id),
+        profile_image: user.profile_image,
+      });
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  });
 
 const deleterUser = asyncHandler(async (req, res) => {
     res.json({ message: 'User registered' })

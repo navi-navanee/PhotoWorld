@@ -26,6 +26,10 @@ function Header() {
   const onRegister =() =>{
     navigate("/Register");
   }
+  const onProfile =() =>{
+
+    navigate("/userprofile");
+  }
 
 
 
@@ -47,8 +51,11 @@ function Header() {
 
           
             {user ? (
-              // <Tab label="logout" onClick={onLogout} />
+              // <Tab label="logout" onClick={onLogout} /><>
+              <>
+              <Button variant="text" onClick={onProfile}>Profile</Button>
               <Button variant="text" onClick={onLogout}>logout</Button>
+              </>
             ) : (
               <>
                 {/* <Tab label="Login" to="/login"  component={Link} />
