@@ -1,9 +1,11 @@
 const urls ={
     LOGIN:'/login',
-    USER:'/getUser'
+    USER:'/getUser',
+    BLOCK_USER:'/blockuser/'
 }
 
 export const {
     LOGIN,
-    USER
+    USER,
+    BLOCK_USER
 } =urls

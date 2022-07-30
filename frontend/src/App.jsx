@@ -31,11 +31,6 @@ import Profile from './pages/User/profile/Profile';
 import PhotographerProfile from './pages/photographer/profile/PhotographerProfile';
 // import Register2 from './components/photographer/pregister/Register2';
 
-
-
-
-
-
 function App() {
 
   const {photographer} = useSelector((state)=>state.photographerauth)
