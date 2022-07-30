@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-
 import photographerauthService from "./photographerauthService";
-
 
 //Get user from localstorage
 const photographer = JSON.parse(localStorage.getItem('photographer'))
@@ -16,7 +14,6 @@ const initialState = {
 }
 
 //Register
-
 export const register = createAsyncThunk(
     'photographerauth/register',
     async (photographer, thunkAPI) => {
@@ -47,6 +44,22 @@ export const login = createAsyncThunk(
         }
     }
 )
+
+//editUser
+export const editPhotographer_Details = createAsyncThunk(
+    'auth/editPhotographerDetails',
+    async (userDetails, thunkAPI) => {
+        try {
+        const token = thunkAPI.getState().photographerauth.photographer.token
+        return await photographerauthService.editPhotographer(token, userDetails);
+      } catch (error) {
+          const message = (error.response && error.response.data
+            && error.data.message) || error.message || error.toString()
+          return thunkAPI.rejectWithValue(message)
+      }
+    }
+  );
+  
 
 //logout
 
@@ -105,6 +118,20 @@ export const photographerauthSlice = createSlice({
             .addCase(logout.fulfilled, (state, action) => {
                 state.photographer = null
             })
+            .addCase(editPhotographer_Details.pending, (state) => {
+                state.isLoading = true
+              })
+              .addCase(editPhotographer_Details.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.photographer = action.payload
+              })
+              .addCase(editPhotographer_Details.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+                state.photographer = null
+              })
     }
 
 

@@ -28,6 +28,23 @@ const login =async (photographerData) => {
     return response.data
 }
 
+// Edituser
+const editPhotographer = async (token, userData) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log("photographer edit calll");
+    const { data } = await api.editPhotographerDetails(userData, config);
+    if (data) {
+      localStorage.setItem('photographer', JSON.stringify(data));
+    }
+    console.log("im the return resopnse............",data);
+    return data;
+  };
+
+
 //logout
 const logout =async() => {
    
@@ -38,6 +55,7 @@ const photographerauthService ={
     login,
     logout,
     register,
+    editPhotographer,
 
 }
 

@@ -1,7 +1,4 @@
-
 import *as api from '../../../api/User'
-
-
 
 //Register user
 const register = async (userData) =>{

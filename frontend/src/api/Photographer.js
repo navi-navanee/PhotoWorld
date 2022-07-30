@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ALBUMS, DELETE_PHOTO, DETAILS, FETCH, LOGIN, REGISTER } from '../constant/PhotographerConstants'
+import { ALBUMS, DELETE_PHOTO, DETAILS, EDIT_PHOTOGRAPHER, FETCH, LOGIN, REGISTER } from '../constant/PhotographerConstants'
 
 const BACKEND_URL ='http://localhost:5000/api'
 
@@ -10,6 +10,11 @@ const API=axios.create({
 
 export const register =(photographerData) => API.post(REGISTER,photographerData)
 export const login =(photographerData) => API.post(LOGIN,photographerData)
+
+export const editPhotographerDetails = (userData,config) => API.put(EDIT_PHOTOGRAPHER, userData,config);
+
+
+
 export const details =(photographerData) => API.get(DETAILS,photographerData)
 export const albums =(photographerData,config) => API.post(ALBUMS,photographerData,config)
 export const fetch =(photographerData) => API.get(FETCH,photographerData)

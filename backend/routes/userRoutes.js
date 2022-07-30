@@ -7,7 +7,7 @@ const {userProtect} = require('../middleware/authMiddleware')
 
 router.post('/',loginUser)
 router.post('/register',registerUser)
-router.post('/register',registerUser)
+
 router.put('/edit-userDetails', userProtect,editUser);
 
 

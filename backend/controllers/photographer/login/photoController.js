@@ -78,6 +78,13 @@ const loginPhoto = asyncHandler(async (req, res) => {
             _id: photographer.id,
             name: photographer.name,
             email: photographer.email,
+            image:photographer.image,
+            overview:photographer.overview,
+            address:photographer.address,
+            city:photographer.city,
+            state:photographer.state,
+            category:photographer.category,
+            state:photographer.state,
             token: generateToken(photographer._id)
         })
     } else {
@@ -85,6 +92,51 @@ const loginPhoto = asyncHandler(async (req, res) => {
         throw new Error('invalid email or password')
     }
 })
+
+// @desc  Edit User Details
+// @rout  PUT /api/edit-userDetails/:id
+const editPhotographer = asyncHandler(async (req, res) => {
+    console.log("edit call in backkk......");
+    const userId = req.photographer._id;
+    console.log("im the user data.............................",userId);
+
+    try {
+      const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+        image: req.body.image,
+        overview:req.body.overview,
+        address:req.body.address,
+        city:req.body.city,
+        state:req.body.state,
+        category:req.body.category,
+      };
+      const photographer = await Photographer.findByIdAndUpdate(userId, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+      });
+      
+      console.log("im the updated user",photographer);
+
+      res.status(200).json({
+        _id: photographer.id,
+        name: photographer.name,
+        email: photographer.email,
+        token: generateToken(photographer._id),
+        image: photographer.image,
+        overview: photographer.overview,
+        address: photographer.address,
+        city: photographer.city,
+        state: photographer.state,
+        category: photographer.category,
+      });
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  });
+
+
 
 //Generate JWT
 
@@ -187,5 +239,6 @@ module.exports = {
     details,
     album,
     fetch,
-    deletePhoto
+    deletePhoto,
+    editPhotographer
 }

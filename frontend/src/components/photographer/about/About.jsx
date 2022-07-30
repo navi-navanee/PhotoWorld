@@ -19,6 +19,9 @@ export const About = () => {
 
 
 
+
+
+
     const category =data.category
 
 

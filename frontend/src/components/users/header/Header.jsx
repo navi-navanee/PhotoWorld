@@ -53,15 +53,15 @@ function Header() {
             {user ? (
               // <Tab label="logout" onClick={onLogout} /><>
               <>
-              <Button variant="text" onClick={onProfile}>Profile</Button>
-              <Button variant="text" onClick={onLogout}>logout</Button>
+              <Button style={{color:"white"}} variant="text" onClick={onProfile}>Profile</Button>
+              <Button style={{color:"white"}} variant="text" onClick={onLogout}>logout</Button>
               </>
             ) : (
               <>
                 {/* <Tab label="Login" to="/login"  component={Link} />
                 <Tab label="Register" to="/Register" component={Link} /> */}
-                    <Button variant="text" onClick={onLogin}>Login</Button>
-                    <Button variant="text" onClick={onRegister}>Register</Button>
+                    <Button style={{color:"white"}} variant="text" onClick={onLogin}>Login</Button>
+                    <Button style={{color:"white"}} variant="text" onClick={onRegister}>Register</Button>
               </>
             )}
         </div>

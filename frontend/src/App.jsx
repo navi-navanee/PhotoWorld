@@ -28,6 +28,7 @@ import SingleAbout from './components/users/singleAbout/SingleAbout';
 import SingleAlbum from './components/users/singleAlbum/SingleAlbum';
 import SingleReview from './components/users/singleReview/SingleReview';
 import Profile from './pages/User/profile/Profile';
+import PhotographerProfile from './pages/photographer/profile/PhotographerProfile';
 // import Register2 from './components/photographer/pregister/Register2';
 
 
@@ -83,19 +84,15 @@ function App() {
 
             <Route path='/photographer'>
                <Route index element={<Plogin/>} />
-               {/* <Route path='register' element={<Pregister/>}/>
-               <Route path='register2' element={<Register2/>}/>
-               <Route path='register3' element={<MultiStepForm />}/> */}
                <Route path='register' element={<MultiStepForm/>}/>
-               
-               {/* <Route path='home' element={<Phome/>}/> */}
+               <Route path='photographerprofile' element={<PhotographerProfile/>}/>
+
                <Route path='home' element={photographer ? <Phome/> : <Plogin/> }>
                  <Route index element={<About/>}/>
                  <Route path='album' element={<Album/>}/>
                  <Route path='review' element={<Review/>}/>
               </Route>
-             
-
+            
             </Route>
           
           </Routes>

@@ -26,6 +26,7 @@ const initialState = {
 
 }
 
+
 export const details = createAsyncThunk(
     'photographerDetails/details',
 
@@ -90,6 +91,8 @@ export const deletephotos = createAsyncThunk(
         }
     },
 )
+
+
 
 
 
