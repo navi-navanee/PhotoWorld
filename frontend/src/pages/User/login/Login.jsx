@@ -40,17 +40,18 @@ function Login() {
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth)
 
+    console.log("im the error message",message);
+
     useEffect(() => {
       if (isError) {
         toast.error(message)
-        return 
       }
   
       if (isSuccess || user) {
         navigate('/')
       }
       dispatch(reset())
-  
+
     }, [user, isError, isSuccess, message, navigate, dispatch])
   
 

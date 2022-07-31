@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { errorHandler } from '../../../util/errorMessage'
 import authService from './authService'
 
 
@@ -34,9 +35,7 @@ export const login = createAsyncThunk(
     try {
       return await authService.login(user)
     } catch (error) {
-      const message = (error.response && error.response.data
-        && error.data.message) || error.message || error.toString()
-      return thunkAPI.rejectWithValue(message)
+      return thunkAPI.rejectWithValue(errorHandler(error))
 
     }
   })
