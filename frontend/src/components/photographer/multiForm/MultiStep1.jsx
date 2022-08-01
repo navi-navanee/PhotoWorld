@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const Step1 = (props) => {
   const { data, handleChange, next } = props;
 
-  const paperStyle = { padding: 20, height: "60vh", width: 280, margin: "20px auto" }
+  const paperStyle = { padding: 20, height: "60vh", width: "25rem", margin: "20px auto" }
   const avatarStyle = { backgroundColor: '#1bbd7e' }
 
   return (

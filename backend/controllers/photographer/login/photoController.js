@@ -15,7 +15,7 @@ const registerPhoto = asyncHandler(async (req, res) => {
         address,
         city,
         state,
-        category } = req.body
+        category,payment } = req.body
 
     console.log("bodyy",req.body);
     
@@ -48,6 +48,7 @@ const registerPhoto = asyncHandler(async (req, res) => {
         city,
         state,
         category,
+        payment
     })
 
     if (photo) {

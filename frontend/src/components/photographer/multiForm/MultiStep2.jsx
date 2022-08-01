@@ -7,6 +7,7 @@ import ImageUpload from 'image-upload-react'
 import 'image-upload-react/dist/index.css'
 import { imageUpload } from '../../../util/imageUpload';
 import Spinner from '../../spinner/Spinner'
+import { Button } from '@mui/material';
 
 
 const options = [
@@ -133,8 +134,11 @@ const Step2 = (props) => {
 
 
                     {/* <button type='submit' className='btn btn-primary' >Send Message</button> */}
-                    <button style={{color:"blue" , height:"2rem"}}  onClick={back}>Back</button>
-                    <button style={{color:"blue" , height:"2rem"}}  onClick={next}>Next</button>
+                    <div style={{textAlign:"center"}}>
+
+                    <Button style={{color:"blue" , height:"2rem"}}  onClick={back}>Back</Button>
+                    <Button style={{color:"blue" , height:"2rem"}}  onClick={next}>Next</Button>
+                    </div>
                 </form> 
             </div>
         </section>

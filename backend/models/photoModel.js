@@ -46,6 +46,10 @@ const photographerSchema = mongoose .Schema ({
         type:Array,
         require:[true,'please add a category']
     },
+    payment:{
+        type:String
+    }
+
  
 
 },

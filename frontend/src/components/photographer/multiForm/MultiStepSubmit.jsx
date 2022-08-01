@@ -19,6 +19,8 @@ const Submit = (props) => {
    (state) => state.photographerauth)
  
    const {password, password2 } = data
+
+   console.log("im the photographer",photographer);
  
    useEffect(() => {
      if(isError){

@@ -16,6 +16,7 @@ app.use(cors({origin:true,credentials:true}))
 app.use('/api/user', require('./routes/userRoutes'))
 app.use('/api/admin', require('./routes/adminRoutes'))
 app.use('/api/photo',require('./routes/photographerRoutes'))
+app.use('/api/payment',require('./routes/paymentRoutes'))
 
 app.use(errorHandler)
 
