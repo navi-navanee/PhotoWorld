@@ -29,8 +29,9 @@ import SingleAlbum from './components/users/singleAlbum/SingleAlbum';
 import SingleReview from './components/users/singleReview/SingleReview';
 import Profile from './pages/User/profile/Profile';
 import PhotographerProfile from './pages/photographer/profile/PhotographerProfile';
-import Messenger from './pages/messenger/Messenger';
+import Messenger from './pages/User/messenger/Messenger';
 // import Register2 from './components/photographer/pregister/Register2';
+import Messenger2 from './pages/photographer/messenger/Messenger'
 
 function App() {
 
@@ -85,6 +86,7 @@ function App() {
                <Route index element={<Plogin/>} />
                <Route path='register' element={<MultiStepForm/>}/>
                <Route path='photographerprofile' element={<PhotographerProfile/>}/>
+               <Route path='messenger' element={photographer ? <Messenger2/> : <Plogin />} />
 
                <Route path='home' element={photographer ? <Phome/> : <Plogin/> }>
                  <Route index element={<About/>}/>

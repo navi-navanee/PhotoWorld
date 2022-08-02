@@ -26,7 +26,7 @@ const newConversation = asyncHandler(async (req, res) => {
 // @desc  get conversation of a user
 // @rout  POST /api/conversations/:userId 
 const getConversation = asyncHandler(async (req, res) => {
-  console.log("heloooo getConversation",);
+  console.log("heloooo getConversation",req.params.userId);
   const conversation = await Conversation.find({
     members: { $in: [req.params.userId] },
   });

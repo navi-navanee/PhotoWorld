@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const Photographer = require('../../../models/photoModel')
 const albumModel = require('../../../models/albumModel')
+const User = require('../../../models/userModel')
 
 //Authenticating the Photographer
 
@@ -221,6 +222,20 @@ const deletePhoto = asyncHandler(async(req,res)=>{
   })
 
 
+  //.....................
+
+  const getUser=asyncHandler(async(req,res)=>{
+    const { id } = req.query;
+  
+    const data = await User.findById(id)
+    if(!data)throw new Error(`Couldn't find ${id}`);
+    res.status(200).json({
+      data,
+    });
+})
+
+
+
 module.exports = {
     registerPhoto,
     loginPhoto,
@@ -228,5 +243,6 @@ module.exports = {
     album,
     fetch,
     deletePhoto,
-    editPhotographer
+    editPhotographer,
+    getUser
 }

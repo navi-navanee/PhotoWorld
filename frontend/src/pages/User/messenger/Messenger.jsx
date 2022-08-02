@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import ChatOnline from '../../components/users/chat/chatOnline/ChatOnline'
-import Conversation from '../../components/users/chat/conversations/Conversation'
-import Message from '../../components/users/chat/message/Message'
-import * as api from '../../api/messenger';
-import Header from '../../components/users/header/Header'
+import ChatOnline from '../../../components/users/chat/chatOnline/ChatOnline'
+import Conversation from '../../../components/users/chat/conversations/Conversation'
+import Message from '../../../components/users/chat/message/Message'
+import * as api from '../../../api/messenger';
+import Header from '../../../components/users/header/Header'
 import './messenger.css'
 import { useRef } from 'react'
 

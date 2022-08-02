@@ -19,3 +19,5 @@ export const details =(photographerData) => API.get(DETAILS,photographerData)
 export const albums =(photographerData,config) => API.post(ALBUMS,photographerData,config)
 export const fetch =(photographerData) => API.get(FETCH,photographerData)
  export const deletephotos=(id ,config)=>API.delete(`${DELETE_PHOTO}/${id}`,config)
+
+ export const getUser = (id) => API.get(`/get-user?id=${id}`)
