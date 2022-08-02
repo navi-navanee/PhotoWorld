@@ -18,6 +18,9 @@ app.use('/api/admin', require('./routes/adminRoutes'))
 app.use('/api/photo',require('./routes/photographerRoutes'))
 app.use('/api/payment',require('./routes/paymentRoutes'))
 
+app.use('/api/conversations', require('./routes/conversations'));
+app.use('/api/messages', require('./routes/messages'));
+
 app.use(errorHandler)
 
 app.listen(port , ()=>{

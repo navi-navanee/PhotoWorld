@@ -29,6 +29,7 @@ import SingleAlbum from './components/users/singleAlbum/SingleAlbum';
 import SingleReview from './components/users/singleReview/SingleReview';
 import Profile from './pages/User/profile/Profile';
 import PhotographerProfile from './pages/photographer/profile/PhotographerProfile';
+import Messenger from './pages/messenger/Messenger';
 // import Register2 from './components/photographer/pregister/Register2';
 
 function App() {
@@ -45,6 +46,9 @@ function App() {
             <Route exact path='/' element={<Landing />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/register' element={<Register />} />
+
+            <Route exact path='/messenger' element={user ? <Messenger/> : <Login />} />
+
             <Route exact path='/userprofile' element={<Profile/>} />
             <Route exact path='/filter' element={user ?<Filter/> : <Login /> } />
             <Route exact path='/singlePhotographer/:id' element={ user ?<SinglePhotographer/> :<Login />} >
