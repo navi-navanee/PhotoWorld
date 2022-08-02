@@ -18,3 +18,6 @@ export const singleSearch=(userData,config) => API.get( `${SINGLE_SEARCH}/${user
 export const singleFetch=(userData,config) => API.get( `${SINGLE_FETCH}/${userData}`,config)
 export const wedding=() => API.get(WEDDING)
 
+//chat..
+export const getPhotographer = (id) => API.get(`/get-photographer?id=${id}`)
+

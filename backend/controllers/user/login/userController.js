@@ -79,7 +79,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 //Google login
 const googleloginUser =asyncHandler(async(req,res) => {
-    console.log("goggle calllllll",req.body);
+  
     const {email} =req.body
 
     const user =await User.findOne({email})
@@ -118,7 +118,6 @@ const generateToken = (id) => {
 // @rout  PUT /api/edit-userDetails/:id
 const editUser = asyncHandler(async (req, res) => {
     const userId = req.user.id;
-    console.log("im the user data.............................",userId);
 
     try {
       const newUserData = {
@@ -132,7 +131,6 @@ const editUser = asyncHandler(async (req, res) => {
         useFindAndModify: false,
       });
       
-      console.log("im the updated user",user);
 
       res.status(200).json({
         _id: user.id,
@@ -153,7 +151,6 @@ const deleterUser = asyncHandler(async (req, res) => {
 
 const filterData = asyncHandler(async (req, res) => {
    const photographers = await photoModel.find()
-   console.log(photographers)
    if(photographers){
     res.json(photographers)
    }else{
@@ -181,13 +178,9 @@ const singlePhotographer =asyncHandler((async(req,res)=>{
 
 
 const singleFetch =asyncHandler((async(req,res)=>{
-    console.log("im the body...........",req.params);
     const {id} =req.params
     const userId =id
     const albums = await albumModel.find({userId})
-
-    console.log("myrrrrr.....",albums);
-
     if(albums){
         res.json(albums)
     }else{
@@ -200,7 +193,6 @@ const singleFetch =asyncHandler((async(req,res)=>{
 
 const wedding =asyncHandler((async(req,res)=>{
     const weddingImage = await albumModel.find({category:"Helooo"})
-    console.log("im wedding image.........",weddingImage)
     if(weddingImage){
      res.json(weddingImage)
     }else{
@@ -209,6 +201,18 @@ const wedding =asyncHandler((async(req,res)=>{
     }
  
 }))
+
+//................................................
+
+const getPhotographer=asyncHandler(async(req,res)=>{
+    const { id } = req.query;
+  
+    const data = await photoModel.findById(id)
+    if(!data)throw new Error(`Couldn't find ${id}`);
+    res.status(200).json({
+      data,
+    });
+})
 
 
 
@@ -222,5 +226,7 @@ module.exports = {
     singlePhotographer,
     singleFetch,
     wedding,
-    googleloginUser
+    googleloginUser,
+    getPhotographer
+    
 }

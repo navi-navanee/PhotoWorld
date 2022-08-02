@@ -17,12 +17,10 @@ const registerPhoto = asyncHandler(async (req, res) => {
         state,
         category,payment } = req.body
 
-    console.log("bodyy",req.body);
     
 
     if (!name || !email || !password) {
         res.status(400)
-        console.log("register called");
         throw new Error('please add all field')
     }
 
@@ -97,9 +95,7 @@ const loginPhoto = asyncHandler(async (req, res) => {
 // @desc  Edit User Details
 // @rout  PUT /api/edit-userDetails/:id
 const editPhotographer = asyncHandler(async (req, res) => {
-    console.log("edit call in backkk......");
     const userId = req.photographer._id;
-    console.log("im the user data.............................",userId);
 
     try {
       const newUserData = {
@@ -118,7 +114,6 @@ const editPhotographer = asyncHandler(async (req, res) => {
         useFindAndModify: false,
       });
       
-      console.log("im the updated user",photographer);
 
       res.status(200).json({
         _id: photographer.id,
@@ -153,11 +148,9 @@ const details = asyncHandler(async(req,res) => {
     
     const id =req.photographer._id
 
-    console.log("im body id...",id);
 
     const photographerDetails =await Photographer.findById(id)
     if(photographerDetails){
-        console.log("im photo",photographerDetails);
         res.json({
             _id:photographerDetails._id,
             name: photographerDetails.name,
@@ -187,10 +180,8 @@ const album = asyncHandler(async(req,res)=> {
 
     if(!image || !category){
         res.status(400)
-        console.log("register called");
         throw new Error('please add all field')
     }
-    console.log("im the bodyyyyy",category);
     const userId =req.photographer._id
     const album = await albumModel.create({
         image,
@@ -203,12 +194,9 @@ const album = asyncHandler(async(req,res)=> {
 
 const fetch =asyncHandler(async(req,res) => {
     const userId =req.photographer._id
-    console.log("im body id...",userId);
 
     const albums=await albumModel.find({userId})
-    console.log(albums);
     if(albums){
-        console.log("im album")
         res.json({
            albums
         })
@@ -222,7 +210,6 @@ const fetch =asyncHandler(async(req,res) => {
 
 // Delete-plan
 const deletePhoto = asyncHandler(async(req,res)=>{
-    console.log("malare...............",req.params.id);
     const plan = await albumModel.findById(req.params.id)
     if(plan){
       await plan.remove()
