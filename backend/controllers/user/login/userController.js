@@ -31,7 +31,7 @@ const registerUser = asyncHandler(async (req, res) => {
         email,
         password: hashpassword,
         status:"true",
-        profile_image:''
+        profile_image:'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8='
         
     })
 
@@ -76,6 +76,34 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error('invalid email or password')
 }
 })
+
+//Google login
+const googleloginUser =asyncHandler(async(req,res) => {
+    console.log("goggle calllllll",req.body);
+    const {email} =req.body
+
+    const user =await User.findOne({email})
+    if(!user){
+        throw new Error("Please Register")
+    }
+
+    if(!user.status) throw new Error("Blocked by admin")
+
+    if(user){
+        res.json({
+          _id:user.id,
+          name:user.name,
+          email:user.email,
+          token:generateToken(user._id),
+          status:user.status,
+          profile_image:user. profile_image
+        })
+      }else{
+          res.status(400)
+          throw new Error('invalid email or password')
+      }
+     
+}) 
 
 
 //Generate JWT
@@ -193,5 +221,6 @@ module.exports = {
     filterData,
     singlePhotographer,
     singleFetch,
-    wedding
+    wedding,
+    googleloginUser
 }

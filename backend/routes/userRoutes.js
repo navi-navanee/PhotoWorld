@@ -1,11 +1,12 @@
 
 const express = require('express')
 const router =express.Router()
-const {registerUser,loginUser,filterData, singlePhotographer, singleFetch, wedding, editUser} = require('../controllers/user/login/userController')
+const {registerUser,loginUser,filterData, singlePhotographer, singleFetch, wedding, editUser, googleloginUser} = require('../controllers/user/login/userController')
 const {userProtect} = require('../middleware/authMiddleware')
 
 
 router.post('/',loginUser)
+router.post('/googlelogin',googleloginUser)
 router.post('/register',registerUser)
 
 router.put('/edit-userDetails', userProtect,editUser);

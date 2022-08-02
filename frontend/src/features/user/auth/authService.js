@@ -41,12 +41,22 @@ const logout = () => {
     localStorage.removeItem('user')
 }
 
+// login-with-login
+const googleLogin = async(userdata)=>{
+  const {data} = await api.googleLogin(userdata)
+  if (data) {
+    localStorage.setItem('user', JSON.stringify(data))
+  }
+  return data
+}
+
 
 const authService = {
     register,
     logout,
     login,
-    editUser
+    editUser,
+    googleLogin
 }
 
 export default authService 
