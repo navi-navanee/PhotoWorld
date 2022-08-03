@@ -11,19 +11,9 @@ import Switch from '@mui/material/Switch';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const Datatable = () => {
-
-
   const dispatch = useDispatch()
-
-
   const { data } = useSelector(selectAllUser)
   const  modified  = useSelector(userBlock)
-
-  
-
-  console.log(data);
-
-
   useEffect(()=>{
     console.log("im modiiii",modified);
     if(modified){
@@ -42,17 +32,15 @@ const Datatable = () => {
     dispatch(blockusers(data));
   };
 
-
-
   const columns = [
-    { field: '_id', headerName: 'ID', width: 180 },
-    { field: 'name', headerName: 'First name', width: 180 },
-    { field: 'email', headerName: 'email', width: 180 },
+    { field: '_id', headerName: 'ID', width: 250 },
+    { field: 'name', headerName: 'First name', width: 250 },
+    { field: 'email', headerName: 'email', width: 250 },
     {
-      field: 'statuslabel', headerName: 'Status', width: 180,
+      field: 'statuslabel', headerName: 'Status', width: 200,
       renderCell: (params) => {
         return (
-          <div className={`cellWithStatus ${params.row.status}`}>hei</div>
+          <div className={`cellWithStatus ${params.row.status}`}>STATUS</div>
         )
       }
 
@@ -72,16 +60,16 @@ const Datatable = () => {
       }
     },
 
-    {
-      field: 'action', headerName: 'Action', width: 180, renderCell: () => {
-        return (
-          <div className='cellAction'>
-            <div className="viewButton" onClick={heloo}>View</div>
-            <div className="deleteButton">Delete</div>
-          </div>
-        )
-      }
-    },
+    // {
+    //   field: 'action', headerName: 'Action', width: 180, renderCell: () => {
+    //     return (
+    //       <div className='cellAction'>
+    //         <div className="viewButton" onClick={heloo}>View</div>
+    //         <div className="deleteButton">Delete</div>
+    //       </div>
+    //     )
+    //   }
+    // },
 
   ];
 
@@ -90,9 +78,6 @@ const Datatable = () => {
   const heloo = () => {
     alert("heii")
   }
-
-
-
 
   return (
     <div className='datatable'>

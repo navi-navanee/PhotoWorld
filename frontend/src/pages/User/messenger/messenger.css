@@ -1,7 +1,10 @@
 .messenger {
     height: calc(100vh - 70px);
     display: flex;
-   
+    margin: 2rem;
+    border:2rem;
+    /* border-radius: 2rem;
+    border-color: aqua; */
 }
 
 .chatMenu {
@@ -9,10 +12,19 @@
   }
 
   .chatMenuInput{
-    width: 90%;
+    width: 95%;
     padding: 10px 0;
     border: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #007ae3;
+    height: 4rem;
+    margin-left: 1rem;
+    padding-left: 1rem;
+
+    
+  }
+
+  .chatMenuInput::placeholder{
+    padding-left: 2rem;
   }
   
   .chatBox {
@@ -24,12 +36,16 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    border-radius: 30px;
+    margin-left: 1rem;
+    
   }
 
   .chatBoxTop {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    padding: 2rem;
     padding-right: 10px;
   }
 
@@ -39,22 +55,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 1rem;
   }
 
   .chatMessageInput{
-    width: 80%;
+    width: 86%;
     height: 90px;
     padding: 10px;
+    margin-left: 1rem;
   }
 
   .chatSubmitButton{
-    width: 70px;
-    height: 40px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color:teal;
-    color: white;
+    
   }
 
   .chatOnline {
@@ -64,6 +76,11 @@
   .chatMenuWrapper,.chatBoxWrapper,.chatOnlineWrapper{
     padding: 10;
     height: 100%;
+    border-radius: 30px;
+    -webkit-box-shadow: 1px 1px 15px 1px rgba(49,31,71,0.69);
+-moz-box-shadow: 1px 1px 15px 1px rgba(49,31,71,0.69);
+box-shadow: 1px 1px 15px 1px rgba(49,31,71,0.69);
+padding-top: 1rem;
   }
 
   .noConversationText {
@@ -72,6 +89,7 @@
     font-size: 50px;
     color: rgba(224,220,220);
     cursor: default;
+    padding-left: 2rem;
 
     
   }

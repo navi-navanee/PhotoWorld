@@ -8,6 +8,7 @@ import Header from '../../../components/users/header/Header'
 import './messenger.css'
 import { useRef } from 'react'
 import {io} from 'socket.io-client'
+import { Button } from '@mui/material'
 
 
 const Messenger = () => {
@@ -123,7 +124,10 @@ useEffect(() => {
       <div className='messenger'>
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder='Search here' className="chatMenuInput" />
+            <div>
+
+            <input  placeholder='Search here' className="chatMenuInput" />
+            </div>
             {conversation.map((c) => (
               <div onClick={() => setCurrentChat(c)}>
                 <Conversation conversation={c} currentUser={user} />
@@ -153,9 +157,9 @@ useEffect(() => {
                     onChange={(e) =>setNewMessage(e.target.value)}
                     value={newMessage}
                     ></textarea>
-                    <button className='chatSubmitButton'
+                    <Button style={{marginRight:"1rem"}} className='chatSubmitButton'  variant="outlined" 
                     onClick={handleSubmit}
-                    >Send</button>
+                    >Send</Button>
                   </div>
                 </>
                 ) : (
@@ -164,11 +168,11 @@ useEffect(() => {
           </div>
         </div>
         {/* Chat online section ............................. */}
-        <div className="chatOnline">
+        {/* <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <ChatOnline />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   )

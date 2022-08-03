@@ -7,7 +7,7 @@ import { imageUpload } from '../../../util/imageUpload';
 import Spinner from '../../spinner/Spinner';
 import { MultiSelect } from 'react-multi-select-component';
 import { toast } from 'react-toastify';
-import { editPhotographer_Details, reset ,} from '../../../features/photographer/auth/photographerauthSlice';
+import { editPhotographer_Details, reset, } from '../../../features/photographer/auth/photographerauthSlice';
 
 
 const options = [
@@ -38,10 +38,10 @@ const Profile = () => {
         name: photographer.name || '',
         email: photographer.email || '',
         image: photographer.image || '',
-        overview:photographer.overview || '',
-        address :photographer.address || '' ,
-        city: photographer.city || '' ,
-        state:photographer.state || '',
+        overview: photographer.overview || '',
+        address: photographer.address || '',
+        city: photographer.city || '',
+        state: photographer.state || '',
 
 
     });
@@ -58,7 +58,7 @@ const Profile = () => {
         }
     };
 
-    const { name, email, image , overview ,address , city ,state ,} = formData;
+    const { name, email, image, overview, address, city, state, } = formData;
 
     console.log("im the user...............", formData);
 
@@ -69,28 +69,28 @@ const Profile = () => {
         }));
     };
 
-    
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-    dispatch(reset());
-  }, [photographer, isError, isSuccess, message, dispatch]);
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+        }
+        dispatch(reset());
+    }, [photographer, isError, isSuccess, message, dispatch]);
 
 
     const onSubmit = (e) => {
         e.preventDefault();
         const userData = {
-            name,
-            email,
+            name: photographer?.name,
+            email: photographer?.email,
             image: Pic ? Pic : photographer.image,
-            category:selected,
-            overview,
-            address,
-            city,
-            state,
+            category: selected,
+            overview: photographer?.overview,
+            address: photographer?.address,
+            city: photographer?.city,
+            state: photographer?.state,
         };
-        console.log("im submitted",userData);
+        console.log("im submitted", userData);
 
         dispatch(editPhotographer_Details(userData))
 
@@ -99,16 +99,13 @@ const Profile = () => {
 
     // for wedding category
 
-    const [selected, setSelected] = useState( photographer.category)
+    const [selected, setSelected] = useState(photographer.category)
 
     console.log("im selected", selected);
-
-
 
     if (Loading || isLoading) {
         return <Spinner />;
     }
-
 
     return (
         <div>
@@ -145,9 +142,10 @@ const Profile = () => {
                             autoComplete="off"
                         >
                             <TextField name='name' id="outlined-basic" label="Name" onChange={onChange} value={name} variant="outlined" />
-                            <TextField name='email'  id="outlined-basic" label="Email" onChange={onChange} value={email} variant="outlined" />
-                            <TextField name='overview' id="outlined-multiline-static" label="Multiline" onChange={onChange} value={overview}   multiline rows={4} bdefaultValue="Default Value" />
+                            <TextField name='email' id="outlined-basic" label="Email" onChange={onChange} value={email} variant="outlined" />
+                            <TextField name='overview' id="outlined-multiline-static" label="Multiline" onChange={onChange} value={overview} multiline rows={4} bdefaultValue="Default Value" />
                             <MultiSelect
+                                
                                 options={options}
                                 name='name'
                                 value={selected}

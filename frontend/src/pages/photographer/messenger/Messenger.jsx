@@ -164,11 +164,11 @@ console.log("im arrival",arrivalMessage);
           </div>
         </div>
         {/* Chat online section ............................. */}
-        <div className="chatOnline">
+        {/* <div className="chatOnline">
           <div className="chatOnlineWrapper">
-            {/* <ChatOnline /> */}
+            <ChatOnline />
           </div>
-        </div>
+        </div> */}
       </div>
 
     </>

@@ -1,5 +1,6 @@
 const asyncHandler =require('express-async-handler')
 const User =require('../../../models/userModel')
+const Order=require('../../../models/orderModel')
 
 //userlist fetching
 
@@ -19,7 +20,6 @@ const getUser=asyncHandler(async(req,res)=> {
 // @rout  PUT /api/admin/edit-user/:id
 const editUser = asyncHandler(async (req, res) => {
     const userId = req.params.id;
-    console.log("im the admin edit data.............................",userId);
     try {
       const user = await User.findById(userId)
       if(user) {
@@ -32,7 +32,24 @@ const editUser = asyncHandler(async (req, res) => {
     }
   });
 
+  // transactions
+
+const transaction=asyncHandler(async(req,res)=> {
+  const payment=await Order.find()
+  console.log("im the payemntt",payment);
+  if(payment){
+      res.json(payment)
+      console.log("i sssss",payment);
+  }else{
+      res.status(400)
+      throw new Error ('no user find')
+  }
+})
+
+
+
 module.exports ={
     getUser,
-    editUser
+    editUser,
+    transaction
 }

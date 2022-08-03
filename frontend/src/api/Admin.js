@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BLOCK_USER, LOGIN, USER } from '../constant/AdminConstants'
+import { BLOCK_USER, LOGIN, TRANSACTION, USER } from '../constant/AdminConstants'
 
 const BACKEND_URL = 'http://localhost:5000/api'
 
@@ -11,4 +11,5 @@ const API = axios.create ({
 export const login =(adminData) => API.post(LOGIN,adminData)
 export const  userData=() => API.get(USER)
 export const  blockUser=(userData,config) => API.patch(`${BLOCK_USER}${userData}`,config)
+export const  latestTransactions=(config) =>API.get(TRANSACTION)
 
