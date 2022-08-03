@@ -47,7 +47,8 @@ const registerPhoto = asyncHandler(async (req, res) => {
         city,
         state,
         category,
-        payment
+        payment,
+        status:true,
     })
 
     if (photo) {

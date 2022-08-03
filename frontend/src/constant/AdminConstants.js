@@ -2,12 +2,23 @@ const urls ={
     LOGIN:'/login',
     USER:'/getUser',
     BLOCK_USER:'/blockuser/',
-    TRANSACTION:'/transaction'
+    //.......
+    PHOTOGRAPHER:'/getPhotographer',
+    BLOCK_PHOTOGRAPHER:'/blockphotographer/',
+
+
+    TRANSACTION:'/transaction',
+    TOTALUSERS : '/usersCount',
+    TOTALPHOTOGRAPHERS : '/photographerCount'
 }
 
 export const {
     LOGIN,
     USER,
     BLOCK_USER,
-    TRANSACTION
+    TRANSACTION,
+    TOTALUSERS,
+    TOTALPHOTOGRAPHERS,
+    PHOTOGRAPHER,
+    BLOCK_PHOTOGRAPHER
 } =urls

@@ -42,6 +42,9 @@ const photographerSchema = mongoose .Schema ({
         type:String,
         require:[true,'please add a state']
     },
+    status: {
+        type:Boolean,
+     },
     category: {
         type:Array,
         require:[true,'please add a category']

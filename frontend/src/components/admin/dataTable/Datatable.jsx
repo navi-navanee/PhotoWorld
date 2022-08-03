@@ -7,15 +7,12 @@ import { blockusers, fetchUser, selectAllUser, userBlock,reset } from '../../../
 
 import Switch from '@mui/material/Switch';
 
-
-const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
 const Datatable = () => {
   const dispatch = useDispatch()
   const { data } = useSelector(selectAllUser)
   const  modified  = useSelector(userBlock)
+  
   useEffect(()=>{
-    console.log("im modiiii",modified);
     if(modified){
       toast.success("User Status Changed")
       dispatch(fetchUser())
@@ -28,7 +25,6 @@ const Datatable = () => {
   }, [dispatch])
 
   const handleBlock = async (data) => {
-    console.log("im changeee",data);
     dispatch(blockusers(data));
   };
 

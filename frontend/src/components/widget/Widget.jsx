@@ -4,11 +4,13 @@ import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRound
 import PersonOutlineRoundedIcon from '@mui/icons-material/PersonOutlineRounded';
 import CameraFrontIcon from '@mui/icons-material/CameraFront';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-const Widget = ({ type }) => {
+const Widget = ({ type , Total}) => {
+
+    console.log("im the toal count",Total);
 
     let data;
 
-    const amount = 100
+    const amount = 1000
     const diff = 20
 
     switch (type) {
@@ -60,7 +62,7 @@ const Widget = ({ type }) => {
         <div className='widgets'>
             <div className="left">
                 <span className="title">{data.title}</span>
-                <span className="counter">{data.isMoney && '$'} {amount}</span>
+                <span className="counter">{Total?.data}</span>
                 <span className="link">{data.link}</span>
             </div>
             <div className="right">

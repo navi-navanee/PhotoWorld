@@ -13,7 +13,7 @@ const List = ({transactions}) => {
         <TableHead>
           <TableRow>
           <TableCell className="tableCell">Tracking ID</TableCell>
-            <TableCell className="tableCell">Plan</TableCell>
+            
             <TableCell className="tableCell">Customer</TableCell>
             <TableCell className="tableCell">Date</TableCell>
             <TableCell className="tableCell">Amount</TableCell>
@@ -26,10 +26,7 @@ const List = ({transactions}) => {
             <TableRow
               key={row.id}
             >
-              <TableCell >
-                {row._id}
-              </TableCell>
-              <TableCell className="tableCell" >{row.ud}</TableCell>
+              <TableCell >{row._id} </TableCell>
               <TableCell className="tableCell">{row.email}</TableCell>
               <TableCell className="tableCell">{row.date}</TableCell>
               <TableCell className="tableCell">{row.amount}</TableCell>

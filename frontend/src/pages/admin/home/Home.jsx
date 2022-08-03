@@ -33,10 +33,14 @@ const Home = () => {
     try {
 
       const {data} = await api.latestTransactions(config);
+      const totalUsers =await api.totalUsers()
+      const totalPhotographer =await api.totalPhotographer()
       if (data) {
         setFulldata((prev) => ({
           ...prev,
           transactions:[...data],
+          totalUsers:totalUsers,
+          totalPhotographer:totalPhotographer,
           loading: false,
           done: true,
         }));
@@ -55,8 +59,8 @@ const Home = () => {
         <div className="homeContainer">
           <Navbar/>
           <div className="widgets">
-            <Widget type="user"/>
-            <Widget  type="Photographer"/>
+            <Widget type="user" Total={Fulldata?.totalUsers} />
+            <Widget  type="Photographer" Total={Fulldata?.totalPhotographer}/>
             <Widget  type="Income"/>
           </div>
           <div className='charts '>

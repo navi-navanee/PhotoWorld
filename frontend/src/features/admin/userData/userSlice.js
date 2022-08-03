@@ -8,8 +8,18 @@ const initialState = {
     isSuccess: false,
     isLoading: false,
     message: '',
-    isModified: false
+    isModified: false,
+    //....................
+    photographer: [],
+    photographerError: false,
+    photographerSuccess: false,
+    photographerLoading: false,
+    photographermessage: '',
+    photographerModified: false,
+
 }
+
+//fetch user
 export const fetchUser = createAsyncThunk(
     'userDetails/fetchUser',
     async (thunkAPI) => {
@@ -28,10 +38,38 @@ export const blockusers = createAsyncThunk(
     'block-Users',
     async (data, thunkAPI) => {
         try {
-            console.log("im hereeeeeeeeee");
             const token = thunkAPI.getState().adminauth.admin.token;
-            console.log("im hereeeeeeeeee", token);
             return await userService.BlockUsers(data, token);
+        } catch (error) {
+            const message = (error.response && error.response.data
+                && error.data.message) || error.message || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+);
+
+
+//fetch photographer
+export const fetchPhotographer = createAsyncThunk(
+    'photographerDetails/fetchPhotographer',
+    async (thunkAPI) => {
+        try {
+            return await userService.getPhotographer()
+        } catch (error) {
+            const message = (error.response && error.response.data
+                && error.data.message) || error.message || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+//block-User
+export const blockPhotographer = createAsyncThunk(
+    'Photographer-block',
+    async (data, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().adminauth.admin.token;
+            return await userService.BlockPhotographer(data, token);
         } catch (error) {
             const message = (error.response && error.response.data
                 && error.data.message) || error.message || error.toString()
@@ -47,15 +85,23 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         reset: (state) => {
-         state.isLoading = false
-        state.isSuccess = false
-        state.isError = false
-        state.message = ''
-        state.isModified=false
+            state.isLoading = false
+            state.isSuccess = false
+            state.isError = false
+            state.message = ''
+            state.isModified = false
+        },
+        //...............
+        photographerreset: (state) => {
+            state.photographerLoading = false
+            state.photographerSuccess = false
+            state.photographerError = false
+            state.photographermessage = ''
+            state.photographerModified = false
         }
-    
-},
-    extraReducers : (builder) => {
+
+    },
+    extraReducers: (builder) => {
         builder
             .addCase(fetchUser.pending, (state) => {
                 state.isLoading = true
@@ -77,7 +123,7 @@ export const userSlice = createSlice({
             .addCase(blockusers.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isError = false
-                state.isModified=true
+                state.isModified = true
             })
             .addCase(blockusers.rejected, (state, action) => {
                 state.isLoading = false
@@ -85,17 +131,54 @@ export const userSlice = createSlice({
                 state.message = action.payload
                 state.user = null
             })
+            //............................................................   
+
+            .addCase(fetchPhotographer.pending, (state) => {
+                state.photographerLoading = true
+            })
+            .addCase(fetchPhotographer.fulfilled, (state, action) => {
+                state.photographerLoading = false
+                state.photographerError = false
+                state.photographer = action.payload
+            })
+            .addCase(fetchPhotographer.rejected, (state, action) => {
+                state.photographerLoading = false
+                state.photographerSuccess = false
+                state.photographermessage = action.payload
+                state.photographer = null
+            })
+            .addCase(blockPhotographer.pending, (state) => {
+                state.photographerLoading = true
+            })
+            .addCase(blockPhotographer.fulfilled, (state, action) => {
+                state.photographerLoading = false
+                state.photographerError = false
+                state.photographerModified = true
+            })
+            .addCase(blockPhotographer.rejected, (state, action) => {
+                state.photographerLoading = false
+                state.photographerSuccess = false
+                state.photographermessage = action.payload
+                state.photographer = null
+            })
     }
 })
 
 
 
+// export const selectAllPhotographer = (state) => state.userDetails.user
 export const selectAllUser = (state) => state.userDetails.user
 export const userBlock = (state) => state.userDetails.isModified
 export const isloading = (state) => state.userDetails.isLoading
 export const message = (state) => state.userDetails.message
 // export const selectAllUser = (state)=>state.userDetails.user
-export const {reset} =userSlice.actions
+export const { reset, photographerreset } = userSlice.actions
+
+//.......................................
+export const selectAllPhotographer = (state) => state.userDetails.photographer
+export const photographerBlock = (state) => state.userDetails.photographerModified
+export const photographerloading = (state) => state.userDetails.photographerLoading
+export const photographermessage = (state) => state.userDetails.photographermessage
 
 export default userSlice.reducer
 
