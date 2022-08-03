@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../header/Header'
-import { Link, Outlet,useParams } from 'react-router-dom'
+import { Link, Outlet,useNavigate,useParams } from 'react-router-dom'
 import Footer from '../../photographer/footer/Footer'
 import { Button } from '@mui/material'
 import { useEffect } from 'react'
@@ -9,21 +9,33 @@ import { details, photographerDetails } from '../../../features/photographer/det
 import Spinner from '../../spinner/Spinner'
 import { isLoading } from '../../../features/photographer/details/photographerSlice'
 import { singleData, singleFetch, singleFetchData, singleLoading, singleSearch } from '../../../features/user/details/userSlice'
+import * as api from '../.././../api/messenger';
 
 
 const Single = () => {
     const dispatch = useDispatch()
     const loading = useSelector(singleLoading)
 
+    const { user } = useSelector((state) => state.auth)
+
+    console.log("myreeeeeeeeeeeeee",user._id);
+
+    const navigate=useNavigate()
+
+
     let { id } = useParams();
 
     const {data}= useSelector(singleData)
+
+    console.log("poreeeeeeeeeeeeee", );
 
     // const image= useSelector(singleFetchData)
 
     // const album=image ? image.data : '' 
 
     // console.log("i the imag",album);
+
+    const photographer =data ?data._id : ''
 
     
 
@@ -47,7 +59,17 @@ const Single = () => {
         return <Spinner />
     }
 
-    
+    const ChatWithPhotographer =async() =>{
+        console.log("im clicked");
+        const data={
+            senderId:user._id,
+            receiverId: photographer,
+          }
+          let Data = await api.newConversation(data)
+        console.log(",da=",Data)
+        navigate('/messenger')
+          return null;
+    }
 
   return (
     <>
@@ -63,7 +85,7 @@ const Single = () => {
                         <div className='phone'>9497502035</div>
                         <div className='right-button'>
                             <Button className='call' variant="outlined">call</Button>
-                            <Button className='chat' variant="outlined">Chat</Button>
+                            <Button onClick={ChatWithPhotographer} className='chat' variant="outlined">Chat</Button>
                         </div>
                         <div className='category'>
                          

@@ -86,11 +86,11 @@ console.log("im arrival",arrivalMessage);
           text: newMessage,
           conversationId: currentChat._id,
         }
-
+        
         const receiverId =await currentChat.members.find(
           (member) => member !== photographer._id
-        )
-        
+        );
+
         console.log("im senderId",photographer._id);
         console.log("im receiverId",receiverId);
         console.log("im messageee",newMessage);

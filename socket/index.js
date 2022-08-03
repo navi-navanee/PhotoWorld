@@ -39,13 +39,11 @@
 
         //send and get message
         socket.on("sendMessage", ({ senderId, receiverId, text }) => {
-
             console.log("im 1",senderId);
             console.log("im 2",receiverId);
             console.log("im 3",text);
-
             const user = getUser(receiverId)
-            io.to(user.socketId).emit("getMessage",{
+            io.to(user?.socketId).emit("getMessage",{
                 senderId,
                 text,
             })

@@ -31,6 +31,10 @@ function Header() {
     navigate("/userprofile");
   }
 
+  const onChat =() => {
+    navigate('/messenger')
+  }
+
 
 
   return (
@@ -54,12 +58,14 @@ function Header() {
               // <Tab label="logout" onClick={onLogout} /><>
               <>
               <Button style={{color:"white"}} variant="text" onClick={onProfile}>Profile</Button>
+              <Button style={{color:"white"}} variant="text" onClick={onChat}>Chat</Button>
               <Button style={{color:"white"}} variant="text" onClick={onLogout}>logout</Button>
               </>
             ) : (
               <>
                 {/* <Tab label="Login" to="/login"  component={Link} />
                 <Tab label="Register" to="/Register" component={Link} /> */}
+                    
                     <Button style={{color:"white"}} variant="text" onClick={onLogin}>Login</Button>
                     <Button style={{color:"white"}} variant="text" onClick={onRegister}>Register</Button>
               </>

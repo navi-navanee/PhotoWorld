@@ -86,7 +86,7 @@ function App() {
                <Route index element={<Plogin/>} />
                <Route path='register' element={<MultiStepForm/>}/>
                <Route path='photographerprofile' element={<PhotographerProfile/>}/>
-               <Route path='messenger' element={photographer ? <Messenger2/> : <Plogin />} />
+               <Route path='home/messenger' element={photographer ? <Messenger2/> : <Plogin />} />
 
                <Route path='home' element={photographer ? <Phome/> : <Plogin/> }>
                  <Route index element={<About/>}/>

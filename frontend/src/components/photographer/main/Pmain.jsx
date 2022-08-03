@@ -2,7 +2,7 @@ import React from 'react'
 import Header from "../header/Pheader"
 import './pmain.scss'
 // import image from '../images/cover.jpg'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom'
 import Footer from '../footer/Footer'
 import { Button } from '@mui/material'
 import { useEffect } from 'react'
@@ -28,7 +28,7 @@ const Pmain = () => {
 
   console.log("im  category",category);
 
-
+ const navigate=useNavigate()
 
     useEffect(() => {
 
@@ -40,6 +40,10 @@ const Pmain = () => {
 
     if (loading) {
         return <Spinner />
+    }
+
+    const onChat =() =>{
+        navigate('messenger')
     }
 
     return (
@@ -56,7 +60,7 @@ const Pmain = () => {
                         <div className='phone'>9497502035</div>
                         <div className='right-button'>
                             <Button className='call' variant="outlined">call</Button>
-                            <Button className='chat' variant="outlined">Chat</Button>
+                            <Button onClick={onChat} className='chat' variant="outlined">Chat</Button>
                         </div>
                         <div className='category'>
                          

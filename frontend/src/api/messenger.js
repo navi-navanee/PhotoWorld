@@ -7,7 +7,6 @@ const API = axios.create({
   withCredentials: true,
 });
 
-
 //Chat Endpoints
 export const savedMessage = (data) => API.post(`/messages`,data);
 export const getMessage = (id) => API.get(`/messages/${id}`);
