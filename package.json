@@ -24,7 +24,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.0",
     "nodemon": "^2.0.16",
-    "razorpay": "^2.8.2"
+    "razorpay": "^2.8.2",
+    "yes": "^1.1.1"
   },
   "devDependencies": {
     "sass": "^1.53.0"

@@ -1,5 +1,5 @@
 import './message.css'
-import {format} from 'timeago.js'
+// import {format} from 'timeago.js'
 
 const Message = ({message,own}) => {
     // console.log("replay",message, own);
@@ -15,7 +15,7 @@ const Message = ({message,own}) => {
           {message.text}
           </p>
       </div>
-      <div className="messageBottom">{format(message.createdAt)}</div>
+      <div className="messageBottom">{message.createdAt}</div>
     </div>
   )
 }

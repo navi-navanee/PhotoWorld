@@ -6,6 +6,7 @@ import * as api from '../.././../api/messenger';
 import Pheader from '../../../components/photographer/header/Pheader'
 import ChatOnline from '../../../components/photographer/chat/ChatOnline';
 import Conversation from '../../../components/photographer/chat/Conversation';
+import {io} from 'socket.io-client'
 
 const Messenger = () => {
 
@@ -13,18 +14,43 @@ const Messenger = () => {
     const [currentChat, setCurrentChat] = useState(null)
     const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState('')
-  
+    const [arrivalMessage, setArrivalMessage] = useState(null)
     const { photographer } = useSelector((state) => state.photographerauth)
-
     const scrollRef =useRef()
-
-    console.log("im the",conversation);
-    console.log("im the",currentChat);
-    console.log("im the",messages);
-
+    const socket =useRef()
+    //....................
+console.log("im current",currentChat);
+console.log("im arrival",arrivalMessage);
 
     useEffect(() => {
+      socket.current = io("ws://localhost:8900")
+        socket.current.on("getMessage", data =>{
+          setArrivalMessage({
+            sender:data.senderId,
+            text:data.text,
+            createdAt:Date.now(),
+          })
+        })
+     
+    },[])
+  
+    useEffect(() => {
+      arrivalMessage && 
+      currentChat?.members.includes(arrivalMessage.sender) &&
+      setMessages(prev =>[...prev,arrivalMessage])
+    },[arrivalMessage , currentChat])
+  
+  
+   useEffect(() => {
+    socket.current.emit("adduser",photographer._id);
+    socket.current.on("getUsers",users => {
+      console.log("heloo mahbbb",users);
+    })
+   },[photographer])
 
+  //.........................
+
+    useEffect(() => {
         const getConversations = async () => {
           try {
             const { data } = await api.getConversation(photographer?._id)
@@ -51,17 +77,33 @@ const Messenger = () => {
         getMessages()
        },[currentChat])
 
-       
+  //..........................................................     
        const handleSubmit = async (e) => {
         e.preventDefault();
+
         const message = {
           sender: photographer._id,
           text: newMessage,
           conversationId: currentChat._id,
-        };
+        }
+
+        const receiverId =await currentChat.members.find(
+          (member) => member !== photographer._id
+        )
+        
+        console.log("im senderId",photographer._id);
+        console.log("im receiverId",receiverId);
+        console.log("im messageee",newMessage);
+
+        socket.current.emit("sendMessage", {
+          senderId: photographer._id,
+          receiverId,
+          text: newMessage,
+        })
+
         try {
           const res = await api.savedMessage(message);
-          setMessages([...messages , res.data])
+          setMessages([...messages,res.data])
           setNewMessage('')
         } catch (error) {
           console.log(error);
