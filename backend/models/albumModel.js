@@ -7,7 +7,8 @@ const albumSchema = mongoose.Schema ({
         type:String,
     },
     image: {
-        type:String
+        type:String,
+        require:true
     },
     category: {
         type:String,

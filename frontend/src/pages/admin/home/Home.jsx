@@ -73,10 +73,10 @@ console.log("im status",Fulldata.loading);
           <Widget type="Photographer" Total={Fulldata?.totalPhotographer} />
           <Widget type="Income" Total={Fulldata?.totalIncome} />
         </div>
-        <div className='charts '>
+        {/* <div className='charts '>
           <Featured />
           <Chart />
-        </div>
+        </div> */}
         <div className="listContainer">
           <div className="listTitle">Latest Transactions</div>
           <Table transactions={Fulldata.transactions} />

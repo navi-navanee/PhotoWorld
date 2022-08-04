@@ -94,7 +94,7 @@ if (loading) {
                 <img onClick={() => onSubmit(item.userId)} src={item.image} alt="sadfas" />
               </div>
               <div className="card-bottom"></div>
-              {/* <h4>{item.like}</h4> */}
+              <h4>{item.like}</h4>
             </div>
           ))}
         </Slider>

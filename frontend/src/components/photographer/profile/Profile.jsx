@@ -30,7 +30,7 @@ const Profile = () => {
     const { photographer, isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.photographerauth
     );
-    console.log("myrrrr", photographer)
+
 
     const [Pic, setPic] = useState(photographer ? photographer.image : 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=');
 
@@ -51,16 +51,15 @@ const Profile = () => {
             setLoading(true)
             const data = await imageUpload(ProfilePicture);
             setPic(data.secure_url.toString());
-            console.log("im return data..........", data);
             setLoading(false)
         } catch (error) {
-            console.log(error);
+            return error
         }
     };
 
     const { name, email, image, overview, address, city, state, } = formData;
 
-    console.log("im the user...............", formData);
+
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -90,7 +89,7 @@ const Profile = () => {
             city: photographer?.city,
             state: photographer?.state,
         };
-        console.log("im submitted", userData);
+
 
         dispatch(editPhotographer_Details(userData))
 
@@ -101,7 +100,6 @@ const Profile = () => {
 
     const [selected, setSelected] = useState(photographer.category)
 
-    console.log("im selected", selected);
 
     if (Loading || isLoading) {
         return <Spinner />;
@@ -145,7 +143,7 @@ const Profile = () => {
                             <TextField name='email' id="outlined-basic" label="Email" onChange={onChange} value={email} variant="outlined" />
                             <TextField name='overview' id="outlined-multiline-static" label="Multiline" onChange={onChange} value={overview} multiline rows={4} bdefaultValue="Default Value" />
                             <MultiSelect
-                                
+
                                 options={options}
                                 name='name'
                                 value={selected}

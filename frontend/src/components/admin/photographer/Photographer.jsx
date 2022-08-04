@@ -3,7 +3,8 @@ import { DataGrid } from '@mui/x-data-grid'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-import { blockPhotographer, fetchPhotographer, photographerBlock, photographerreset, selectAllPhotographer } from '../../../features/admin/userData/userSlice'
+import { blockPhotographer, fetchPhotographer, isloading, photographerBlock, photographerloading, photographerreset, selectAllPhotographer } from '../../../features/admin/userData/userSlice'
+import Spinner from '../../spinner/Spinner'
 import './photo.scss'
 
 const Photographer = () => {
@@ -13,6 +14,10 @@ const Photographer = () => {
   const dispatch = useDispatch()
   const { data } = useSelector(selectAllPhotographer)
   const  modified  = useSelector(photographerBlock)
+  const loading =useSelector(isloading)
+  const ploading =useSelector(photographerloading)
+
+  console.log("fuckk",ploading);
 
 
   useEffect(()=>{
@@ -31,6 +36,9 @@ const Photographer = () => {
     dispatch(blockPhotographer(data));
   };
 
+  if(ploading){
+    <Spinner/>
+  }
 
   //...................................................
 

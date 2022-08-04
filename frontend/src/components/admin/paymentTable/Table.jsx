@@ -1,6 +1,8 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react'
 import './table.scss'
+var moment = require('moment')
+
 
 const List = ({transactions}) => {
 
@@ -13,12 +15,11 @@ const List = ({transactions}) => {
         <TableHead>
           <TableRow>
           <TableCell className="tableCell">Tracking ID</TableCell>
-            
             <TableCell className="tableCell">Customer</TableCell>
             <TableCell className="tableCell">Date</TableCell>
             <TableCell className="tableCell">Amount</TableCell>
             <TableCell className="tableCell">Payment Method</TableCell>
-            <TableCell className="tableCell">Status</TableCell>
+            {/* <TableCell className="tableCell">Status</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -28,12 +29,12 @@ const List = ({transactions}) => {
             >
               <TableCell >{row._id} </TableCell>
               <TableCell className="tableCell">{row.email}</TableCell>
-              <TableCell className="tableCell">{row.date}</TableCell>
+              <TableCell className="tableCell">{moment(row.createdAt).format(("MMM Do YY"))}</TableCell>
               <TableCell className="tableCell">{row.amount}</TableCell>
               <TableCell className="tableCell">RAZORPAY</TableCell>
-              <TableCell className="tableCell">
+              {/* <TableCell className="tableCell">
                 <span className={`status ${row.status}`}>{row.status}</span>
-              </TableCell>
+              </TableCell> */}
             </TableRow>
           ))}
         </TableBody>

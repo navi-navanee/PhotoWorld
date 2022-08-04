@@ -177,7 +177,8 @@ const details = asyncHandler(async(req,res) => {
 
 const album = asyncHandler(async(req,res)=> {
     const {image,
-        category
+        category,
+        description
     } =req.body
 
     if(!image || !category){
@@ -188,6 +189,7 @@ const album = asyncHandler(async(req,res)=> {
     const album = await albumModel.create({
         image,
         category,
+        description,
         userId,
     })
 })
