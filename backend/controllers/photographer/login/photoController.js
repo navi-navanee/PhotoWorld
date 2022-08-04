@@ -72,8 +72,8 @@ const registerPhoto = asyncHandler(async (req, res) => {
 const loginPhoto = asyncHandler(async (req, res) => {
     const { email, password } = req.body
 
-
     const photographer = await Photographer.findOne({ email })
+    if(!photographer.status) throw new Error("Blocked by admin")
     if (photographer && (await bcrypt.compare(password, photographer.password))) {
         res.json({
             _id: photographer.id,

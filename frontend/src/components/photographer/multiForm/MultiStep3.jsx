@@ -75,20 +75,20 @@ const Step3 = (props) => {
 
  
   const cardA =(e)=>{  
-    setOrderAmount(1000)
+    setOrderAmount(2000)
     if(orderAmount){
       razorpay()
     }  
   }
 
   const cardB =(e)=>{  
-    setOrderAmount(2000)
+    setOrderAmount(4000)
     if(orderAmount){
       razorpay()
     }  
   }
   const cardC =(e)=>{  
-    setOrderAmount(3000)
+    setOrderAmount(6000)
     if(orderAmount){
       razorpay()
     }  
@@ -179,7 +179,7 @@ const Step3 = (props) => {
               <div class="alert alert-light row plan ">
                 <div class="col-6">
                   <div class="fw-bold">Plan Price : </div>
-                  <div> ₹ 1000</div>
+                  <div> ₹ 2000</div>
                 </div>
               </div>
               <div class="btn ">
@@ -200,14 +200,13 @@ const Step3 = (props) => {
               <div class="alert alert-light row plan ">
                 <div class="col-6">
                   <div class="fw-bold">Plan Price : </div>
-                  <div> ₹ 2000</div>
+                  <div> ₹ 4000</div>
                 </div>
               </div>
               <div class="btn ">
                 {/* <a class="btn btn-primary btn-lg col-12 buy-now-btn  ">Proceed to payement</a> */}
                 <Button  onClick={()=> cardB()} variant="text">Proceed to payement</Button>
               </div>
-   
             </div>
           </div>
           {/*  */}
@@ -221,7 +220,7 @@ const Step3 = (props) => {
               <div class="alert alert-light row plan ">
                 <div class="col-6">
                   <div class="fw-bold">Plan Price : </div>
-                  <div> ₹ 3000</div>
+                  <div> ₹ 6000</div>
                 </div>
               </div>
               <div class="btn ">

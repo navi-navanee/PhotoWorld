@@ -2,6 +2,7 @@ const asyncHandler =require('express-async-handler')
 const User =require('../../../models/userModel')
 const Order=require('../../../models/orderModel')
 const Photographer=require('../../../models/photoModel')
+const orderModel = require('../../../models/orderModel')
 
 //userlist fetching
 
@@ -51,10 +52,10 @@ const getPhotographer=asyncHandler(async(req,res)=> {
 // @rout  PUT /api/admin/edit-user/:id
 const editPhtographer = asyncHandler(async (req, res) => {
   const userId = req.params.id;
-  console.log(userId);
+
   try {
     const user = await Photographer.findById(userId)
-    console.log("find user",user);
+
     if(user) {
      const newUser =  await Photographer.updateOne({_id:userId},
           {status:!user.status})
@@ -68,7 +69,7 @@ const editPhtographer = asyncHandler(async (req, res) => {
   // transactions
 
 const transaction=asyncHandler(async(req,res)=> {
-  const payment=await Order.find()
+  const payment=await Order.find().sort({ $natural: -1 }).limit(5);
   if(payment){
       res.json(payment)
   }else{
@@ -98,6 +99,17 @@ const photographerCount=asyncHandler(async(req,res)=>{
     res.json("no users")
   }
 })
+//TOTAL USERS INCOME
+
+const totalIncome=asyncHandler(async(req,res)=>{
+  const [{ amount }] = await Order.aggregate([
+    { $group: { _id: null, amount: { $sum: '$amount' } } },
+    { $project: { _id: 0, amount: 1 } },
+  ]);
+
+  res.json(amount)
+
+})
 
 
 
@@ -108,5 +120,6 @@ module.exports ={
     usersCount,
     photographerCount,
     getPhotographer,
-    editPhtographer
+    editPhtographer,
+    totalIncome
 }

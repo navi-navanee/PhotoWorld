@@ -18,7 +18,7 @@ const Widget = ({ type , Total}) => {
             data = {
                 title: 'USERS',
                 isMoney: false,
-                link: "see all users",
+                link: "see all users" ,
                 icon: <PersonOutlineRoundedIcon className='icon' 
                 style={{
                     color:"crimson",
@@ -62,8 +62,8 @@ const Widget = ({ type , Total}) => {
         <div className='widgets'>
             <div className="left">
                 <span className="title">{data.title}</span>
-                <span className="counter">{Total?.data}</span>
-                <span className="link">{data.link}</span>
+                <span className="counter"> {data.isMoney && "₹"}{Total?.data}</span>
+                {/* <span className="link">{data.link}</span> */}
             </div>
             <div className="right">
                 <div className="percentage negetive">

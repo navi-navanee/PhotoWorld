@@ -9,7 +9,8 @@ const urls ={
 
     TRANSACTION:'/transaction',
     TOTALUSERS : '/usersCount',
-    TOTALPHOTOGRAPHERS : '/photographerCount'
+    TOTALPHOTOGRAPHERS : '/photographerCount',
+    TOTAL_INCOME:'/totalIncome'
 }
 
 export const {
@@ -20,5 +21,6 @@ export const {
     TOTALUSERS,
     TOTALPHOTOGRAPHERS,
     PHOTOGRAPHER,
-    BLOCK_PHOTOGRAPHER
+    BLOCK_PHOTOGRAPHER,
+    TOTAL_INCOME
 } =urls

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BLOCK_PHOTOGRAPHER, BLOCK_USER, LOGIN, PHOTOGRAPHER, TOTALPHOTOGRAPHERS, TOTALUSERS, TRANSACTION, USER } from '../constant/AdminConstants'
+import { BLOCK_PHOTOGRAPHER, BLOCK_USER, LOGIN, PHOTOGRAPHER, TOTALPHOTOGRAPHERS, TOTALUSERS, TOTAL_INCOME, TRANSACTION, USER } from '../constant/AdminConstants'
 
 const BACKEND_URL = 'http://localhost:5000/api'
 
@@ -19,4 +19,5 @@ export const  blockPhotographer=(userData,config) => API.patch(`${BLOCK_PHOTOGRA
 export const  latestTransactions=(config) =>API.get(TRANSACTION)
 export const  totalUsers=() =>API.get(TOTALUSERS)
 export const  totalPhotographer=() =>API.get(TOTALPHOTOGRAPHERS)
+export const  totalIncome=() =>API.get(TOTAL_INCOME)
 

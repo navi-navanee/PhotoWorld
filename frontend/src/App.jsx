@@ -37,6 +37,7 @@ function App() {
 
   const {photographer} = useSelector((state)=>state.photographerauth)
   const {user} = useSelector((state)=>state.auth)
+  const {admin} = useSelector((state)=>state.adminauth)
   
   return (
     <>
@@ -61,8 +62,8 @@ function App() {
             {/* ====================Admin======================= */}
 
             <Route path='/admin'>
-              <Route index element={<AdminLogin />} />
-              <Route path='home' element={<Home/>}/>
+              <Route index element={admin ?<Home/> : <AdminLogin />} />
+              <Route path='home' element={admin ?<Home/> : <Home/>}/>
               <Route path="users" >
                   <Route index element={<List/>}/>
                   <Route path=':userId' element={<Single/>} />

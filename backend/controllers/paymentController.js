@@ -23,7 +23,6 @@ const createOrder = asyncHandler(async (req, res) => {
         currency: 'INR',
       };
 
-      
       const order = await instance.orders.create(options);
       if (!order) return res.status(500).send('Some error occured');
       res.status(200).json({order});
@@ -49,9 +48,11 @@ const payorder = asyncHandler(async (req, res) => {
         razorpaysignature
     } = req.body;
 
+    console.log("im the req",req.body);
+
       const newPayment = orderModel({
         isPaid:true,
-        amount:amount,
+        amount:amount / 100,
         email:email,
         razorpay: {
             orderId: razorpayPaymentId,
