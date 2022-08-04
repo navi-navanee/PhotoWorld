@@ -202,15 +202,22 @@ import Spinner from '../../../components/spinner/Spinner';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
 
+import { useForm } from "react-hook-form";
+
+
 
 function Login() {
 
   console.log("im the env",process.env.REACT_APP_GOOGLE_CLIENT_ID);
+ 
   const [formData, setFormData] = useState({
     email: '',
     password: '',
 
   })
+
+  const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 
   const { email, password} = formData
 
@@ -237,8 +244,6 @@ function Login() {
     }
 
     const onLoginFailure = (response) => {
-      console.log("helooo");
-      console.log('error', response)
       toast.error(response.message)
     }
 
@@ -253,26 +258,26 @@ function Login() {
       dispatch(reset())
 
     }, [user, isError, isSuccess, message, navigate, dispatch])
-  
 
-
-  
-  const onChange = (e) => {
-    setFormData((prevState)=>({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }))
-  }
   
   const onSubmit = (e) => {
-    e.preventDefault()
-    const userData = {
-      email,
-      password
+    const { email, password } = e;
+    if (email && password) {
+        const userData = {
+            email,
+            password,
+        };
+        dispatch(login(userData));
+    } else {
+        toast.error('Please fill the Details..')
     }
-    console.log("user",userData);
-    dispatch(login(userData))
-  }
+}
+
+
+const { register, handleSubmit, formState: { errors } } = useForm({ mode: "all" });
+
+  
+
 
   if (isLoading) {
     return <Spinner/>
@@ -317,19 +322,22 @@ function Login() {
             <Typography  component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate  sx={{ mt: 1 }} onSubmit={onSubmit}>
+            <Box component="form" noValidate  sx={{ mt: 1 }} onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 margin="normal"
                 required
-                fullWidth
                 id="email"
-                label="Email Address"
                 name="email"
+                label="Email"
+                placeholder="Enter your email"
+                fullWidth
+                {...register("email", { required: true, pattern: pattern })}
                 autoComplete="email"
                 autoFocus
-                value={email}
-                onChange={onChange}
+               
               />
+               {errors.email && <p style={{ color: 'red' }}>Please check the Email</p>}
+
               <TextField
                 margin="normal"
                 required
@@ -339,9 +347,14 @@ function Login() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                value={password}
-                onChange={onChange}
+                placeholder="Enter password"
+                {...register("password", {
+                    required: true,
+                    minLength: 6
+                })} 
               />
+               {errors.password && <p style={{ color: 'red' }}>Please check the Password</p>}
+
               <Button
                 type="submit"
                 fullWidth

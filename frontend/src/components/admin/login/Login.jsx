@@ -2,57 +2,88 @@ import React, { useEffect, useState } from 'react'
 import './login.scss'
 import { useForm } from "react-hook-form";
 import bgImg from '../../../images/img1.jpg'
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../../../features/admin/auth/adminauthSlice';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
 const Login = () => {
 
     const dispatch = useDispatch()
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
-    const {admin , isLoading , isError , isSuccess , message} = useSelector((state) => state.adminauth)
+    const { admin, isLoading, isError, isSuccess, message } = useSelector((state) => state.adminauth)
 
-    useEffect(()=>{
-        if(isError){
+    const { register, handleSubmit, formState: { errors } } = useForm({ mode: "all" });
+    const [formData, setformData] = useState({
+        email: "",
+        password: "",
+    });
+    const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    useEffect(() => {
+        if (isError) {
             toast.error(message)
             return
         }
-        if(isSuccess || admin){
+        if (isSuccess || admin) {
             navigate('/admin/home')
         }
-    },[admin,isError,isSuccess,message,navigate,dispatch])
+    }, [admin, isError, isSuccess, message, navigate, dispatch])
 
-
-    const { register, handleSubmit, watch, formState: { errors } } = useForm()
-    
-    const onSubmit = (e)=>{
-        dispatch(login(e))
+    const onSubmit = (e) => {
+        const { email, password } = e;
+        if (email && password) {
+            const userData = {
+                email,
+                password,
+            };
+            dispatch(login(userData));
+        } else {
+            toast.error('Please fill the Details..')
         }
+    }
 
-    
 
-  return (
-    <section className='common' >
-        <div className="register">
-            <div className="col-1">
-                <h2>Sign In</h2>
-                <span>Please enter the details</span>
 
-                <form id='form' className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
-                    <input type="text" {...register("email")} placeholder='username' />
-                    <input type="text" {...register("password")} placeholder='password' />
-                    <button className='btn'>Sign In</button>
-                </form>
+    return (
+        <section className='common' >
+            <div className="register">
+                <div className="col-1">
+                    <h2>Sign In</h2>
+                    <span>Please enter the details</span>
 
+                    <form id='form' className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
+                        <input
+                            name="email"
+                            label="Email"
+                            placeholder="Enter your email"
+                            fullWidth
+                            {...register("email", { required: true, pattern: pattern })}
+                        />
+                        {errors.email && <p style={{ color: 'red' }}>Please check the Email</p>}
+                        <input
+                            label="Password"
+                            name="password"
+                            placeholder="Enter password"
+                            fullWidth
+                            {...register("password", {
+                                required: true,
+                                minLength: 6
+                            })} 
+                            />
+                        {errors.password && <p style={{ color: 'red' }}>Please check the Password</p>}
+
+                        <button className='btn'>Sign In</button>
+                    </form>
+
+                </div>
+                <div className="col-2">
+                    <img src={bgImg} alt="" />
+                </div>
             </div>
-            <div className="col-2">
-                <img src={bgImg} alt="" />
-            </div>
-        </div>
-    </section>
-  )
+        </section>
+    )
 }
 
 export default Login

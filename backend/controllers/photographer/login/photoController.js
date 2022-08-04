@@ -17,9 +17,6 @@ const registerPhoto = asyncHandler(async (req, res) => {
         city,
         state,
         category,payment } = req.body
-
-    
-
     if (!name || !email || !password) {
         res.status(400)
         throw new Error('please add all field')
@@ -37,7 +34,7 @@ const registerPhoto = asyncHandler(async (req, res) => {
 
     //create the new Photographer
 
-    const photo = await Photographer.create({
+    const photographer = await Photographer.create({
         name,
         email,
         password:hashpassword,
@@ -51,12 +48,19 @@ const registerPhoto = asyncHandler(async (req, res) => {
         status:true,
     })
 
-    if (photo) {
+    if (photographer) {
         res.status(201).json({
-            _id: photo.id,
-            name: photo.name,
-            email: photo.email,
-            token: generateToken(photo._id)
+            _id: photographer.id,
+            name: photographer.name,
+            email: photographer.email,
+            image:photographer.image,
+            overview:photographer.overview,
+            address:photographer.address,
+            city:photographer.city,
+            state:photographer.state,
+            category:photographer.category,
+            state:photographer.state,
+            token: generateToken(photographer._id)
         })
     }
     else {

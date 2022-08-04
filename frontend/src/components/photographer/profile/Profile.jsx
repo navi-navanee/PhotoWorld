@@ -34,6 +34,7 @@ const Profile = () => {
 
     const [Pic, setPic] = useState(photographer ? photographer.image : 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=');
 
+    console.log("im the pic",Pic);
     const [formData, setFormData] = useState({
         name: photographer.name || '',
         email: photographer.email || '',
@@ -42,10 +43,11 @@ const Profile = () => {
         address: photographer.address || '',
         city: photographer.city || '',
         state: photographer.state || '',
-
-
+        
+        
     });
-
+    
+    console.log("im the form data",formData);
     const postDetails = async (ProfilePicture) => {
         try {
             setLoading(true)
@@ -83,7 +85,7 @@ const Profile = () => {
             name: photographer?.name,
             email: photographer?.email,
             image: Pic ? Pic : photographer.image,
-            category: selected,
+            category: photographer?.selected,
             overview: photographer?.overview,
             address: photographer?.address,
             city: photographer?.city,
