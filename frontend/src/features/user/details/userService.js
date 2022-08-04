@@ -47,12 +47,21 @@ const wedding =async ()=>{
 //.....................................................
 
 
+const nature =async ()=>{
+     const response = await api.nature()
+     console.log("im the response.....",response);
+     return response
+}
+
+
 
 const userService = {
+
     filter,
     singleSearch,
     singleFetch,
     wedding,
+    nature
 }
 
 

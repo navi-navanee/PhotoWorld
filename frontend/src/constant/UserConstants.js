@@ -1,3 +1,4 @@
+
 const urls = {
     USER_REGISTER : '/register',
     USER_LOGIN : '/',
@@ -5,9 +6,9 @@ const urls = {
     SINGLE_SEARCH: '/singleSearch',
     SINGLE_FETCH: '/singlefetch',
     WEDDING: '/wedding',
+    NATURE: '/nature',
     EDIT_USER:'/edit-userDetails',
     USER_GOOGLE_LOGIN:'/googlelogin'
-
 
 }
 
@@ -19,6 +20,7 @@ export const {
     SINGLE_FETCH,
     WEDDING,
     EDIT_USER,
-    USER_GOOGLE_LOGIN
+    USER_GOOGLE_LOGIN,
+    NATURE
 
 } = urls

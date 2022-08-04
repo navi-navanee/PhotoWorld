@@ -50,7 +50,7 @@ const initialState = {
     OtherImageLoading: false,
     OtherImageMessage: '',
 
-
+    //...........................
 
 
 }
@@ -98,12 +98,12 @@ export const singleFetch = createAsyncThunk(
     }
 )
 
-export const wedding = createAsyncThunk(
-    
+//wedding.....
+
+export const wedding = createAsyncThunk(  
     'user/wedding',
     async (_, thunkAPI) => {
         try {
-            // const token = await thunkAPI.getState().auth.user.token
             return await userService.wedding()
         } catch (error) {
             const message = (error.response && error.response.data
@@ -112,9 +112,20 @@ export const wedding = createAsyncThunk(
         }
     }
 )
+//Nature.............
 
-
-
+export const nature = createAsyncThunk(
+    'user/nature',
+    async (_, thunkAPI) => {
+        try {
+            return await userService.nature()
+        } catch (error) {
+            const message = (error.response && error.response.data
+                && error.data.message) || error.message || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
 
 
 export const userFilterSlice = createSlice({
@@ -190,6 +201,24 @@ export const userFilterSlice = createSlice({
                 state.weddingImage = null
             })
 
+            //......................................
+
+            .addCase(nature.pending, (state) => {
+                state.NatureImageLoading = true
+            })
+            .addCase(nature.fulfilled, (state, action) => {
+                state.NatureImageLoading = false
+                state.NatureImageSuccess = true
+                state.NatureImage = action.payload
+
+            })
+            .addCase(nature.rejected, (state, action) => {
+                state.NatureImageLoading = false
+                state.NatureImageError = true
+                state.NatureImageMessage = action.payload
+                state.NatureImage = null
+            })
+
     }
 })
 
@@ -209,5 +238,9 @@ export const singleFetchLoading = (state) => state.userFilter.singleFetchLoading
 export const weddingImage = (state) => state.userFilter.weddingImage
 export const weddingImageLoading = (state) => state.userFilter.weddingImageLoading
 
+//................................................
+
+export const natureImage = (state) => state.userFilter.NatureImage
+export const natureImageLoading = (state) => state.userFilter.NatureImageLoading
 
 export default userFilterSlice.reducer

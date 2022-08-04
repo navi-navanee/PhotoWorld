@@ -6,28 +6,34 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { Container } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
-import { wedding, weddingImage, weddingImageLoading } from '../../../features/user/details/userSlice';
+import { nature, natureImage, natureImageLoading, wedding, weddingImage, weddingImageLoading } from '../../../features/user/details/userSlice';
 import Spinner from '../../spinner/Spinner';
 import { useNavigate } from 'react-router-dom';
-
-
 
 
 export const Body = () => {
 
   const dispatch = useDispatch()
+  const navigate =useNavigate()
 
+  //wedding image section
 const loading = useSelector(weddingImageLoading)
-
 const {data} = useSelector(weddingImage)
-const navigate =useNavigate()
 
-console.log("im the main.....",data);
+//Nature image section
+const natureloading = useSelector(natureImageLoading)
+const natureImages = useSelector(natureImage)
+
+const nimage=natureImages.data
+
+
+console.log("im the image",nimage);
 
 
 useEffect(() => {
 
   dispatch(wedding())
+  dispatch(nature())
 
 }, [ dispatch])
 
@@ -74,10 +80,8 @@ if (loading) {
 
   const onSubmit = (e) =>{
     console.log("im clicked",e);
-
     // dispatch(singleSearch(e))
     navigate(`/singlePhotographer/${e}`)
-
   }
 
 
@@ -89,6 +93,19 @@ if (loading) {
         <h1 style={{marginTop: "2rem",marginBottom:"1rem"}}>Wedding</h1>
         <Slider {...settings}>
           {data&&data?.map(item => (
+            <div style={{ marginTop: "3rem" }} className="card">
+              <div className="card-top">
+                <img onClick={() => onSubmit(item.userId)} src={item.image} alt="sadfas" />
+              </div>
+              <div className="card-bottom"></div>
+              <h4>{item.like}</h4>
+            </div>
+          ))}
+        </Slider>
+
+        <h1 style={{marginTop: "2rem",marginBottom:"1rem"}}>Nature</h1>
+        <Slider {...settings}>
+          {nimage&&nimage.natureImage?.map(item => (
             <div style={{ marginTop: "3rem" }} className="card">
               <div className="card-top">
                 <img onClick={() => onSubmit(item.userId)} src={item.image} alt="sadfas" />

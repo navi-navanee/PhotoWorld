@@ -202,6 +202,20 @@ const wedding =asyncHandler((async(req,res)=>{
  
 }))
 
+
+//.........................................................
+
+const nature =asyncHandler((async(req,res)=>{
+    const natureImage = await albumModel.find({category:"Nature"})
+    if(natureImage){
+     res.json({natureImage})
+    }else{
+     res.status(400)
+     throw new Error ('no Images')
+    }
+ 
+}))
+
 //................................................
 
 const getPhotographer=asyncHandler(async(req,res)=>{
@@ -227,6 +241,7 @@ module.exports = {
     singleFetch,
     wedding,
     googleloginUser,
-    getPhotographer
+    getPhotographer,
+    nature
     
 }
