@@ -28,6 +28,32 @@ const singleFetch = async (userData,token) => {
     const response = await api.singleFetch(userData,config)
     return response
 }
+//.............................
+
+const addReview =async (data,token) => {
+    const config = {
+        headers : {
+            Authorization : `Bearer ${token}`
+        }
+    }
+    const response =await api.addReview(data,config) 
+    return response
+}
+//................................
+const fetchReview =async (data,token) => {
+
+    console.log("im the fetchreview service",data);
+    const config = {
+        headers : {
+            Authorization : `Bearer ${token}`  
+        }
+     }
+    const response = await api.fetchReview(data,config)
+    if (response.data) {
+      
+        return response.data
+    }
+}
 
 //...................................................
 
@@ -61,7 +87,9 @@ const userService = {
     singleSearch,
     singleFetch,
     wedding,
-    nature
+    nature,
+    addReview,
+    fetchReview
 }
 
 

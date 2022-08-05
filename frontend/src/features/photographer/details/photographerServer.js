@@ -54,12 +54,32 @@ const deletephotos=async(id ,token)=>{
   }
 
 
+  //........................
+
+  const fetchReview =async (data,token) => {
+
+    console.log("im the fetchreview service",data);
+    const config = {
+        headers : {
+            Authorization : `Bearer ${token}`  
+        }
+     }
+    const response = await api.fetchReview(data,config)
+    if (response.data) {
+      
+        return response.data
+    }
+}
+
+
+
 
 const photographerService = {
     details,
     albums,
     fetch,
-    deletephotos
+    deletephotos,
+    fetchReview
 }
 
 export default photographerService

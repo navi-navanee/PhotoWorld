@@ -4,6 +4,7 @@ const urls = {
     DETAILS:'/details',
     ALBUMS:'/albums',
     FETCH:'/fetch',
+    FETCH_REVIEW:'fetchReview',
     DELETE_PHOTO:"/deletephoto",
     EDIT_PHOTOGRAPHER:"/edit-photographerDetails"
 }
@@ -15,5 +16,6 @@ export const {
     ALBUMS,
     FETCH,
     DELETE_PHOTO,
-    EDIT_PHOTOGRAPHER
+    EDIT_PHOTOGRAPHER,
+    FETCH_REVIEW
 } = urls

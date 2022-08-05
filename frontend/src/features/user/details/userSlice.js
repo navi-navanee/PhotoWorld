@@ -53,7 +53,18 @@ const initialState = {
     //...........................
 
 
+    ReviewData: [],
+    ReviewError: false,
+    ReviewSuccess: false,
+    ReviewLoading: false,
+    ReviewMessage: '',
+
+    //...........................
+
+
 }
+
+
 
 
 export const filter = createAsyncThunk(
@@ -84,6 +95,7 @@ export const singleSearch = createAsyncThunk(
     }
 )
 
+
 export const singleFetch = createAsyncThunk(
     'user/singleFetch',
     async (userData, thunkAPI) => {
@@ -97,6 +109,40 @@ export const singleFetch = createAsyncThunk(
         }
     }
 )
+
+//Reviews
+
+export const addReview = createAsyncThunk(
+    'user/addreview',
+    async (data, thunkAPI) => {
+       
+        try {
+            const token = await thunkAPI.getState().auth.user.token
+            return await userService.addReview(data, token)
+        } catch (error) {
+            const message = (error.response && error.response.data
+                && error.data.message) || error.message || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+//fethreview...
+export const fetchReview =createAsyncThunk(
+    'user/fetchReview',
+    async(data,thunkAPI) => {
+  
+        try {
+            const token = await thunkAPI.getState().auth.user.token
+            return await userService.fetchReview(data,token)
+        } catch (error) {
+            const message = (error.response && error.response.data
+                && error.data.message) || error.message || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 
 //wedding.....
 
@@ -146,6 +192,7 @@ export const userFilterSlice = createSlice({
 
             })
             .addCase(filter.rejected, (state, action) => {
+
                 state.filterLoading = false
                 state.filterError = true
                 state.filterMessage = action.payload
@@ -219,6 +266,24 @@ export const userFilterSlice = createSlice({
                 state.NatureImage = null
             })
 
+            //..................Add Review................
+
+            .addCase(fetchReview.pending, (state) => {
+                state.ReviewLoading = true
+            })
+            .addCase(fetchReview.fulfilled, (state, action) => {
+                state.ReviewData = action.payload.Review
+                state.ReviewLoading = false
+                state.ReviewSuccess = true
+
+            })
+            .addCase(fetchReview.rejected, (state, action) => {
+                state.ReviewLoading = false
+                state.ReviewError = true
+                state.ReviewMessage = action.payload
+                state.ReviewData = null
+            })
+
     }
 })
 
@@ -242,5 +307,11 @@ export const weddingImageLoading = (state) => state.userFilter.weddingImageLoadi
 
 export const natureImage = (state) => state.userFilter.NatureImage
 export const natureImageLoading = (state) => state.userFilter.NatureImageLoading
+
+//................................................
+
+export const ReviewData = (state) => state.userFilter.ReviewData
+export const ReviewLoading = (state) => state.userFilter.ReviewLoading
+export const ReviewMessage = (state) => state.userFilter.ReviewMessage
 
 export default userFilterSlice.reducer

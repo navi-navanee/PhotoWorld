@@ -18,7 +18,7 @@ const Single = () => {
 
     const { user } = useSelector((state) => state.auth)
 
-    console.log("myreeeeeeeeeeeeee",user._id);
+
 
     const navigate=useNavigate()
 
@@ -27,7 +27,7 @@ const Single = () => {
 
     const {data}= useSelector(singleData)
 
-    console.log("poreeeeeeeeeeeeee", );
+
 
     // const image= useSelector(singleFetchData)
 
@@ -60,7 +60,7 @@ const Single = () => {
     }
 
     const ChatWithPhotographer =async() =>{
-        console.log("im clicked");
+
         const data={
             senderId:user._id,
             receiverId: photographer,

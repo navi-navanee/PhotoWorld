@@ -4,6 +4,8 @@ const urls = {
     USER_LOGIN : '/',
     USER_FILTER : '/filter',
     SINGLE_SEARCH: '/singleSearch',
+    ADD_REVIEW:'/addReview',
+    FETCH_REVIEW:'fetchReview',
     SINGLE_FETCH: '/singlefetch',
     WEDDING: '/wedding',
     NATURE: '/nature',
@@ -21,6 +23,8 @@ export const {
     WEDDING,
     EDIT_USER,
     USER_GOOGLE_LOGIN,
-    NATURE
+    NATURE,
+    ADD_REVIEW,
+    FETCH_REVIEW
 
 } = urls

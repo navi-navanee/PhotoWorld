@@ -23,11 +23,11 @@ const Messenger = () => {
 
   const socket =useRef()
 
-  console.log("im current",currentChat);
-console.log("im arrival",arrivalMessage);
+
   
   useEffect(() => {
     socket.current = io("ws://localhost:8900")
+    
       socket.current.on("getMessage", data =>{
         setArrivalMessage({
           sender:data.senderId,

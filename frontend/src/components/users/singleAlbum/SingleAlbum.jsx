@@ -10,7 +10,7 @@ const SingleAlbum = () => {
 
   const albums=image ? image.data : '' 
 
-  console.log("i the imag",albums);
+  
 
   return (
     <div>

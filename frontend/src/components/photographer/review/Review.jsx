@@ -1,16 +1,32 @@
 import { Button, Container, Rating, TextField } from '@mui/material'
 import './review.scss'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchReview, ReviewData } from '../../../features/photographer/details/photographerSlice';
 
 const Review = () => {
   const [open, setOpen] = React.useState(false);
   const [submit, setSubmit] = useState('')
+  const dispatch =useDispatch()
+
+  const photographer = JSON.parse(localStorage.getItem('photographer'))
+  
+  const fetch =useSelector(ReviewData)
+
+const review=fetch.Review
+
+  useEffect(() => {
+
+    dispatch(fetchReview(photographer._id)) 
+
+  }, [dispatch]);
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,69 +41,25 @@ const Review = () => {
   return (
     <div>
       <Container>
-        <div className='head'>
           <h2>Review</h2>
-          <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
-              Submit your review
-            </Button>
-            <Dialog
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                {"Review "}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  Please put your valuable review...
-                </DialogContentText>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="name"
-                  label="Comment"
-                  type="text"
-                  fullWidth
-                  variant="standard"
-                />
-                <Rating name="size-medium" defaultValue={2} />
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} autoFocus>
-                  Submit
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </div>
-        </div>
+        
 
         <div className='review'>
 
+        {
+            review &&review.map((item) => ( 
           <div className='reviews'>
             <div>
-              <h1>Navaneeth</h1>
-              <div>11/02/1999</div>
+              <h1>{item.userId.name}</h1>
             </div>
-            <div>V felt so happy for choosing shadows for our wedding photography, u guys captured Al our beautiful moments & they made it very difficult for us to select some for a wedding album ??.Words can't describe the professionalism,talent and passion behind </div>
+              <div>11/02/1999</div>
+            <div>{item.review}</div>
             <div>
-              <Rating name="size-medium" defaultValue={2} />
+              <Rating name="read-only" value={item.star} readOnly />
             </div>
           </div>
-
-          <div className='reviews'>
-            <div>
-              <h1>Navaneeth</h1>
-              <div>11/02/1999</div>
-            </div>
-            <div>V felt so happy for choosing shadows for our wedding photography, u guys captured Al our beautiful moments & they made it very difficult for us to select some for a wedding album ??.Words can't describe the professionalism,talent and passion behind </div>
-            <div>
-              <Rating name="size-medium" defaultValue={2} />
-            </div>
-          </div>
-
+           ))
+          }
 
         </div>
       </Container>

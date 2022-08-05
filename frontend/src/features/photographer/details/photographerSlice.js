@@ -20,10 +20,15 @@ const initialState = {
     fetchError: false,
     fetchSuccess: false,
     fetchLoading: false,
-    fetchMessage: ''
+    fetchMessage: '',
 
     //............
 
+    ReviewData: [],
+    ReviewError: false,
+    ReviewSuccess: false,
+    ReviewLoading: false,
+    ReviewMessage: '',
 }
 
 
@@ -91,6 +96,22 @@ export const deletephotos = createAsyncThunk(
         }
     },
 )
+
+export const fetchReview =createAsyncThunk(
+    'user/fetchReview',
+    async(data,thunkAPI) => {
+  
+        try {
+            const token = await thunkAPI.getState().photographerauth.photographer.token
+            return await photographerService.fetchReview(data,token)
+        } catch (error) {
+            const message = (error.response && error.response.data
+                && error.data.message) || error.message || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 
 
 
@@ -172,6 +193,22 @@ export const photographerSlice = createSlice({
                 state.message = action.payload
                 state.isDelete = false
             })
+            //.....................review data ..............
+            .addCase(fetchReview.pending, (state) => {
+                state.ReviewLoading = true
+            })
+            .addCase(fetchReview.fulfilled, (state, action) => {
+                state.ReviewData = action.payload.Review
+                state.ReviewLoading = false
+                state.ReviewSuccess = true
+
+            })
+            .addCase(fetchReview.rejected, (state, action) => {
+                state.ReviewLoading = false
+                state.ReviewError = true
+                state.ReviewMessage = action.payload
+                state.ReviewData = null
+            })
 
     }
 
@@ -193,5 +230,8 @@ export const fetchLoading = (state) => state.photographerDetails.fetchLoading
 export const fetchMessage = (state) => state.photographerDetails.fetchMessage
 export const fetchSuccess = (state) => state.photographerDetails.fetchSuccess
 
+export const ReviewData = (state) => state.photographerDetails.ReviewData
+export const ReviewLoading = (state) => state.photographerDetails.ReviewLoading
+export const ReviewMessage = (state) => state.photographerDetails.ReviewMessage
 
 export default photographerSlice.reducer

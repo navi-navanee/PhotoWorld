@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const Schema =mongoose.Schema
+const ObjectId = Schema.Types.ObjectId
 
 const photographerSchema = mongoose .Schema ({
     name: {
@@ -51,9 +53,19 @@ const photographerSchema = mongoose .Schema ({
     },
     payment:{
         type:String
-    }
-
- 
+    },
+    Review :[{
+        userId:{
+            type:mongoose.Schema.ObjectId,
+            ref:"User"
+        },
+        review:{
+            type:String
+        },
+        star:{
+            type:Number
+        }
+    }]
 
 },
 {

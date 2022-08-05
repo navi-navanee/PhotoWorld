@@ -154,7 +154,6 @@ const details = asyncHandler(async(req,res) => {
     
     const id =req.photographer._id
 
-
     const photographerDetails =await Photographer.findById(id)
     if(photographerDetails){
         res.json({
@@ -167,6 +166,7 @@ const details = asyncHandler(async(req,res) => {
             city:photographerDetails.city,
             state:photographerDetails.state,
             category:photographerDetails.category,
+            review:photographerDetails.Review
 
         })
     }else{
@@ -241,6 +241,29 @@ const deletePhoto = asyncHandler(async(req,res)=>{
     });
 })
 
+//fetching revieew
+
+const fetchReview = asyncHandler(async (req, res) => {
+    const { id } = req.params
+    console.log("myrrrdddd",id)
+
+    const Review = await Photographer.findById(id).populate({
+        path:'Review.userId',
+        select:{name:1}
+       
+    })
+    console.log("heloo",Review);
+    if (Review) {
+        res.json({
+            Review
+        })
+    }
+    else {
+        albums
+    }
+})
+
+
 
 
 module.exports = {
@@ -251,5 +274,6 @@ module.exports = {
     fetch,
     deletePhoto,
     editPhotographer,
-    getUser
+    getUser,
+    fetchReview
 }

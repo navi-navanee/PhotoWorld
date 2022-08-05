@@ -40,25 +40,24 @@ const protect = asyncHandler(async (req, res, next) => {
 
 //User protect
 const userProtect = asyncHandler(async (req, res, next) => {
-    console.log("im hereeeeeeeeeeee",req.params);
+    
     let token
-    console.log("im headers User ", req.headers);
+   
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
             //Get token from header
             token = await req.headers.authorization.split(' ')[1]
 
-            console.log("Get usertoken from header", token);
 
             //verify the token
             const decoded = await jwt.verify(token, process.env.JWT_SECRET)
-            console.log("im decode user", decoded);
+          
             //Get user from the token
             req.user = await User.findById(decoded.id).select('-password')
-            console.log("im USER", req.user);
+        
             next()
         } catch (error) {
-            console.log(error);
+          
             res.status(401)
             throw new Error('Not authorized')
 
