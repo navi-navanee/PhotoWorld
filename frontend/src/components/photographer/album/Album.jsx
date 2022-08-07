@@ -294,7 +294,7 @@ const Album = () => {
                   />
                   <ImageListItemBar
                     title={<FavoriteBorderOutlinedIcon />}
-                    subtitle={"1"}
+                    subtitle={item.likes.length}
                   />
 
                   <IconButton aria-label="delete">
