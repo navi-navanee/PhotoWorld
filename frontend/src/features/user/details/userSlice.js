@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { errorHandler } from '../../../util/errorMessage'
 import userService from './userService'
 
 const initialState = {
@@ -66,6 +67,8 @@ const initialState = {
     likeSuccess: false,
     likeLoading: false,
     likeMessage: '',
+
+    //..........................
 
 
 
@@ -197,19 +200,17 @@ export const like = createAsyncThunk(
 
 //.................................Unlike,...................
 
-// export const unlike = createAsyncThunk(
-//     'user/unlike',
-//     async (data, thunkAPI) => {
-//         try {
-//             const token = await thunkAPI.getState().auth.user.token
-//             return await userService.unlike(data,token)
-//         } catch (error) {
-//             const message = (error.response && error.response.data
-//                 && error.data.message) || error.message || error.toString()
-//             return thunkAPI.rejectWithValue(message)
-//         }
-//     }
-// )
+export const unlike = createAsyncThunk(
+    'user/unlike',
+    async (data, thunkAPI) => {
+        try {
+            const token = await thunkAPI.getState().auth.user.token
+            return await userService.unlike(data,token)
+        } catch (error) {
+            return thunkAPI.rejectWithValue(errorHandler(error))
+        }
+    }
+)
 
 
 export const userFilterSlice = createSlice({

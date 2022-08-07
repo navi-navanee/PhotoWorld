@@ -3,7 +3,7 @@ const express = require('express')
 const router =express.Router()
 const {registerUser,loginUser,filterData, singlePhotographer, singleFetch,
      wedding, editUser, googleloginUser, getPhotographer, nature, 
-     addReview, fetchReview, like} = require('../controllers/user/login/userController')
+     addReview, fetchReview, like, unlike} = require('../controllers/user/login/userController')
 const {userProtect} = require('../middleware/authMiddleware')
 
 
@@ -21,5 +21,6 @@ router.post('/addReview',userProtect,addReview)
 router.get('/fetchReview/:id',userProtect,fetchReview)
 
 router.put('/like', userProtect,like);
+router.put('/unlike', userProtect,unlike);
 
 module.exports = router

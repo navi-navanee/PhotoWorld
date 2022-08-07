@@ -11,7 +11,8 @@ const urls = {
     NATURE: '/nature',
     EDIT_USER:'/edit-userDetails',
     USER_GOOGLE_LOGIN:'/googlelogin',
-    LIKE_PHOTO:'/like'
+    LIKE_PHOTO:'/like',
+    UNLIKE_PHOTO:'/unlike'
 
 }
 
@@ -27,6 +28,7 @@ export const {
     NATURE,
     ADD_REVIEW,
     FETCH_REVIEW,
-    LIKE_PHOTO
+    LIKE_PHOTO,
+    UNLIKE_PHOTO
 
 } = urls

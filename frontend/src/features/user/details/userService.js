@@ -88,21 +88,23 @@ const like =async (data,token) => {
         }
     }
     const response =await api.like(data,config) 
-    console.log("myree likeee",response);
+    
     return response
 }
 
 //...................Unkile...................
 
-// const unlike =async (data,token) => {
-//     const config = {
-//         headers : {
-//             Authorization : `Bearer ${token}`
-//         }
-//     }
-//     const response =await api.unlike(data,config) 
-//     return response
-// }
+const unlike =async (data,token) => {
+    const config = {
+        headers : {
+            Authorization : `Bearer ${token}`
+        }
+    }
+    console.log("im hereeee");
+    const response =await api.unlike(data,config) 
+    console.log("myree unlikeeeddddddddd",response);
+    return response
+}
 
 
 const userService = {
@@ -115,7 +117,7 @@ const userService = {
     addReview,
     fetchReview,
     like,
-    // unlike
+    unlike
 }
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './about.scss'
 import { Button } from '@mui/material'
 import { Container } from '@mui/system'
@@ -15,6 +15,9 @@ const SingleAbout = () => {
     const {data}= useSelector(singleData)
 
     const category =data ? data.category : ''
+    const [value, setValue] = useState(new Date())
+
+    console.log("im the valuess",value);
 
 
   return (
@@ -49,6 +52,8 @@ const SingleAbout = () => {
         <div>
             <h1>Booking dates</h1>
             <DatePicker
+             value={value}
+             onChange={setValue}
                 multiple
                 plugins={[
                     <DatePanel />

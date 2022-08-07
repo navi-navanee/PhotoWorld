@@ -1,7 +1,7 @@
-import { Button, Card, Container, ImageList, ImageListItem, ImageListItemBar } from '@mui/material'
+import { Button, Card, Container, IconButton, ImageList, ImageListItem, ImageListItemBar } from '@mui/material'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { useDispatch, useSelector } from 'react-redux';
-import { like, likeData, singleFetchData } from '../../../features/user/details/userSlice';
+import { like, likeData, singleFetchData, unlike } from '../../../features/user/details/userSlice';
 import { useState } from 'react';
 import { useEffect } from 'react'
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
@@ -26,16 +26,22 @@ const SingleAlbum = () => {
             _id: e,
             userId: user._id
         }
-
         console.log("im clicked", data);
         dispatch(like(data))
+    }
+
+    const ulike = (e) => {
+        const data = {
+            _id: e,
+            userId: user._id
+        }
+        console.log("im unlike clicked", data);
+        dispatch(unlike(data))
     }
 
     useEffect(() => {
 
     }, [dispatch])
-
-
 
     return (
         <div>
@@ -69,17 +75,23 @@ const SingleAlbum = () => {
                                         style={{ cursor: "pointer" }}
                                     />
                                     <div style={{ display: 'flex' }}>
-
                                         <ImageListItemBar
                                             style={{ marginBottom: "1rem" }}
                                             title={<FavoriteBorderOutlinedIcon style={{ color: "red" }} onClick={() => click(item._id)} />}
-
                                             subtitle={item.likes?.length}
+                                            actionIcon={
+                                                <IconButton
+                                                    sx={{ color: 'white' }}
+                                                    aria-label={`star ${item.title}`}
+                                                >
+                                                    <ThumbDownIcon onClick={() => ulike(item._id)} />
+                                                </IconButton>
+                                            }
                                         />
-                                        {item.likes.includes(user?._id)
+                                        {/* {item.likes.includes(user?._id)
                                             ? <Button>{<ThumbUpIcon />}</Button>
-                                            : <Button onClick={() => click(item._id)}>{<ThumbDownIcon />}</Button>
-                                        }
+                                            : <Button onClick={() => unlike(item._id)}>{<ThumbDownIcon />}</Button>
+                                        } */}
                                     </div>
                                 </ImageListItem>
                             </Card>

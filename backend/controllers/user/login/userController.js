@@ -306,37 +306,35 @@ const like = asyncHandler(async (req, res) => {
 
 //..............................
 
-// const like = async (req, res) => {
-//     const {
-//         _id,
-//         userId,
-//     } = req.body
+const unlike = asyncHandler(async (req, res) => {
+    console.log("im heree");
+    const {
+        _id,
+        userId,
+    } = req.body
+   
+    try {
+        const newUserData = {
+            user: userId,   
+        }
+       const post=await albumModel.findById(_id)
     
-//     try {
-//         const newUserData = {
-//             user: userId,   
-//         }
-//        const post=await albumModel.findById(_id)
-//        console.log("moneww",post.likes);
-//        if(post.likes.filter(like=> like.user.toString() ===req.body.userId).length > 0){
-//         return res.json(403).json({msg :"post already liked"})
-//        }
-//        console.log("the newww",req.body.userId);
-//        await post.likes.unShift(newUserData)
-//         console.log("ooooo");
-//         await post.save()
+       if(post.likes.filter(like=> like.user.toString() ===req.body.userId).length > 0){
+        const unliked = await albumModel.findByIdAndUpdate(_id,{
+            $pull: { likes: newUserData } 
+           })
 
-//         res.json(post.likes)
-//        //check if the post already liked
+           res.json({unliked})
+       }else{
+        return res.json({msg:"Please add like"})
+       }
+     
 
-//        console.log("photoid",success);
-//     } catch (error) {
-//         res.status(400).json(error);
-//     }
-// };
-
-
-
+  
+    } catch (error) {
+        res.status(400).json(error)
+    }
+});
 
 module.exports = {
     registerUser,
@@ -352,6 +350,7 @@ module.exports = {
     nature,
     addReview,
     fetchReview,
-    like
+    like,
+    unlike
 
 }

@@ -1,5 +1,6 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { errorHandler } from "../../../util/errorMessage";
 import userService from "./userService";
 
 const initialState = {
@@ -32,9 +33,7 @@ export const fetchUser = createAsyncThunk(
         try {
             return await userService.getUser()
         } catch (error) {
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
+            return thunkAPI.rejectWithValue(errorHandler(error))
         }
     }
 )
@@ -47,9 +46,7 @@ export const blockusers = createAsyncThunk(
             const token = thunkAPI.getState().adminauth.admin.token;
             return await userService.BlockUsers(data, token);
         } catch (error) {
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
+            return thunkAPI.rejectWithValue(errorHandler(error))
         }
     }
 );
@@ -62,9 +59,7 @@ export const fetchPhotographer = createAsyncThunk(
         try {
             return await userService.getPhotographer()
         } catch (error) {
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
+            return thunkAPI.rejectWithValue(errorHandler(error))
         }
     }
 )
@@ -76,9 +71,7 @@ export const fetchPayment = createAsyncThunk(
         try {
             return await userService.fetchPayment()
         } catch (error) {
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
+            return thunkAPI.rejectWithValue(errorHandler(error))
         }
     }
 )
@@ -91,13 +84,10 @@ export const blockPhotographer = createAsyncThunk(
             const token = thunkAPI.getState().adminauth.admin.token;
             return await userService.BlockPhotographer(data, token);
         } catch (error) {
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
+            return thunkAPI.rejectWithValue(errorHandler(error))
         }
     }
 );
-
 
 
 export const userSlice = createSlice({
@@ -202,12 +192,12 @@ export const userSlice = createSlice({
 
 
 
-// export const selectAllPhotographer = (state) => state.userDetails.user
+
 export const selectAllUser = (state) => state.userDetails.user
 export const userBlock = (state) => state.userDetails.isModified
 export const isloading = (state) => state.userDetails.isLoading
 export const message = (state) => state.userDetails.message
-// export const selectAllUser = (state)=>state.userDetails.user
+
 export const { reset, photographerreset } = userSlice.actions
 
 //.......................................

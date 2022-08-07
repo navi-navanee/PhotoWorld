@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { errorHandler } from "../../../util/errorMessage";
 import photographerService from "./photographerServer";
 
 
@@ -41,9 +42,7 @@ export const details = createAsyncThunk(
 
             return await photographerService.details(token)
         } catch (error) {
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
+            return thunkAPI.rejectWithValue(errorHandler(error))
 
         }
     }
@@ -58,11 +57,7 @@ export const albumsSubmit = createAsyncThunk(
             const token = await thunkAPI.getState().photographerauth.photographer.token
             return await photographerService.albums(data, token);
         } catch (error) {
-            console.log('fuckkkkkkkkkkkkk',error);
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
-
+            return thunkAPI.rejectWithValue(errorHandler(error))
         }
     }
 )
@@ -76,9 +71,7 @@ export const fetch = createAsyncThunk(
             console.log("im tokennnn", token)
             return await photographerService.fetch(token)
         } catch (error) {
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
+            return thunkAPI.rejectWithValue(errorHandler(error))
         }
     }
 )
@@ -107,17 +100,10 @@ export const fetchReview =createAsyncThunk(
             const token = await thunkAPI.getState().photographerauth.photographer.token
             return await photographerService.fetchReview(data,token)
         } catch (error) {
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
+            return thunkAPI.rejectWithValue(errorHandler(error))
         }
     }
 )
-
-
-
-
-
 
 export const photographerSlice = createSlice({
     name: 'photographerDetails',
@@ -153,7 +139,6 @@ export const photographerSlice = createSlice({
                 state.albumLoading = true
             })
             .addCase(albumsSubmit.fulfilled, (state, action) => {
-               console.log("...........................",action.payload);
                 state.fetchAlbum = action.payload
                 state.albumLoading = false
                 state.albumError = false

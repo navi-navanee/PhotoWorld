@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { Container } from '@mui/system'
 import DatePicker from "react-multi-date-picker"
 import DatePanel from "react-multi-date-picker/plugins/date_panel"
-import React from 'react'
+import React, { useState } from 'react'
 import './about.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { photographerDetails } from '../../../features/photographer/details/photographerSlice'
@@ -17,7 +17,9 @@ export const About = () => {
     const data =useSelector(photographerDetails)
 
 
+    const [value, setValue] = useState(new Date())
 
+    console.log("i mmmmm",value);
 
 
 
@@ -57,6 +59,8 @@ export const About = () => {
                 <div>
                     <h1>Booking dates</h1>
                     <DatePicker
+                     value={value}
+                     onChange={setValue}
                         multiple
                         plugins={[
                             <DatePanel />

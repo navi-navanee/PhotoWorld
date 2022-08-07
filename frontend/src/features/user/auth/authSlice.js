@@ -21,10 +21,7 @@ export const register = createAsyncThunk(
     try {
       return await authService.register(user)
     } catch (error) {
-      const message = (error.response && error.response.data
-        && error.data.message) || error.message || error.toString()
-      return thunkAPI.rejectWithValue(message)
-
+      return thunkAPI.rejectWithValue(errorHandler(error))
     }
   })
 
@@ -63,9 +60,7 @@ export const editUser_Details = createAsyncThunk(
       const token = thunkAPI.getState().auth.user.token;
       return await authService.editUser(token, userDetails);
     } catch (error) {
-        const message = (error.response && error.response.data
-          && error.data.message) || error.message || error.toString()
-        return thunkAPI.rejectWithValue(message)
+      return thunkAPI.rejectWithValue(errorHandler(error))
     }
   }
 );

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { errorHandler } from "../../../util/errorMessage";
 
 import photographerauthService from "./photographerauthService";
 
@@ -20,9 +21,7 @@ export const register = createAsyncThunk(
         try {
             return await photographerauthService.register(photographer)
         } catch (error) {
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
+            return thunkAPI.rejectWithValue(errorHandler(error))
 
         }
     }
@@ -38,9 +37,7 @@ export const login = createAsyncThunk(
       
             return await photographerauthService.login(photographer)
         } catch (error) {
-            const message = (error.response && error.response.data
-                && error.data.message) || error.message || error.toString()
-            return thunkAPI.rejectWithValue(message)
+            return thunkAPI.rejectWithValue(errorHandler(error))
         }
     }
 )
@@ -53,9 +50,7 @@ export const editPhotographer_Details = createAsyncThunk(
         const token = thunkAPI.getState().photographerauth.photographer.token
         return await photographerauthService.editPhotographer(token, userDetails);
       } catch (error) {
-          const message = (error.response && error.response.data
-            && error.data.message) || error.message || error.toString()
-          return thunkAPI.rejectWithValue(message)
+        return thunkAPI.rejectWithValue(errorHandler(error))
       }
     }
   );
