@@ -284,9 +284,7 @@ const like = asyncHandler(async (req, res) => {
     } = req.body
    
     try {
-        const newUserData = {
-            user: userId,   
-        }
+      
        const post=await albumModel.findById(_id)
     
 
@@ -294,7 +292,7 @@ const like = asyncHandler(async (req, res) => {
         return res.json(403).json({msg :"post already liked"})
        }
       const liked = await albumModel.findByIdAndUpdate(_id,{
-        $push: { likes: newUserData } 
+        $push: { likes: userId } 
        })
 
        res.json({liked})
@@ -307,21 +305,22 @@ const like = asyncHandler(async (req, res) => {
 //..............................
 
 const unlike = asyncHandler(async (req, res) => {
-    console.log("im heree");
     const {
         _id,
         userId,
     } = req.body
-   
+    
+    console.log("im heree",req.body);
     try {
         const newUserData = {
             user: userId,   
         }
        const post=await albumModel.findById(_id)
+       console.log("post",post);
     
-       if(post.likes.filter(like=> like.user.toString() ===req.body.userId).length > 0){
+       if(post.likes.includes(userId)){
         const unliked = await albumModel.findByIdAndUpdate(_id,{
-            $pull: { likes: newUserData } 
+            $pull: { likes:userId  } 
            })
 
            res.json({unliked})

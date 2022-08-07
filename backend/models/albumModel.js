@@ -14,12 +14,15 @@ const albumSchema = mongoose.Schema ({
         type:String,
         require:[true]
     },
-    likes: [{
-        user:{
-            type:mongoose.Schema.ObjectId,
-            ref:"User"
-        }
-    }],
+    // likes: [{
+    //     user:{
+    //         type:mongoose.Schema.ObjectId,
+    //         ref:"User"
+    //     }
+    // }],
+    likes:{
+        type:Array
+    },
     comment: {
         type:String
     },
