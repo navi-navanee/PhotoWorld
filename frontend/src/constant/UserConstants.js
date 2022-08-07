@@ -10,7 +10,8 @@ const urls = {
     WEDDING: '/wedding',
     NATURE: '/nature',
     EDIT_USER:'/edit-userDetails',
-    USER_GOOGLE_LOGIN:'/googlelogin'
+    USER_GOOGLE_LOGIN:'/googlelogin',
+    LIKE_PHOTO:'/like'
 
 }
 
@@ -25,6 +26,7 @@ export const {
     USER_GOOGLE_LOGIN,
     NATURE,
     ADD_REVIEW,
-    FETCH_REVIEW
+    FETCH_REVIEW,
+    LIKE_PHOTO
 
 } = urls

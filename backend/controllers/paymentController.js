@@ -48,7 +48,7 @@ const payorder = asyncHandler(async (req, res) => {
         razorpaysignature
     } = req.body;
 
-    console.log("im the req",req.body);
+   
 
       const newPayment = orderModel({
         isPaid:true,

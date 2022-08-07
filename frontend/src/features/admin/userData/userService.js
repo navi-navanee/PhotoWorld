@@ -15,7 +15,7 @@ export const BlockUsers = async (userData,token) => {
             Authorization : `Bearer ${token}`  
         }
     }
-    console.log("im internal callllllllll",userData)
+
   const { data } = await api.blockUser(userData,config)
   return data;
 };
@@ -27,6 +27,11 @@ const getPhotographer = async () =>{
     const response = await api.photographerData()
     return response
 }
+//get fetchPayment
+const fetchPayment = async () =>{
+    const response = await api.fetchPayment()
+    return response
+}
 
 //block users
 
@@ -36,7 +41,7 @@ export const BlockPhotographer = async (userData,token) => {
             Authorization : `Bearer ${token}`  
         }
     }
-    console.log("im internal callllllllll",userData)
+   
   const { data } = await api.blockPhotographer(userData,config)
   return data;
 };
@@ -47,7 +52,8 @@ const userService ={
     getUser,
     BlockUsers,
     getPhotographer,
-    BlockPhotographer
+    BlockPhotographer,
+    fetchPayment
 
 
 }

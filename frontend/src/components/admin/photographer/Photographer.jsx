@@ -17,7 +17,7 @@ const Photographer = () => {
   const loading =useSelector(isloading)
   const ploading =useSelector(photographerloading)
 
-  console.log("fuckk",ploading);
+
 
 
   useEffect(()=>{

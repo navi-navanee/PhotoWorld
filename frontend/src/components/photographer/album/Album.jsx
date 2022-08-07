@@ -184,12 +184,12 @@ const Album = () => {
       </Modal>
       <Container>
         <div className="head">
-          <h2>Review</h2>
-          <div>
+          <h2>Albums</h2>
+          <div style={{marginTop:'2rem'}}>
             <Button variant="outlined" onClick={handleClickOpen}>
-              Submit your review
+              Add Your Photo
             </Button>
-            <div>
+            <div style={{marginTop:'2rem'}}>
               <Dialog
                 open={open}
                 onClose={handleClose}

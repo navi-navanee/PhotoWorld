@@ -1,7 +1,9 @@
 
 const express = require('express')
 const router =express.Router()
-const {registerUser,loginUser,filterData, singlePhotographer, singleFetch, wedding, editUser, googleloginUser, getPhotographer, nature, addReview, fetchReview} = require('../controllers/user/login/userController')
+const {registerUser,loginUser,filterData, singlePhotographer, singleFetch,
+     wedding, editUser, googleloginUser, getPhotographer, nature, 
+     addReview, fetchReview, like} = require('../controllers/user/login/userController')
 const {userProtect} = require('../middleware/authMiddleware')
 
 
@@ -17,5 +19,7 @@ router.get('/nature',nature)
 router.get('/get-photographer',getPhotographer)
 router.post('/addReview',userProtect,addReview)
 router.get('/fetchReview/:id',userProtect,fetchReview)
+
+router.put('/like', userProtect,like);
 
 module.exports = router

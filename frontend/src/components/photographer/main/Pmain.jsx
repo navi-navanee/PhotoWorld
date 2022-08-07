@@ -16,9 +16,6 @@ import { isLoading } from '../../../features/photographer/details/photographerSl
 const Pmain = () => {
     // const [ test,setTest]=useState("")
 
-    const photographer = JSON.parse(localStorage.getItem('photographer'))
-    console.log("im full photographer",photographer);
-
     const dispatch = useDispatch()
     const loading = useSelector(isLoading)
     const data= useSelector(photographerDetails)
@@ -26,7 +23,7 @@ const Pmain = () => {
     
   const category =data.category
 
-  console.log("im  category",category);
+
 
  const navigate=useNavigate()
 

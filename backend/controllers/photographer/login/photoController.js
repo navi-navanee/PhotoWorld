@@ -8,15 +8,15 @@ const User = require('../../../models/userModel')
 //Authenticating the Photographer
 
 const registerPhoto = asyncHandler(async (req, res) => {
-    const { name, 
-        email, 
-        password , 
+    const { name,
+        email,
+        password,
         image,
         overview,
         address,
         city,
         state,
-        category,payment } = req.body
+        category, payment } = req.body
     if (!name || !email || !password) {
         res.status(400)
         throw new Error('please add all field')
@@ -37,7 +37,7 @@ const registerPhoto = asyncHandler(async (req, res) => {
     const photographer = await Photographer.create({
         name,
         email,
-        password:hashpassword,
+        password: hashpassword,
         image,
         overview,
         address,
@@ -45,7 +45,7 @@ const registerPhoto = asyncHandler(async (req, res) => {
         state,
         category,
         payment,
-        status:true,
+        status: true,
     })
 
     if (photographer) {
@@ -53,13 +53,13 @@ const registerPhoto = asyncHandler(async (req, res) => {
             _id: photographer.id,
             name: photographer.name,
             email: photographer.email,
-            image:photographer.image,
-            overview:photographer.overview,
-            address:photographer.address,
-            city:photographer.city,
-            state:photographer.state,
-            category:photographer.category,
-            state:photographer.state,
+            image: photographer.image,
+            overview: photographer.overview,
+            address: photographer.address,
+            city: photographer.city,
+            state: photographer.state,
+            category: photographer.category,
+            state: photographer.state,
             token: generateToken(photographer._id)
         })
     }
@@ -77,19 +77,19 @@ const loginPhoto = asyncHandler(async (req, res) => {
     const { email, password } = req.body
 
     const photographer = await Photographer.findOne({ email })
-    if(!photographer.status) throw new Error("Blocked by admin")
+    if (!photographer.status) throw new Error("Blocked by admin")
     if (photographer && (await bcrypt.compare(password, photographer.password))) {
         res.json({
             _id: photographer.id,
             name: photographer.name,
             email: photographer.email,
-            image:photographer.image,
-            overview:photographer.overview,
-            address:photographer.address,
-            city:photographer.city,
-            state:photographer.state,
-            category:photographer.category,
-            state:photographer.state,
+            image: photographer.image,
+            overview: photographer.overview,
+            address: photographer.address,
+            city: photographer.city,
+            state: photographer.state,
+            category: photographer.category,
+            state: photographer.state,
             token: generateToken(photographer._id)
         })
     } else {
@@ -104,39 +104,39 @@ const editPhotographer = asyncHandler(async (req, res) => {
     const userId = req.photographer._id;
 
     try {
-      const newUserData = {
-        name: req.body.name,
-        email: req.body.email,
-        image: req.body.image,
-        overview:req.body.overview,
-        address:req.body.address,
-        city:req.body.city,
-        state:req.body.state,
-        category:req.body.category,
-      };
-      const photographer = await Photographer.findByIdAndUpdate(userId, newUserData, {
-        new: true,
-        runValidators: true,
-        useFindAndModify: false,
-      });
-      
+        const newUserData = {
+            name: req.body.name,
+            email: req.body.email,
+            image: req.body.image,
+            overview: req.body.overview,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            category: req.body.category,
+        };
+        const photographer = await Photographer.findByIdAndUpdate(userId, newUserData, {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false,
+        });
 
-      res.status(200).json({
-        _id: photographer.id,
-        name: photographer.name,
-        email: photographer.email,
-        token: generateToken(photographer._id),
-        image: photographer.image,
-        overview: photographer.overview,
-        address: photographer.address,
-        city: photographer.city,
-        state: photographer.state,
-        category: photographer.category,
-      });
+
+        res.status(200).json({
+            _id: photographer.id,
+            name: photographer.name,
+            email: photographer.email,
+            token: generateToken(photographer._id),
+            image: photographer.image,
+            overview: photographer.overview,
+            address: photographer.address,
+            city: photographer.city,
+            state: photographer.state,
+            category: photographer.category,
+        });
     } catch (error) {
-      res.status(400).json(error);
+        res.status(400).json(error);
     }
-  });
+});
 
 
 
@@ -150,28 +150,28 @@ const generateToken = (id) => {
 
 //fetching details
 
-const details = asyncHandler(async(req,res) => {
-    
-    const id =req.photographer._id
+const details = asyncHandler(async (req, res) => {
 
-    const photographerDetails =await Photographer.findById(id)
-    if(photographerDetails){
+    const id = req.photographer._id
+
+    const photographerDetails = await Photographer.findById(id)
+    if (photographerDetails) {
         res.json({
-            _id:photographerDetails._id,
+            _id: photographerDetails._id,
             name: photographerDetails.name,
             email: photographerDetails.email,
-            image:photographerDetails.image,
-            overview:photographerDetails.overview,
-            address:photographerDetails.address,
-            city:photographerDetails.city,
-            state:photographerDetails.state,
-            category:photographerDetails.category,
-            review:photographerDetails.Review
+            image: photographerDetails.image,
+            overview: photographerDetails.overview,
+            address: photographerDetails.address,
+            city: photographerDetails.city,
+            state: photographerDetails.state,
+            category: photographerDetails.category,
+            review: photographerDetails.Review
 
         })
-    }else{
+    } else {
         res.status(400)
-        throw new Error ('cant find the photographer')
+        throw new Error('cant find the photographer')
     }
 
 })
@@ -179,37 +179,42 @@ const details = asyncHandler(async(req,res) => {
 
 //updating album
 
-const album = asyncHandler(async(req,res)=> {
-    const {image,
+const album = asyncHandler(async (req, res) => {
+    console.log("helooooooo..." ,req.body);
+    const { image,
         category,
         description
-    } =req.body
+    } = req.body
 
-    if(!image || !category){
+    if (!image || !category) {
         res.status(400)
         throw new Error('please add all field')
     }
-    const userId =req.photographer._id
+    const userId = req.photographer._id
+    console.log("im theeeeeeeeeeeeeee",image,
+    category,
+    description);
     const album = await albumModel.create({
         image,
         category,
         description,
         userId,
+
     })
 })
 
 //fetching album
 
-const fetch =asyncHandler(async(req,res) => {
-    const userId =req.photographer._id
+const fetch = asyncHandler(async (req, res) => {
+    const userId = req.photographer._id
 
-    const albums=await albumModel.find({userId})
-    if(albums){
+    const albums = await albumModel.find({ userId })
+    if (albums) {
         res.json({
-           albums
+            albums
         })
     }
-    else{
+    else {
         albums
     }
 })
@@ -217,27 +222,27 @@ const fetch =asyncHandler(async(req,res) => {
 //delete photo.......
 
 // Delete-plan
-const deletePhoto = asyncHandler(async(req,res)=>{
+const deletePhoto = asyncHandler(async (req, res) => {
     const plan = await albumModel.findById(req.params.id)
-    if(plan){
-      await plan.remove()
-      res.status(200).json({id:req.params.id})
-    }else{
-       res.status(400)
-       throw new Error("plan not found")
+    if (plan) {
+        await plan.remove()
+        res.status(200).json({ id: req.params.id })
+    } else {
+        res.status(400)
+        throw new Error("plan not found")
     }
-  })
+})
 
 
-  //.....................
+//.....................
 
-  const getUser=asyncHandler(async(req,res)=>{
+const getUser = asyncHandler(async (req, res) => {
     const { id } = req.query;
-  
+
     const data = await User.findById(id)
-    if(!data)throw new Error(`Couldn't find ${id}`);
+    if (!data) throw new Error(`Couldn't find ${id}`);
     res.status(200).json({
-      data,
+        data,
     });
 })
 
@@ -245,14 +250,11 @@ const deletePhoto = asyncHandler(async(req,res)=>{
 
 const fetchReview = asyncHandler(async (req, res) => {
     const { id } = req.params
-    console.log("myrrrdddd",id)
-
     const Review = await Photographer.findById(id).populate({
-        path:'Review.userId',
-        select:{name:1}
-       
+        path: 'Review.userId',
+        select: { name: 1 }
+
     })
-    console.log("heloo",Review);
     if (Review) {
         res.json({
             Review

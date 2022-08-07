@@ -46,6 +46,18 @@ const getPhotographer=asyncHandler(async(req,res)=> {
       throw new Error ('no user find')
   }
 })
+  //.........................
+  
+const fetchPayment=asyncHandler(async(req,res)=> {
+  const data=await orderModel.find()
+  console.log("mahnnnnnn",data);
+  if(data){
+      res.json(data)
+  }else{
+      res.status(400)
+      throw new Error ('no user find')
+  }
+})
 
 
 // @desc  edit the users
@@ -121,5 +133,6 @@ module.exports ={
     photographerCount,
     getPhotographer,
     editPhtographer,
-    totalIncome
+    totalIncome,
+    fetchPayment
 }

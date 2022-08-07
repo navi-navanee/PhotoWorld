@@ -17,6 +17,12 @@ const initialState = {
     photographermessage: '',
     photographerModified: false,
 
+    //.......................
+    PaymentData: [],
+    PaymentDataError: false,
+    PaymentDataSuccess: false,
+    PaymentDataisLoading: false,
+    PaymentDatamessage: '',
 }
 
 //fetch user
@@ -55,6 +61,20 @@ export const fetchPhotographer = createAsyncThunk(
     async (thunkAPI) => {
         try {
             return await userService.getPhotographer()
+        } catch (error) {
+            const message = (error.response && error.response.data
+                && error.data.message) || error.message || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+////fetch fetchPayment
+export const fetchPayment = createAsyncThunk(
+    'photographerDetails/fetchPayment',
+    async (thunkAPI) => {
+        try {
+            return await userService.fetchPayment()
         } catch (error) {
             const message = (error.response && error.response.data
                 && error.data.message) || error.message || error.toString()
@@ -161,6 +181,22 @@ export const userSlice = createSlice({
                 state.photographermessage = action.payload
                 state.photographer = null
             })
+
+            //................................................
+            .addCase(fetchPayment.pending, (state) => {
+                state.photographerLoading = true
+            })
+            .addCase(fetchPayment.fulfilled, (state, action) => {
+                state.PaymentDataisLoading = false
+                state.PaymentDataError = false
+                state.PaymentData = action.payload
+            })
+            .addCase(fetchPayment.rejected, (state, action) => {
+                state.PaymentDataisLoading = false
+                state.PaymentDataSuccess = false
+                state.PaymentDatamessage = action.payload
+                state.PaymentData = null
+            })
     }
 })
 
@@ -179,6 +215,10 @@ export const selectAllPhotographer = (state) => state.userDetails.photographer
 export const photographerBlock = (state) => state.userDetails.photographerModified
 export const photographerloading = (state) => state.userDetails.photographerLoading
 export const photographermessage = (state) => state.userDetails.photographermessage
+
+//....................................
+export const  PaymentData = (state) => state.userDetails.PaymentData
+export const   PaymentDataisloading = (state) => state.userDetails.PaymentDataisloading
 
 export default userSlice.reducer
 

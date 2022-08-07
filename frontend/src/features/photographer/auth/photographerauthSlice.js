@@ -35,7 +35,7 @@ export const login = createAsyncThunk(
     'photographerauth/login',
     async (photographer, thunkAPI) => {
         try {
-            console.log("im hereee");
+      
             return await photographerauthService.login(photographer)
         } catch (error) {
             const message = (error.response && error.response.data

@@ -5,6 +5,8 @@ const urls ={
     //.......
     PHOTOGRAPHER:'/getPhotographer',
     BLOCK_PHOTOGRAPHER:'/blockphotographer/',
+    //......
+    PAYMENT:'/payment',
 
 
     TRANSACTION:'/transaction',
@@ -22,5 +24,6 @@ export const {
     TOTALPHOTOGRAPHERS,
     PHOTOGRAPHER,
     BLOCK_PHOTOGRAPHER,
-    TOTAL_INCOME
+    TOTAL_INCOME,
+    PAYMENT
 } =urls

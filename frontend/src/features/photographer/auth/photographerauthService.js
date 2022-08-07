@@ -35,12 +35,12 @@ const editPhotographer = async (token, userData) => {
         Authorization: `Bearer ${token}`,
       },
     };
-    console.log("photographer edit calll");
+  
     const { data } = await api.editPhotographerDetails(userData, config);
     if (data) {
       localStorage.setItem('photographer', JSON.stringify(data));
     }
-    console.log("im the return resopnse............",data);
+
     return data;
   };
 

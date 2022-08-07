@@ -118,7 +118,6 @@ const generateToken = (id) => {
 // @rout  PUT /api/edit-userDetails/:id
 const editUser = asyncHandler(async (req, res) => {
     const userId = req.user.id;
-
     try {
         const newUserData = {
             name: req.body.name,
@@ -130,8 +129,6 @@ const editUser = asyncHandler(async (req, res) => {
             runValidators: true,
             useFindAndModify: false,
         });
-
-
         res.status(200).json({
             _id: user.id,
             name: user.name,
@@ -192,14 +189,13 @@ const singleFetch = asyncHandler((async (req, res) => {
 //.........................................................
 
 const wedding = asyncHandler((async (req, res) => {
-    const weddingImage = await albumModel.find({ category: "Helooo" })
+    const weddingImage = await albumModel.find({ category: "wedding" })
     if (weddingImage) {
         res.json(weddingImage)
     } else {
         res.status(400)
         throw new Error('no Images')
     }
-
 }))
 
 
@@ -246,6 +242,7 @@ const addReview = asyncHandler(async (req, res) => {
             userId: userId,
             review: review,
             star: req.body.star,
+            date:new Date()
         }
         const photographer = await photoModel.findByIdAndUpdate(
             photographerId,
@@ -260,7 +257,7 @@ const addReview = asyncHandler(async (req, res) => {
 //.........................................................
 
 const fetchReview = asyncHandler(async (req, res) => {
-
+   
     const { id } = req.params
     const {Review} = await photoModel.findById(id).populate({
         path:'Review.userId',
@@ -278,17 +275,65 @@ const fetchReview = asyncHandler(async (req, res) => {
     }
 })
 
+//..............................................
 
+const like = asyncHandler(async (req, res) => {
+    const {
+        _id,
+        userId,
+    } = req.body
+   
+    try {
+        const newUserData = {
+            user: userId,   
+        }
+       const post=await albumModel.findById(_id)
+    
 
+       if(post.likes.filter(like=> like.user.toString() ===req.body.userId).length > 0){
+        return res.json(403).json({msg :"post already liked"})
+       }
+      const liked = await albumModel.findByIdAndUpdate(_id,{
+        $push: { likes: newUserData } 
+       })
 
-// const userId =req.photographer._id
-// const album = await albumModel.create({
-//     image,
-//     category,
-//     description,
-//     userId,
-// })
+       res.json({liked})
+  
+    } catch (error) {
+        res.status(400).json(error)
+    }
+});
 
+//..............................
+
+// const like = async (req, res) => {
+//     const {
+//         _id,
+//         userId,
+//     } = req.body
+    
+//     try {
+//         const newUserData = {
+//             user: userId,   
+//         }
+//        const post=await albumModel.findById(_id)
+//        console.log("moneww",post.likes);
+//        if(post.likes.filter(like=> like.user.toString() ===req.body.userId).length > 0){
+//         return res.json(403).json({msg :"post already liked"})
+//        }
+//        console.log("the newww",req.body.userId);
+//        await post.likes.unShift(newUserData)
+//         console.log("ooooo");
+//         await post.save()
+
+//         res.json(post.likes)
+//        //check if the post already liked
+
+//        console.log("photoid",success);
+//     } catch (error) {
+//         res.status(400).json(error);
+//     }
+// };
 
 
 
@@ -306,6 +351,7 @@ module.exports = {
     getPhotographer,
     nature,
     addReview,
-    fetchReview
+    fetchReview,
+    like
 
 }

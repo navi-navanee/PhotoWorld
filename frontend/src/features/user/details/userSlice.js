@@ -61,6 +61,13 @@ const initialState = {
 
     //...........................
 
+    likeData:[],
+    likeError: false,
+    likeSuccess: false,
+    likeLoading: false,
+    likeMessage: '',
+
+
 
 }
 
@@ -143,7 +150,6 @@ export const fetchReview =createAsyncThunk(
     }
 )
 
-
 //wedding.....
 
 export const wedding = createAsyncThunk(  
@@ -172,6 +178,38 @@ export const nature = createAsyncThunk(
         }
     }
 )
+
+//...........................Like..........................
+
+export const like = createAsyncThunk(
+    'user/like',
+    async (data, thunkAPI) => {
+        try {
+            const token = await thunkAPI.getState().auth.user.token
+            return await userService.like(data,token)
+        } catch (error) {
+            const message = (error.response && error.response.data
+                && error.data.message) || error.message || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+//.................................Unlike,...................
+
+// export const unlike = createAsyncThunk(
+//     'user/unlike',
+//     async (data, thunkAPI) => {
+//         try {
+//             const token = await thunkAPI.getState().auth.user.token
+//             return await userService.unlike(data,token)
+//         } catch (error) {
+//             const message = (error.response && error.response.data
+//                 && error.data.message) || error.message || error.toString()
+//             return thunkAPI.rejectWithValue(message)
+//         }
+//     }
+// )
 
 
 export const userFilterSlice = createSlice({
@@ -284,6 +322,8 @@ export const userFilterSlice = createSlice({
                 state.ReviewData = null
             })
 
+            //...................Like............................
+
     }
 })
 
@@ -313,5 +353,9 @@ export const natureImageLoading = (state) => state.userFilter.NatureImageLoading
 export const ReviewData = (state) => state.userFilter.ReviewData
 export const ReviewLoading = (state) => state.userFilter.ReviewLoading
 export const ReviewMessage = (state) => state.userFilter.ReviewMessage
+
+//.................................................
+
+export const likeData =(state) => state.userFilter.like
 
 export default userFilterSlice.reducer

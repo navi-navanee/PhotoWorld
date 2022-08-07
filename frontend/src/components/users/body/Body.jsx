@@ -20,6 +20,8 @@ export const Body = () => {
 const loading = useSelector(weddingImageLoading)
 const {data} = useSelector(weddingImage)
 
+console.log("im the coming list data",data);
+
 //Nature image section
 const natureloading = useSelector(natureImageLoading)
 const natureImages = useSelector(natureImage)
@@ -45,8 +47,9 @@ if (loading) {
 
   const settings = {
     dots: true,
+    arrows:true,
     infinite: false,
-    speed: 500,
+    speed: 300,
     slidesToShow: 3,
     slidesToScroll: 3,
     initialSlide: 0,
@@ -97,8 +100,10 @@ if (loading) {
               <div className="card-top">
                 <img onClick={() => onSubmit(item.userId)} src={item.image} alt="sadfas" />
               </div>
-              <div className="card-bottom"></div>
-              <h4>{item.like}</h4>
+              <div  className="card-bottom">
+
+              <div className="card-bottom-like">❤️{item.likes.length}</div>
+              </div>
             </div>
           ))}
         </Slider>
@@ -110,8 +115,10 @@ if (loading) {
               <div className="card-top">
                 <img onClick={() => onSubmit(item.userId)} src={item.image} alt="sadfas" />
               </div>
-              <div className="card-bottom"></div>
-              <h4>{item.like}</h4>
+              <div className="card-bottom">
+              <div className="card-bottom-like">❤️{item.like}</div>
+
+              </div>
             </div>
           ))}
         </Slider>

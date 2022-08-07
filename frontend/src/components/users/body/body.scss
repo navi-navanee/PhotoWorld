@@ -1,22 +1,52 @@
 .card{
     border: 1px solid #fff;
-
     border-radius: 8px;
-
     .card-top{
         img{
             max-width: 100%;
         max-height: 100%;
         display: block;
-        }
-        
-    }
+        }    
 
+
+      }
+      .card-bottom{
+        height: 3rem;
+
+
+        .card-bottom-like{
+          margin-top: .5rem;
+        }
+      }
 }
 .slick-track{
     margin-top: -6rem;
+  
 }
  .slick-slide img {
     height:25rem;
     width: 100%;
  }
+
+ .slick-dots li button:before {
+    color: rgb(0, 0, 0) !important;
+  }
+
+  .slick-prev {
+    color:red !important;
+    background-color: rgb(13, 13, 13) !important;
+    height: 2rem !important;
+    z-index: 1;
+  }
+  .slick-next {
+    background-color: rgb(9, 9, 9) !important;
+    height: 2rem !important;
+    z-index: 1;
+  }
+
+  .slick-slide > div {
+    margin: 0 10px;
+  }
+  .slick-list {
+    margin: 0 -10px;
+  }

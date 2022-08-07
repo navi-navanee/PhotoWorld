@@ -7,6 +7,7 @@ import Pheader from '../../../components/photographer/header/Pheader'
 import ChatOnline from '../../../components/photographer/chat/ChatOnline';
 import Conversation from '../../../components/photographer/chat/Conversation';
 import {io} from 'socket.io-client'
+import { Button } from '@mui/material';
 
 const Messenger = () => {
 
@@ -91,10 +92,6 @@ console.log("im arrival",arrivalMessage);
           (member) => member !== photographer._id
         );
 
-        console.log("im senderId",photographer._id);
-        console.log("im receiverId",receiverId);
-        console.log("im messageee",newMessage);
-
         socket.current.emit("sendMessage", {
           senderId: photographer._id,
           receiverId,
@@ -137,7 +134,6 @@ console.log("im arrival",arrivalMessage);
           <div className="chatBoxWrapper">
             {
               currentChat ?
-
                 (<>
                   <div className="chatBoxTop">
                     {messages.map(m =>(  
@@ -153,9 +149,9 @@ console.log("im arrival",arrivalMessage);
                     onChange={(e) =>setNewMessage(e.target.value)}
                     value={newMessage}
                     ></textarea>
-                    <button className='chatSubmitButton'
+                    <Button style={{marginRight:"1rem"}} className='chatSubmitButton'  variant="outlined" 
                     onClick={handleSubmit}
-                    >Send</button>
+                    >Send</Button>
                   </div>
                 </>
                 ) : (

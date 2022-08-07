@@ -64,6 +64,9 @@ const photographerSchema = mongoose .Schema ({
         },
         star:{
             type:Number
+        },
+        date :{
+            type:Date
         }
     }]
 

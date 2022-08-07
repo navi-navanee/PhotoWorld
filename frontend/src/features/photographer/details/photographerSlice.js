@@ -53,10 +53,12 @@ export const albumsSubmit = createAsyncThunk(
     'photographeralbum/album',
 
     async (data, thunkAPI) => {
+        console.log("lllll/////...",data);
         try {
             const token = await thunkAPI.getState().photographerauth.photographer.token
-            return await photographerService.albums(data, token)
+            return await photographerService.albums(data, token);
         } catch (error) {
+            console.log('fuckkkkkkkkkkkkk',error);
             const message = (error.response && error.response.data
                 && error.data.message) || error.message || error.toString()
             return thunkAPI.rejectWithValue(message)
@@ -151,10 +153,10 @@ export const photographerSlice = createSlice({
                 state.albumLoading = true
             })
             .addCase(albumsSubmit.fulfilled, (state, action) => {
-               
+               console.log("...........................",action.payload);
+                state.fetchAlbum = action.payload
                 state.albumLoading = false
                 state.albumError = false
-                state.fetchAlbum = action.payload
             })
             .addCase(albumsSubmit.rejected, (state, action) => {
                 state.albumLoading = false

@@ -12,7 +12,7 @@ const savedMessage=asyncHandler(async(req,res)=>{
 // @desc  get the all messages using conversation id
 // @rout  POST /api/messages/:conversationId
 const getMessage=asyncHandler(async(req,res)=>{
-  console.log("im callelddddddddddd");
+
         const messages = await Message.find({
           conversationId: req.params.conversationId,
         });

@@ -22,6 +22,7 @@ const albums =async (data,token) => {
             Authorization : `Bearer ${token}`
         }
     }
+  
     const response =await api.albums(data,config) 
     return response
 }
@@ -49,7 +50,7 @@ const deletephotos=async(id ,token)=>{
       }
     }
     const {data} = await api.deletephotos(id ,config)
-    console.log("delete data response......",data);
+   
     return data
   }
 
@@ -57,8 +58,6 @@ const deletephotos=async(id ,token)=>{
   //........................
 
   const fetchReview =async (data,token) => {
-
-    console.log("im the fetchreview service",data);
     const config = {
         headers : {
             Authorization : `Bearer ${token}`  

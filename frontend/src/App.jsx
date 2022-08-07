@@ -32,6 +32,7 @@ import PhotographerProfile from './pages/photographer/profile/PhotographerProfil
 import Messenger from './pages/User/messenger/Messenger';
 // import Register2 from './components/photographer/pregister/Register2';
 import Messenger2 from './pages/photographer/messenger/Messenger'
+import FullPayment from './pages/admin/payment/FullPayment';
 
 function App() {
 
@@ -71,6 +72,9 @@ function App() {
               </Route>
               <Route path='photographer'>
                 <Route index element={<Photographer/>}/>
+              </Route>
+              <Route path='payment'>
+                <Route index element={<FullPayment/>}/>
               </Route>
 
               <Route path="products" >
