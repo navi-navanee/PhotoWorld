@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../../../features/admin/auth/adminauthSlice';
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import { Button } from '@mui/material';
 
 const Login = () => {
 
@@ -53,7 +54,7 @@ const Login = () => {
                     <h2>Sign In</h2>
                     <span>Please enter the details</span>
 
-                    <form id='form' className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
+                    <form id='form' className='flex flex-col' >
                         <input
                             name="email"
                             label="Email"
@@ -74,7 +75,7 @@ const Login = () => {
                             />
                         {errors.password && <p style={{ color: 'red' }}>Please check the Password</p>}
 
-                        <button className='btn'>Sign In</button>
+                        <Button onClick={handleSubmit(onSubmit)} variant='contained' size='large' >Sign In</Button>
                     </form>
 
                 </div>

@@ -1,6 +1,6 @@
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import './profile.scss'
-import { Box, IconButton, TextField } from '@mui/material'
+import { Box, Button, IconButton, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { imageUpload } from '../../../util/imageUpload';
@@ -156,7 +156,7 @@ const Profile = () => {
                             <TextField name='state' id="outlined-basic" label="State" onChange={onChange} value={state} variant="outlined" />
 
                         </Box>
-                        <p><button className='button1'>Edit Details</button></p>
+                        <Button variant='contained' size='large'>Edit Details</Button>
                     </div>
                 </form>
             </div>

@@ -19,6 +19,7 @@ import {
   Typography,
 } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./album.scss";
 import ImageUpload from "image-upload-react";
@@ -47,17 +48,18 @@ const options = [
 ];
 
 const style = {
-  color: "white",
+  color: "black",
   background: "black",
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 300,
+  width: '24rem',
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  
 };
 
 const Album = () => {
@@ -116,6 +118,7 @@ const Album = () => {
     setOpen(false);
     submit();
   };
+  
   //dump the image into cloudinary ImageUpload
   const postDetails = async (ProfilePicture) => {
     try {
@@ -250,7 +253,7 @@ const Album = () => {
                       </Box>
 
                       <p>
-                        <Button variant="contained" color="primary" className="button1">Add Photo</Button>
+                        <Button onClick={handleClose} variant="contained" color="primary" className="button1">Add Photo</Button>
                       </p>
                     </div>
                   </form>
@@ -293,7 +296,7 @@ const Album = () => {
                     style={{ cursor: "pointer" }}
                   />
                   <ImageListItemBar
-                    title={<FavoriteBorderOutlinedIcon />}
+                    title={<FavoriteIcon style={{color:"red"}}/>}
                     subtitle={item.likes.length}
                   />
 
