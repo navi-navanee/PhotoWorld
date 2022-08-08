@@ -282,13 +282,13 @@ const like = asyncHandler(async (req, res) => {
         _id,
         userId,
     } = req.body
-   
+    console.log("im heree",req.body);
     try {
       
        const post=await albumModel.findById(_id)
     
 
-       if(post.likes.filter(like=> like.user.toString() ===req.body.userId).length > 0){
+       if(post.likes.includes(userId)){
         return res.json(403).json({msg :"post already liked"})
        }
       const liked = await albumModel.findByIdAndUpdate(_id,{
