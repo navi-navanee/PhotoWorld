@@ -4,6 +4,7 @@ import ChatOnline from '../../../components/users/chat/chatOnline/ChatOnline'
 import Conversation from '../../../components/users/chat/conversations/Conversation'
 import Message from '../../../components/users/chat/message/Message'
 import * as api from '../../../api/messenger';
+import * as API from '../../../api/User';
 import Header from '../../../components/users/header/Header'
 import './messenger.css'
 import { useRef } from 'react'
@@ -16,7 +17,7 @@ const Messenger = () => {
   const [conversation, setConversation] = useState([])
   const [currentChat, setCurrentChat] = useState(null)
   const [messages, setMessages] = useState([])
-  const [newMessage, setNewMessage] = useState('')
+  const [newMessage, setNewMessage] = useState(null)
   const [arrivalMessage, setArrivalMessage] = useState(null)
   const { user } = useSelector((state) => state.auth)
   const scrollRef =useRef()
@@ -78,10 +79,26 @@ const Messenger = () => {
   }
   getMessages()
  },[currentChat])
+ const [pdata,setpData]=useState("")
 
+// //////////
+
+useEffect(()=>{
+  findUser(currentChat) 
+},[currentChat])
+
+////////////////
+
+const findUser=async(p)=>{
+  const receiverId = p?.members?.find(
+    (member) => member !== user._id
+  );
+  const {data}  =await API.getPhotographer(receiverId)
+  setpData(data?.data)
+}
 
  const handleSubmit = async (e) => {
-  console.log("ysssssss");
+
   e.preventDefault();
   const message = {
     sender: user._id,
@@ -93,20 +110,21 @@ const Messenger = () => {
     (member) => member !== user._id
   );
 
-
-  socket.current.emit("sendMessage", {
-    senderId: user._id,
-    receiverId,
-    text: newMessage,
-  })
-
-
-
+  
   try {
-    console.log("im tryeee");
-    const res = await api.savedMessage(message);
-    setMessages([...messages , res.data])
-    setNewMessage('')
+
+    if(newMessage!==null && newMessage!=="" )
+    {
+
+      socket.current.emit("sendMessage", {
+        senderId: user._id,
+        receiverId,
+        text: newMessage,
+      })
+      const res = await api.savedMessage(message);
+      setMessages([...messages , res.data])
+      setNewMessage('')
+    }
   } catch (error) {
     console.log(error);
   }
@@ -117,7 +135,7 @@ const Messenger = () => {
 useEffect(() => {
   scrollRef?.current?.scrollIntoView({behavior : "smooth"})
 })
-
+console.log("name",pdata);
   return (
     <>
       <Header />
@@ -129,7 +147,10 @@ useEffect(() => {
             <input  placeholder='Search here' className="chatMenuInput" />
             </div>
             {conversation.map((c) => (
-              <div onClick={() => setCurrentChat(c)}>
+              <div onClick={() =>{
+                 setCurrentChat(c)
+                
+                 }}>
                 <Conversation conversation={c} currentUser={user} />
               </div>
             ))}
@@ -137,12 +158,17 @@ useEffect(() => {
         </div>
 
         {/* Chat Box section ........................... */}
+
         <div className="chatBox">
           <div className="chatBoxWrapper">
             {
               currentChat ?
 
                 (<>
+                <div className='chatName'>
+                  <img src={pdata?.image} style={{width:"3rem" ,height:"3rem", borderRadius:"50%"}} alt="" />
+                  <h2 style={{color:"white"}}>{pdata?.name}</h2>
+                </div>
                   <div className="chatBoxTop">
                     {messages.map(m =>(  
                       <div ref={scrollRef}>
@@ -153,7 +179,7 @@ useEffect(() => {
                   <div className="chatBoxBottom">
                     <textarea 
                     className='chatMessageInput' 
-                    placeholder='write something........'
+                    placeholder='write something......'
                     onChange={(e) =>setNewMessage(e.target.value)}
                     value={newMessage}
                     ></textarea>

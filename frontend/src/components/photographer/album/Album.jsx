@@ -250,7 +250,7 @@ const Album = () => {
                       </Box>
 
                       <p>
-                        <button className="button1">Edit Details</button>
+                        <Button variant="contained" color="primary" className="button1">Add Photo</Button>
                       </p>
                     </div>
                   </form>

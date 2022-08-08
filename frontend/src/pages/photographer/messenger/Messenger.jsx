@@ -8,6 +8,7 @@ import ChatOnline from '../../../components/photographer/chat/ChatOnline';
 import Conversation from '../../../components/photographer/chat/Conversation';
 import {io} from 'socket.io-client'
 import { Button } from '@mui/material';
+import * as API from '../../../api/Photographer';
 
 const Messenger = () => {
 
@@ -20,8 +21,6 @@ const Messenger = () => {
     const scrollRef =useRef()
     const socket =useRef()
     //....................
-console.log("im current",currentChat);
-console.log("im arrival",arrivalMessage);
 
     useEffect(() => {
       socket.current = io("ws://localhost:8900")
@@ -55,7 +54,7 @@ console.log("im arrival",arrivalMessage);
         const getConversations = async () => {
           try {
             const { data } = await api.getConversation(photographer?._id)
-            console.log("myrrrrrrrr",data);
+         
             setConversation(data)
           } catch (error) {
     
@@ -77,8 +76,22 @@ console.log("im arrival",arrivalMessage);
         }
         getMessages()
        },[currentChat])
+       const [pdata,setpData]=useState('')
+  //..........................................................    
+  
+  useEffect(()=>{
+    findUser(currentChat) 
+  },[currentChat])
 
-  //..........................................................     
+  ////////////////
+  const findUser=async(p)=>{
+    const receiverId = p?.members?.find(
+      (member) => member !== photographer._id
+    );
+    const {data}  =await API.getUser(receiverId)
+    setpData(data?.data)
+  }
+  
        const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -87,26 +100,33 @@ console.log("im arrival",arrivalMessage);
           text: newMessage,
           conversationId: currentChat._id,
         }
-        
         const receiverId =await currentChat.members.find(
           (member) => member !== photographer._id
         );
 
-        socket.current.emit("sendMessage", {
-          senderId: photographer._id,
-          receiverId,
-          text: newMessage,
-        })
+       
+      
 
+  
         try {
-          const res = await api.savedMessage(message);
-          setMessages([...messages,res.data])
-          setNewMessage('')
+          if(newMessage!==null && newMessage!=="" )
+          {
+            socket.current.emit("sendMessage", {
+              senderId: photographer._id,
+              receiverId,
+              text: newMessage,
+            })
+            const res = await api.savedMessage(message);
+            setMessages([...messages,res.data])
+            setNewMessage('')
+          }
+
+
+    
         } catch (error) {
           console.log(error);
         }
       }
-
       useEffect(() => {
         scrollRef?.current?.scrollIntoView({behavior : "smooth"})
       })
@@ -130,11 +150,16 @@ console.log("im arrival",arrivalMessage);
         </div>
 
         {/* Chat Box section ........................... */}
+
         <div className="chatBox">
           <div className="chatBoxWrapper">
             {
               currentChat ?
                 (<>
+                     <div className='chatName'>
+                  <img src={pdata?.profile_image} style={{width:"3rem" ,height:"3rem", borderRadius:"50%"}} alt="" />
+                  <h2 style={{color:"white"}}>{pdata?.name}</h2>
+                </div>
                   <div className="chatBoxTop">
                     {messages.map(m =>(  
                       <div ref={scrollRef}>

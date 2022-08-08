@@ -5,8 +5,6 @@ import * as api from '../../../../api/User';
 const Conversation = ({ conversation, currentUser }) => {
     
     const [user, setUser] = useState(null)
-    
- 
     useEffect(() => {
         const photographerId = conversation.members.find((m) => m !== currentUser._id);
 

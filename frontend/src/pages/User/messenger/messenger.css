@@ -8,7 +8,7 @@
 }
 
 .chatMenu {
-    flex: 3.5;
+    flex: 2.5;
   }
 
   .chatMenuInput{
@@ -41,14 +41,32 @@
     
   }
 
+
+
   .chatBoxTop {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
     padding: 2rem;
     padding-right: 10px;
+
   }
 
+  .chatName{
+    display: flex;
+    background-color: rgb(2, 2, 2);
+    height: 3rem;
+    margin-top: .75rem;
+    align-items: center;
+  }
+
+  .chatName img{
+    margin-right: 1rem;
+    margin-left: 2rem;
+    width:"3rem"; 
+    height:"3rem";
+    border-radius:"50%";
+  }
 
   .chatBoxBottom {
     margin-top: 5px;
@@ -60,9 +78,10 @@
 
   .chatMessageInput{
     width: 86%;
-    height: 90px;
+    height: 2.5rem;
     padding: 10px;
     margin-left: 1rem;
+    border-radius: 1rem;
   }
 
   .chatSubmitButton{
