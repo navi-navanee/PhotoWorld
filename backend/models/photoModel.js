@@ -53,6 +53,9 @@ const photographerSchema = mongoose .Schema ({
     payment:{
         type:String
     },
+    price:{
+        type:String
+    },
     Review :[{
         userId:{
             type:mongoose.Schema.ObjectId,

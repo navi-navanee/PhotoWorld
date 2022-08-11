@@ -9,15 +9,12 @@ import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 const Photographerlogin = () => {
 
   const [formData, setFormData] = useState({
-
     email: '',
     password: ''
   })
 
   const { email, password } = formData
-
   const navigate = useNavigate()
-
 
   const paperStyle = { padding: 20, height: "60vh", width: 280, margin: "20px auto" }
   const avatarStyle = { backgroundColor: '#1bbd7e' }

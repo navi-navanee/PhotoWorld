@@ -17,7 +17,6 @@ const Photographerlogin = () => {
   })
 
   const {email , password} = formData
-
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -25,9 +24,7 @@ const Photographerlogin = () => {
     (state) => state.photographerauth
   )
 
-
   useEffect(() => {
- 
     if(isError) {
       toast.error(message)
     }
@@ -39,7 +36,7 @@ const Photographerlogin = () => {
 
  
 
-  const paperStyle = { padding: 20, height: "60vh", width: 400, margin: "20px auto" }
+  const paperStyle = { padding: 20, height: "75vh", width: 400, margin: "20px auto" }
   const avatarStyle = { backgroundColor: '#1bbd7e' }
 
   const onChange = (e) => {
@@ -56,7 +53,7 @@ const Photographerlogin = () => {
       email,
       password
     }
-    console.log("helooo",userData);
+
     dispatch(login(userData))
   }
 
@@ -80,6 +77,9 @@ const Photographerlogin = () => {
           <Button style={{ marginTop: "2rem" }} type='submit' color='primary' variant='contained' fullWidth>Sign In</Button>
           <Typography style={{ marginTop: "2rem" }}>Create an account ?  <NavLink to={'signup'}>
             Sign Up
+          </NavLink></Typography>
+          <Typography style={{ marginTop: "1rem" }}>Im a user  <NavLink to={'/login'}>
+            User Page
           </NavLink></Typography>
         </Paper>
       </Grid>

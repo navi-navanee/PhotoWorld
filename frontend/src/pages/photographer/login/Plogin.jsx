@@ -6,11 +6,9 @@ import Photographerlogin from '../../../components/photographer/pLogin/Photograp
 
 
 const Plogin = () => {
-
   const navigate=useNavigate()
-
   const {photographer} = useSelector((state)=>state.photographerauth)
-  
+
   useEffect(()=>{
     if(!photographer){
       navigate('/photographer')
@@ -19,6 +17,7 @@ const Plogin = () => {
 
   return (
     <div>
+      
       <Photographerlogin/>
     </div>
   )

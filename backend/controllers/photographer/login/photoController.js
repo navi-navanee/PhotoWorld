@@ -18,7 +18,7 @@ const registerPhoto = asyncHandler(async (req, res) => {
         phonenumber,
         category,
         payment,
-
+        price
 
     } = req.body
     if (!name || !email || !password) {
@@ -47,6 +47,7 @@ const registerPhoto = asyncHandler(async (req, res) => {
         category,
         phonenumber,
         payment,
+        price,
         image: 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=',
         status: true,
     })
@@ -63,6 +64,7 @@ const registerPhoto = asyncHandler(async (req, res) => {
             state: photographer.state,
             category: photographer.category,
             state: photographer.state,
+            state: photographer.price,
             token: generateToken(photographer._id)
         })
     }
@@ -91,6 +93,7 @@ const loginPhoto = asyncHandler(async (req, res) => {
             state: photographer.state,
             category: photographer.category,
             state: photographer.state,
+            state: photographer.price,
             token: generateToken(photographer._id)
         })
     } else {
@@ -113,7 +116,8 @@ const editPhotographer = asyncHandler(async (req, res) => {
             city: req.body.city,
             state: req.body.state,
             category: req.body.category,
-            phonenumber:req.body.phonenumber
+            phonenumber:req.body.phonenumber,
+            price:req.body.price
         };
         const photographer = await Photographer.findByIdAndUpdate(userId, newUserData, {
             new: true,
@@ -131,7 +135,8 @@ const editPhotographer = asyncHandler(async (req, res) => {
             city: photographer.city,
             state: photographer.state,
             category: photographer.category,
-            phonenumber:photographer.phonenumber
+            phonenumber:photographer.phonenumber,
+            price:photographer.price
         });
     } catch (error) {
         res.status(400).json(error);
@@ -164,7 +169,8 @@ const details = asyncHandler(async (req, res) => {
             state: photographerDetails.state,
             category: photographerDetails.category,
             review: photographerDetails.Review,
-            phonenumber:photographerDetails.phonenumber
+            phonenumber:photographerDetails.phonenumber,
+            price:photographerDetails.price
 
         })
     } else {
@@ -174,11 +180,9 @@ const details = asyncHandler(async (req, res) => {
 
 })
 
-
 // @desc  adding photos
 // @rout  POST /api/photo/album
 const album = asyncHandler(async (req, res) => {
-    console.log("helooooooo...", req.body);
     const { image,
         category,
         description
@@ -189,15 +193,11 @@ const album = asyncHandler(async (req, res) => {
         throw new Error('please add all field')
     }
     const userId = req.photographer._id
-    console.log("im theeeeeeeeeeeeeee", image,
-        category,
-        description);
     const album = await albumModel.create({
         image,
         category,
         description,
         userId,
-
     })
 })
 

@@ -9,7 +9,7 @@ const albumModel = require('../../../models/albumModel')
 // @desc  registering a user
 // @rout  POST /api/user/register
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email,password,phonenumber } = req.body
+    const { name, email, password, phonenumber } = req.body
     if (!name || !email || !password) {
         res.status(400)
         throw new Error('please add all field ')
@@ -37,7 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
-            phonenumber:user.phonenumber,
+            phonenumber: user.phonenumber,
             token: generateToken(user._id),
             status: "true",
             profile_image: 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8='
@@ -64,7 +64,7 @@ const loginUser = asyncHandler(async (req, res) => {
             token: generateToken(user._id),
             status: user.status,
             profile_image: user.profile_image,
-            phonenumber:user.phonenumber
+            phonenumber: user.phonenumber
         })
     } else {
         res.status(400)
@@ -74,7 +74,6 @@ const loginUser = asyncHandler(async (req, res) => {
 
 // @desc  login with google
 // @rout  POST /api/user/googlelogin
-
 const googleloginUser = asyncHandler(async (req, res) => {
     const { email } = req.body
     const user = await User.findOne({ email })
@@ -89,14 +88,14 @@ const googleloginUser = asyncHandler(async (req, res) => {
             email: user.email,
             token: generateToken(user._id),
             status: user.status,
-            profile_image: user.profile_image
+            profile_image: user.profile_image,
+            phonenumber: user.phonenumber
         })
     } else {
         res.status(400)
         throw new Error('invalid email or password')
     }
 })
-
 
 //Generate JWT
 const generateToken = (id) => {
@@ -110,12 +109,12 @@ const generateToken = (id) => {
 const editUser = asyncHandler(async (req, res) => {
     const userId = req.user.id;
     try {
-        console.log("im req",req.body);
+        console.log("im req", req.body);
         const newUserData = {
             name: req.body.name,
             email: req.body.email,
             profile_image: req.body.profile_image,
-            phonenumber:req.body.phonenumber
+            phonenumber: req.body.phonenumber
         };
         const user = await User.findByIdAndUpdate(userId, newUserData, {
             new: true,
@@ -149,7 +148,6 @@ const filterData = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('no Photographer')
     }
-
 })
 
 // @desc  finding the selected photographer

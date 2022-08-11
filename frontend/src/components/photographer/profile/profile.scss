@@ -10,6 +10,7 @@
   .form {
     display: flex;
     flex-direction: row;
+    padding: 1rem;
   }
 }
 
@@ -54,4 +55,8 @@ a:hover {
 .dropdown-container {
   z-index: 2;
   margin-left: 12rem;
+}
+
+.css-b62m3t-container{
+  z-index: 2;
 }

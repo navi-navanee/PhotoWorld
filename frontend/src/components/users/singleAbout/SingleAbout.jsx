@@ -15,10 +15,6 @@ const SingleAbout = () => {
     const { data } = useSelector(singleData)
 
     const category = data ? data.category : ''
-    const [value, setValue] = useState(new Date())
-
-    console.log("im the valuess", value);
-
 
     return (
         <Container>

@@ -42,8 +42,8 @@ const Signup2 = () => {
 
 
     const onSubmit = (e) => {
-        console.log("helooooo");
-        const { overview, address, city, state,phonenumber } = e;
+
+        const { overview, address, city, state, phonenumber, price } = e;
 
         const userData = {
             overview,
@@ -51,26 +51,27 @@ const Signup2 = () => {
             city,
             state,
             category,
-            phonenumber
+            phonenumber,
+            price
         }
-        console.log("im userData", userData);
+
         dispatch(form2(userData));
         navigate('/photographer/signup3');
     }
-    const paperStyle = { padding: 20, height: "80vh", width: 400, margin: "20px auto" }
+    const paperStyle = { padding: 20, height: "100vh", width: 400, margin: "20px auto" }
 
 
     return (
         <div>
-                  <Box sx={{ width: '100%' }}>
-        <Stepper style={{marginTop:"2rem"}} activeStep={1} alternativeLabel>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel >{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-      </Box>
+            <Box sx={{ width: '100%' }}>
+                <Stepper style={{ marginTop: "2rem" }} activeStep={1} alternativeLabel>
+                    {steps.map((label) => (
+                        <Step key={label}>
+                            <StepLabel >{label}</StepLabel>
+                        </Step>
+                    ))}
+                </Stepper>
+            </Box>
             <form >
                 <Grid >
                     <Paper component="form" elevation={10} style={paperStyle}  >
@@ -78,11 +79,11 @@ const Signup2 = () => {
                         <h3>Overview</h3>
                         <TextField
                             id="filled-multiline-static"
-                            label="Multiline"
+                            label="Overview"
                             multiline
                             rows={4}
                             fullWidth
-                            defaultValue="Default Value"
+                            defaultValue="Iam a good photographer"
                             variant="filled"
                             {...register("overview", { required: true })}
 
@@ -119,12 +120,22 @@ const Signup2 = () => {
                                 fullWidth
                                 {...register("state", { required: true })}
                             />
+                            <h3 style={{ marginTop: "1rem" }}>Other</h3>
                             <TextField
                                 type="text"
                                 name='phonenumber'
                                 placeholder='PHONENUMBER'
                                 fullWidth
-                                {...register("phonenumber", { required: true })}
+                                {...register("phonenumber", { required: true ,
+                                    maxLength: 20
+                                })}
+                            />
+                            <TextField
+                                type="text"
+                                name='price'
+                                placeholder='Minimum Price'
+                                fullWidth
+                                {...register("price", { required: true })}
                             />
                         </div>
 

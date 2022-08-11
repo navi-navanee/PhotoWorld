@@ -114,7 +114,7 @@ if (loading) {
                 <img onClick={() => onSubmit(item.userId)} src={item.image} alt="sadfas" />
               </div>
               <div className="card-bottom">
-              <div className="card-bottom-like">❤️{item.like}</div>
+              <div className="card-bottom-like">❤️{item.likes.length}</div>
 
               </div>
             </div>

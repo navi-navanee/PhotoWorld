@@ -106,8 +106,10 @@ const Profile = () => {
     }
 
     return (
+        <>
+        
         <div>
-            <h2>User Profile</h2>
+            <h1 style={{ textAlign: "center", marginTop: "1rem" }}>User Profile</h1>
             <div className="card">
                 <form className='form'>
                     <div className='right'>
@@ -162,6 +164,7 @@ const Profile = () => {
             </div>
 
         </div>
+        </>
     )
 }
 
