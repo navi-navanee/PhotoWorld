@@ -6,6 +6,7 @@ import {ThemeProvider } from '@mui/material'
 import App from './App';
 import './index.css';
 import theme from './theme';
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -13,10 +14,12 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
+     <ErrorBoundary>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
        <App />
       </ThemeProvider>
     </Provider>
+     </ErrorBoundary>
   </React.StrictMode>
 );
