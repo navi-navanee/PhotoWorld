@@ -33,6 +33,10 @@ import Messenger from './pages/User/messenger/Messenger';
 // import Register2 from './components/photographer/pregister/Register2';
 import Messenger2 from './pages/photographer/messenger/Messenger'
 import FullPayment from './pages/admin/payment/FullPayment';
+import Multi from './pages/photographer/multi/Multi';
+import Signup1 from './components/photographer/Signup/Signup1';
+import Signup2 from './components/photographer/Signup/Signup2';
+import Signup3 from './components/photographer/Signup/Signup3';
 
 function App() {
 
@@ -86,10 +90,12 @@ function App() {
 
             {/* {==============================Photographer================} */}
 
-
             <Route path='/photographer'>
                <Route index element={<Plogin/>} />
                <Route path='register' element={<MultiStepForm/>}/>
+               <Route path='signup' element={<Signup1/>}/>
+               <Route path='signup2' element={<Signup2/>}/>
+               <Route path='signup3' element={<Signup3/>}/>
                <Route path='photographerprofile' element={<PhotographerProfile/>}/>
                <Route path='home/messenger' element={photographer ? <Messenger2/> : <Plogin />} />
 

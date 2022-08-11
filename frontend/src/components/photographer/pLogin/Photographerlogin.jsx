@@ -78,7 +78,7 @@ const Photographerlogin = () => {
           <TextField name='password' type={'password'} style={{ marginTop: "1rem" }} id="standard-basic" label="Password" variant="standard" placeholder='Enter Your Email' 
           onChange={onChange} fullWidth />
           <Button style={{ marginTop: "2rem" }} type='submit' color='primary' variant='contained' fullWidth>Sign In</Button>
-          <Typography style={{ marginTop: "2rem" }}>Create an account ?  <NavLink to={'register'}>
+          <Typography style={{ marginTop: "2rem" }}>Create an account ?  <NavLink to={'signup'}>
             Sign Up
           </NavLink></Typography>
         </Paper>

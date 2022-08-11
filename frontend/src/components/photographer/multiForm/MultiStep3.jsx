@@ -67,13 +67,13 @@ const Step3 = (props) => {
   // async function fetchOrders () {
   //   const {data} =await axios.get('/list')
   // }
+  
   useEffect(()=>{
     if(orderAmount){
       razorpay()
     }
   },[orderAmount])
 
- 
   const cardA =(e)=>{  
     setOrderAmount(2000)
     if(orderAmount){
@@ -107,9 +107,7 @@ const Step3 = (props) => {
       alert("Razorpay SDK failed to load .Are you online?")
     };
     script.onload = async () => {
-
       try {
-   
         const result = await api.createOrder({
           amount: orderAmount + "00",
         })

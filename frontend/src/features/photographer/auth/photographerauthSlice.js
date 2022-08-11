@@ -8,6 +8,10 @@ const photographer = JSON.parse(localStorage.getItem('photographer'))
 
 const initialState = {
     photographer: photographer ? photographer : null,
+    form1: null,
+    form2: null,
+    form3: null,
+    form4: null,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -75,7 +79,17 @@ export const photographerauthSlice = createSlice({
             state.isSuccess = false
             state.isError = false
             state.message = ''
-        }
+            
+        },
+        form1: (state, action) => {
+            state.form1 = action.payload;
+          },
+          form2: (state, action) => {
+            state.form2 = action.payload;
+          },
+          form3: (state, action) => {
+            state.form3 = action.payload;
+          },
     },
     extraReducers: (builder) => {
         builder
@@ -132,7 +146,8 @@ export const photographerauthSlice = createSlice({
 
 })
 
-export const { reset } = photographerauthSlice.actions
+export const { reset ,  form1, form2, form3, form4  } = photographerauthSlice.actions
+
 
 export default photographerauthSlice.reducer
 

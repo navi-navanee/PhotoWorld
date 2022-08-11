@@ -1,0 +1,57 @@
+/* Global Rules */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f7f7f7;
+}
+
+
+/* End Global Rules  */
+
+.buy-now-btn {
+    background-color: #1e1fcd;
+    box-shadow: 0px 5px 12px 0px #1e1fcd4d;
+}
+
+.plan {
+    background-color: #efefef;
+}
+
+
+.container {
+
+
+    .cardmain{
+        display: flex;
+        flex-direction: row;
+        margin: 5rem;
+
+        .card-title{
+            margin-top: 1rem;
+        }
+
+        .card-text{
+            margin-top: 2rem;
+        }
+
+        .cardA{
+            margin-left: 2rem;
+            background-color: #f4efef;
+
+
+            .card-title{
+                text-align: center;
+            }
+
+            .btn {
+                margin-top: 2rem;
+                
+            }
+        }
+    }
+}

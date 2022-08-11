@@ -5,10 +5,9 @@ import *as api from '../../../api/Photographer'
 //register photographer
 
 const register = async (photographerData) => {
-
+  console.log("immmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",photographerData);
     const response =await api.register(photographerData)
     if(response.data){
-
         localStorage.setItem('photographer',JSON.stringify(response.data))
     }
     return response.data
