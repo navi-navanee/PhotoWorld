@@ -8,9 +8,6 @@ import { toast } from 'react-toastify'
 import { form1 } from '../../../features/photographer/auth/photographerauthSlice'
 import { Box } from '@mui/system';
 
-
-
-
 const steps = [
     'Basic Information',
     'Contact Details',
@@ -28,7 +25,7 @@ const Signup1 = () => {
     const onSubmit = (e) => {
         console.log("helooooo");
         const { name, email, password, password2 } = e;
-        if(password !== password2){
+        if (password !== password2) {
             toast.error('Password doesnot match')
         }
         else {
@@ -48,15 +45,15 @@ const Signup1 = () => {
 
     return (
         <div>
-         <Box sx={{ width: '100%' }}>
-        <Stepper style={{marginTop:"2rem"}} activeStep={0} alternativeLabel>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-      </Box>
+            <Box sx={{ width: '100%' }}>
+                <Stepper style={{ marginTop: "2rem" }} activeStep={0} alternativeLabel>
+                    {steps.map((label) => (
+                        <Step key={label}>
+                            <StepLabel>{label}</StepLabel>
+                        </Step>
+                    ))}
+                </Stepper>
+            </Box>
             <div className="col-1">
                 <Grid >
                     <Paper component="form" elevation={10} style={paperStyle}  >
@@ -112,7 +109,7 @@ const Signup1 = () => {
                         <Typography style={{ marginTop: "2rem" }}>Alredy hava account ?  <NavLink to={'/photographer'}>
                             Sign In
                         </NavLink></Typography>
-                        <Button style={{marginTop:".5rem"}}  onClick={handleSubmit(onSubmit)} variant='contained' size='large' fullWidth >Next</Button>
+                        <Button style={{ marginTop: ".5rem" }} onClick={handleSubmit(onSubmit)} variant='contained' size='large' fullWidth >Next</Button>
                     </Paper>
                 </Grid>
 

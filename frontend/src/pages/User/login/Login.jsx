@@ -34,17 +34,9 @@ import { useForm } from "react-hook-form";
 function Login() {
 
   console.log("im the env",process.env.REACT_APP_GOOGLE_CLIENT_ID);
- 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-
-  })
 
   const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-
-  const { email, password} = formData
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -171,7 +163,6 @@ const { register, handleSubmit, formState: { errors } } = useForm({ mode: "all" 
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
                 placeholder="Enter password"
                 {...register("password", {
                     required: true,
@@ -179,7 +170,7 @@ const { register, handleSubmit, formState: { errors } } = useForm({ mode: "all" 
                 })} 
               />
                {errors.password && <p style={{ color: 'red' }}>Please check the Password</p>}
-
+         
               <Button
                 type="submit"
                 fullWidth

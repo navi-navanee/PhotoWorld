@@ -10,9 +10,7 @@ import { nature, natureImage, natureImageLoading, wedding, weddingImage, wedding
 import Spinner from '../../spinner/Spinner';
 import { useNavigate } from 'react-router-dom';
 
-
 export const Body = () => {
-
   const dispatch = useDispatch()
   const navigate =useNavigate()
 
@@ -96,7 +94,7 @@ if (loading) {
         <h1 style={{marginTop: "2rem",marginBottom:"1rem"}}>Wedding</h1>
         <Slider {...settings}>
           {data&&data?.map(item => (
-            <div style={{ marginTop: "3rem" }} className="card">
+            <div style={{ marginTop: "3rem" }} className="maincard">
               <div className="card-top">
                 <img onClick={() => onSubmit(item.userId)} src={item.image} alt="sadfas" />
               </div>
@@ -111,7 +109,7 @@ if (loading) {
         <h1 style={{marginTop: "2rem",marginBottom:"1rem"}}>Nature</h1>
         <Slider {...settings}>
           {nimage&&nimage.natureImage?.map(item => (
-            <div style={{ marginTop: "3rem" }} className="card">
+            <div style={{ marginTop: "3rem" }} className="maincard">
               <div className="card-top">
                 <img onClick={() => onSubmit(item.userId)} src={item.image} alt="sadfas" />
               </div>

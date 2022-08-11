@@ -20,10 +20,9 @@ const photographerSchema = mongoose .Schema ({
         type:String,
         require:[true,'please add a password']
     },
-    // Phonenumber: {
-    //     type:Number,
-    //     // require:[true,'please add a phonenumber']
-    // },
+    phonenumber: {
+        type:String,
+    },
     image: {
         type:String,
         require:[true,'please add a image']

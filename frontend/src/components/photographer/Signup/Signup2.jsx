@@ -43,14 +43,15 @@ const Signup2 = () => {
 
     const onSubmit = (e) => {
         console.log("helooooo");
-        const { overview, address, city, state } = e;
+        const { overview, address, city, state,phonenumber } = e;
 
         const userData = {
             overview,
             address,
             city,
             state,
-            category
+            category,
+            phonenumber
         }
         console.log("im userData", userData);
         dispatch(form2(userData));
@@ -117,6 +118,13 @@ const Signup2 = () => {
                                 placeholder='STATE'
                                 fullWidth
                                 {...register("state", { required: true })}
+                            />
+                            <TextField
+                                type="text"
+                                name='phonenumber'
+                                placeholder='PHONENUMBER'
+                                fullWidth
+                                {...register("phonenumber", { required: true })}
                             />
                         </div>
 

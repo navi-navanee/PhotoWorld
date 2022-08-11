@@ -1,56 +1,57 @@
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 70rem;
-    margin: auto;
-    margin-top: 6rem;
-    text-align: center;
-    font-family: arial;
+  height: 50rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 70rem;
+  margin: auto;
+  margin-top: 6rem;
+  text-align: center;
+  font-family: arial;
 
+  .form {
+    display: flex;
+    flex-direction: row;
+  }
+}
 
-    .form{
-        display: flex;
-        flex-direction: row;
-    }
-  }
-  
-  .title {
-    color: grey;
-    font-size: 18px;
-  }
-  
-  // .button1 {
-  //   border: none;
-  //   outline: 0;
-  //   display: inline-block;
-  //   padding: 8px;
-  //   color: white;
-  //   background-color: #000;
-  //   text-align: center;
-  //   cursor: pointer;
-  //   width: 100%;
-  //   font-size: 18px;
-  // }
-  
-  a {
-    text-decoration: none;
-    font-size: 22px;
-    color: black;
-  }
-  
-  button:hover, a:hover {
-    opacity: 0.7;
-  }
+.title {
+  color: grey;
+  font-size: 18px;
+}
 
-  .image{
-    width: 15rem;
-    height :15rem;
-  }
+// .button1 {
+//   border: none;
+//   outline: 0;
+//   display: inline-block;
+//   padding: 8px;
+//   color: white;
+//   background-color: #000;
+//   text-align: center;
+//   cursor: pointer;
+//   width: 100%;
+//   font-size: 18px;
+// }
 
-  // .multiSelect{
-  //   z-index: 2;
-  // }
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
 
-  .dropdown-container{
-    z-index: 2;
-    margin-left: 11rem;
-  }
+button:hover,
+a:hover {
+  opacity: 0.7;
+}
+
+.image {
+  width: 15rem;
+  height: 15rem;
+}
+
+// .multiSelect{
+//   z-index: 2;
+// }
+
+.dropdown-container {
+  z-index: 2;
+  margin-left: 12rem;
+}

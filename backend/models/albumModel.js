@@ -1,37 +1,31 @@
-const mongoose =require('mongoose')
-const Schema=mongoose.Schema
-const ObjectId=Schema.Types.ObjectId
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const ObjectId = Schema.Types.ObjectId
 
-const albumSchema = mongoose.Schema ({
-    description : {
-        type:String,
+const albumSchema = mongoose.Schema({
+    description: {
+        type: String,
     },
     image: {
-        type:String,
-        require:true
+        type: String,
+        require: true
     },
     category: {
-        type:String,
-        require:[true]
+        type: String,
+        require: [true]
     },
-    // likes: [{
-    //     user:{
-    //         type:mongoose.Schema.ObjectId,
-    //         ref:"User"
-    //     }
-    // }],
-    likes:{
-        type:Array
+    likes: {
+        type: Array
     },
     comment: {
-        type:String
+        type: String
     },
     userId: {
-        type:ObjectId
+        type: ObjectId
     },
 },
-{
-    timestamps: true
-})
+    {
+        timestamps: true
+    })
 
-module.exports = mongoose.model('Album',albumSchema)
+module.exports = mongoose.model('Album', albumSchema)

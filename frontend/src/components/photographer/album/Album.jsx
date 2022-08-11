@@ -59,7 +59,7 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  
+
 };
 
 const Album = () => {
@@ -80,7 +80,6 @@ const Album = () => {
   const { category } = selectedOption;
 
   // imagee.....
-
   const [imageSrc, setImageSrc] = useState();
   const [image, setPic] = useState(
     "https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8="
@@ -99,7 +98,6 @@ const Album = () => {
   };
 
   // dialogue box submit
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -118,7 +116,7 @@ const Album = () => {
     setOpen(false);
     submit();
   };
-  
+
   //dump the image into cloudinary ImageUpload
   const postDetails = async (ProfilePicture) => {
     try {
@@ -188,11 +186,11 @@ const Album = () => {
       <Container>
         <div className="head">
           <h2>Albums</h2>
-          <div style={{marginTop:'2rem'}}>
+          <div style={{ marginTop: '2rem' }}>
             <Button variant="outlined" onClick={handleClickOpen}>
               Add Your Photo
             </Button>
-            <div style={{marginTop:'2rem'}}>
+            <div style={{ marginTop: '2rem' }}>
               <Dialog
                 open={open}
                 onClose={handleClose}
@@ -200,7 +198,7 @@ const Album = () => {
                 aria-describedby="alert-dialog-description"
                 maxWidth="xl"
               >
-                <div style={{ width: "36rem" }} className="card">
+                <div style={{ width: "36rem" }} className="albumcard">
                   <form className="form" onSubmit={handleClose}>
                     <div
                       style={{ display: "flex", flexDirection: "column" }}
@@ -220,7 +218,7 @@ const Album = () => {
                         />
                         <PhotoCamera />
                       </IconButton>
-                      {<img className="image" src={image} alt="John" />}
+                      {<img style={{ padding: "1rem" }} className="image" src={image} alt="" />}
                     </div>
                     <div className="left">
                       <p className="title"> Add Your Photo Here</p>
@@ -262,7 +260,6 @@ const Album = () => {
             </div>
           </div>
         </div>
-
         <ImageList
           gap={12}
           sx={{
@@ -296,7 +293,7 @@ const Album = () => {
                     style={{ cursor: "pointer" }}
                   />
                   <ImageListItemBar
-                    title={<FavoriteIcon style={{color:"red"}}/>}
+                    title={<FavoriteIcon style={{ color: "red" }} />}
                     subtitle={item.likes.length}
                   />
 

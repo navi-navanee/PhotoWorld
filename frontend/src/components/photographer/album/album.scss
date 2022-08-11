@@ -1,6 +1,21 @@
-.MuiImageListItem-img{
-    object-fit: fill;
-    width: 100%;
-    height: 21rem !important;
-    -webkit-box-flex: 1;
+.MuiImageListItem-img {
+  object-fit: fill;
+  width: 100%;
+  height: 21rem !important;
+  -webkit-box-flex: 1;
+}
+
+.albumcard {
+  height: 25rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 70rem;
+  margin: auto;
+  margin-top: 6rem;
+  text-align: center;
+  font-family: arial;
+
+  .form {
+    display: flex;
+    flex-direction: row;
+  }
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { addReview, fetchReview, ReviewData, singleData } from '../../../features/user/details/userSlice';
+import moment from 'moment'
 import './review.scss'
 
 const SingleReview = () => {
@@ -121,7 +122,7 @@ const SingleReview = () => {
             <div>
               <h1>{item.userId.name}</h1>
             </div>
-              <div>11/02/1999</div>
+            <div>{moment(item.date).format(("MMMM Do YYYY"))}</div>
             <div>{item.review}</div>
             <div>
               <Rating name="read-only" value={item.star} readOnly />

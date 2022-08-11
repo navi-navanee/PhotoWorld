@@ -25,11 +25,12 @@ function Register() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phonenumber:'',
     password: '',
     password2: ''
   })
 
-  const { name, email, password, password2 } = formData
+  const { name, email,phonenumber, password, password2 } = formData
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -67,17 +68,15 @@ function Register() {
       const userData = {
         name,
         email,
+        phonenumber,
         password
       }
-
       dispatch(register(userData))
     }
   }
-
   if (isLoading) {
     return <Spinner/>
   }
-
   const theme = createTheme();
   return (
     <div>
@@ -138,7 +137,16 @@ function Register() {
                 value={email}
                 onChange={onChange}
                 autoComplete="email"
-
+              />
+               <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="phonenumber"
+                label="phonenumber"
+                name="phonenumber"
+                value={phonenumber}
+                onChange={onChange}
               />
               <TextField
                 margin="normal"
@@ -164,6 +172,7 @@ function Register() {
                 autoComplete="current-password"
                 onChange={onChange}
               />
+              
               <Button
                 type="submit"
                 fullWidth

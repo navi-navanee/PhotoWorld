@@ -11,15 +11,10 @@ import { useEffect, useState } from 'react'
 import Spinner from '../../../components/spinner/Spinner'
 const Home = () => {
 
-
-
   // const dispatch = useDispatch();
   const [Fulldata, setFulldata] = useState({ loading: false, done: false });
   const { admin } = useSelector((state) => state.adminauth);
   
-
-  console.log("im the full data", Fulldata);
-
   //create a tocken
   const { token } = admin ? admin : '';
   const config = {
@@ -27,7 +22,6 @@ const Home = () => {
       Authorization: `Bearer ${token}`,
     },
   }
-
   useEffect(() => {
     !Fulldata.done && getFavoriteDoctors(5);
   }, []);
@@ -35,7 +29,6 @@ const Home = () => {
   const getFavoriteDoctors = async () => {
     setFulldata((prev) => ({ ...prev, loading: true }));
     try {
-
       const { data } = await api.latestTransactions(config);
       const totalUsers = await api.totalUsers()
       const totalPhotographer = await api.totalPhotographer()
@@ -56,12 +49,9 @@ const Home = () => {
     }
   };
 
-console.log("im status",Fulldata.loading);
   if(Fulldata.loading){
     <Spinner/>
   }
-
-
 
   return (
     <div className='home'>
@@ -73,10 +63,6 @@ console.log("im status",Fulldata.loading);
           <Widget type="Photographer" Total={Fulldata?.totalPhotographer} />
           <Widget type="Income" Total={Fulldata?.totalIncome} />
         </div>
-        {/* <div className='charts '>
-          <Featured />
-          <Chart />
-        </div> */}
         <div className="listContainer">
           <div className="listTitle">Latest Transactions</div>
           <Table transactions={Fulldata.transactions} />

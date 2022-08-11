@@ -5,8 +5,8 @@ const Photographer = require('../../../models/photoModel')
 const albumModel = require('../../../models/albumModel')
 const User = require('../../../models/userModel')
 
-//Authenticating the Photographer
-
+// @desc  registering a user
+// @rout  POST /api/photo/register
 const registerPhoto = asyncHandler(async (req, res) => {
     const { name,
         email,
@@ -15,12 +15,16 @@ const registerPhoto = asyncHandler(async (req, res) => {
         address,
         city,
         state,
-        category, payment } = req.body
+        phonenumber,
+        category,
+        payment,
+
+
+    } = req.body
     if (!name || !email || !password) {
         res.status(400)
         throw new Error('please add all field')
     }
-
     //check the photographer alredy exist
     const photographerExist = await Photographer.findOne({ email })
     if (photographerExist) {
@@ -32,7 +36,6 @@ const registerPhoto = asyncHandler(async (req, res) => {
     const hashpassword = await bcrypt.hash(password, salt)
 
     //create the new Photographer
-
     const photographer = await Photographer.create({
         name,
         email,
@@ -42,11 +45,11 @@ const registerPhoto = asyncHandler(async (req, res) => {
         city,
         state,
         category,
+        phonenumber,
         payment,
         image: 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=',
         status: true,
     })
-
     if (photographer) {
         res.status(201).json({
             _id: photographer.id,
@@ -56,6 +59,7 @@ const registerPhoto = asyncHandler(async (req, res) => {
             overview: photographer.overview,
             address: photographer.address,
             city: photographer.city,
+            phonenumber: photographer.phonenumber,
             state: photographer.state,
             category: photographer.category,
             state: photographer.state,
@@ -65,16 +69,13 @@ const registerPhoto = asyncHandler(async (req, res) => {
     else {
         res.status(400)
         throw new Error('Invalid User data')
-
     }
-
 })
 
-
-//login
+// @desc  login a user
+// @rout  POST /api/photo/login
 const loginPhoto = asyncHandler(async (req, res) => {
     const { email, password } = req.body
-
     const photographer = await Photographer.findOne({ email })
     if (!photographer.status) throw new Error("Blocked by admin")
     if (photographer && (await bcrypt.compare(password, photographer.password))) {
@@ -86,6 +87,7 @@ const loginPhoto = asyncHandler(async (req, res) => {
             overview: photographer.overview,
             address: photographer.address,
             city: photographer.city,
+            phonenumber: photographer.phonenumber,
             state: photographer.state,
             category: photographer.category,
             state: photographer.state,
@@ -97,11 +99,10 @@ const loginPhoto = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc  Edit User Details
-// @rout  PUT /api/edit-userDetails/:id
+// @desc  edit the user
+// @rout  POST /api/photo/edit-photographerDetails
 const editPhotographer = asyncHandler(async (req, res) => {
     const userId = req.photographer._id;
-
     try {
         const newUserData = {
             name: req.body.name,
@@ -112,14 +113,13 @@ const editPhotographer = asyncHandler(async (req, res) => {
             city: req.body.city,
             state: req.body.state,
             category: req.body.category,
+            phonenumber:req.body.phonenumber
         };
         const photographer = await Photographer.findByIdAndUpdate(userId, newUserData, {
             new: true,
             runValidators: true,
             useFindAndModify: false,
         });
-
-
         res.status(200).json({
             _id: photographer.id,
             name: photographer.name,
@@ -131,6 +131,7 @@ const editPhotographer = asyncHandler(async (req, res) => {
             city: photographer.city,
             state: photographer.state,
             category: photographer.category,
+            phonenumber:photographer.phonenumber
         });
     } catch (error) {
         res.status(400).json(error);
@@ -140,19 +141,16 @@ const editPhotographer = asyncHandler(async (req, res) => {
 
 
 //Generate JWT
-
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: '30d',
     })
 }
 
-//fetching details
-
+// @desc  showing the details
+// @rout  POST /api/photo/details
 const details = asyncHandler(async (req, res) => {
-
     const id = req.photographer._id
-
     const photographerDetails = await Photographer.findById(id)
     if (photographerDetails) {
         res.json({
@@ -165,7 +163,8 @@ const details = asyncHandler(async (req, res) => {
             city: photographerDetails.city,
             state: photographerDetails.state,
             category: photographerDetails.category,
-            review: photographerDetails.Review
+            review: photographerDetails.Review,
+            phonenumber:photographerDetails.phonenumber
 
         })
     } else {
@@ -176,10 +175,10 @@ const details = asyncHandler(async (req, res) => {
 })
 
 
-//updating album
-
+// @desc  adding photos
+// @rout  POST /api/photo/album
 const album = asyncHandler(async (req, res) => {
-    console.log("helooooooo..." ,req.body);
+    console.log("helooooooo...", req.body);
     const { image,
         category,
         description
@@ -190,9 +189,9 @@ const album = asyncHandler(async (req, res) => {
         throw new Error('please add all field')
     }
     const userId = req.photographer._id
-    console.log("im theeeeeeeeeeeeeee",image,
-    category,
-    description);
+    console.log("im theeeeeeeeeeeeeee", image,
+        category,
+        description);
     const album = await albumModel.create({
         image,
         category,
@@ -202,11 +201,10 @@ const album = asyncHandler(async (req, res) => {
     })
 })
 
-//fetching album
-
+// @desc  fetch photos
+// @rout  POST /api/photo/fetch
 const fetch = asyncHandler(async (req, res) => {
     const userId = req.photographer._id
-
     const albums = await albumModel.find({ userId })
     if (albums) {
         res.json({
@@ -218,9 +216,8 @@ const fetch = asyncHandler(async (req, res) => {
     }
 })
 
-//delete photo.......
-
-// Delete-plan
+// @desc  adding photos
+// @rout  POST /api/photo/deletephoto/:id
 const deletePhoto = asyncHandler(async (req, res) => {
     const plan = await albumModel.findById(req.params.id)
     if (plan) {
@@ -233,11 +230,10 @@ const deletePhoto = asyncHandler(async (req, res) => {
 })
 
 
-//.....................
-
+// @desc  adding photos
+// @rout  POST /api/photo/get-user
 const getUser = asyncHandler(async (req, res) => {
     const { id } = req.query;
-
     const data = await User.findById(id)
     if (!data) throw new Error(`Couldn't find ${id}`);
     res.status(200).json({
@@ -245,14 +241,13 @@ const getUser = asyncHandler(async (req, res) => {
     });
 })
 
-//fetching revieew
-
+// @desc  fetch review
+// @rout  POST /api/photo/fetchReview/:id
 const fetchReview = asyncHandler(async (req, res) => {
     const { id } = req.params
     const Review = await Photographer.findById(id).populate({
         path: 'Review.userId',
         select: { name: 1 }
-
     })
     if (Review) {
         res.json({
@@ -260,12 +255,11 @@ const fetchReview = asyncHandler(async (req, res) => {
         })
     }
     else {
-        albums
+        res.json({
+            msg: "no review"
+        })
     }
 })
-
-
-
 
 module.exports = {
     registerPhoto,

@@ -24,7 +24,6 @@ const options = [
 
 const Profile = () => {
 
-
     const [Loading, setLoading] = useState(false);
     const dispatch = useDispatch()
     const { photographer, isLoading, isError, isSuccess, message } = useSelector(
@@ -35,6 +34,7 @@ const Profile = () => {
     const [Pic, setPic] = useState(photographer ? photographer.image : 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=');
 
     console.log("im the pic",Pic);
+
     const [formData, setFormData] = useState({
         name: photographer.name || '',
         email: photographer.email || '',
@@ -43,8 +43,7 @@ const Profile = () => {
         address: photographer.address || '',
         city: photographer.city || '',
         state: photographer.state || '',
-        
-        
+        phonenumber: photographer.phonenumber || '',
     });
     
     console.log("im the form data",formData);
@@ -59,9 +58,7 @@ const Profile = () => {
         }
     };
 
-    const { name, email, image, overview, address, city, state, } = formData;
-
-
+    const { name, email, image, overview, address, city, state,phonenumber } = formData;
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -82,14 +79,15 @@ const Profile = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         const userData = {
-            name: photographer?.name,
-            email: photographer?.email,
-            image: Pic ? Pic : photographer.image,
-            category: photographer?.selected,
-            overview: photographer?.overview,
-            address: photographer?.address,
-            city: photographer?.city,
-            state: photographer?.state,
+            name: name,
+            email: email,
+            image: Pic ? Pic : image,
+            category: selected,
+            overview: overview,
+            address: address,
+            city: city,
+            state: state,
+            phonenumber:phonenumber
         };
 
 
@@ -111,7 +109,7 @@ const Profile = () => {
         <div>
             <h2>User Profile</h2>
             <div className="card">
-                <form className='form' onSubmit={onSubmit}>
+                <form className='form'>
                     <div className='right'>
                         <IconButton color="primary" aria-label="upload picture" component="label">
                             Change the Image
@@ -143,9 +141,9 @@ const Profile = () => {
                         >
                             <TextField name='name' id="outlined-basic" label="Name" onChange={onChange} value={name} variant="outlined" />
                             <TextField name='email' id="outlined-basic" label="Email" onChange={onChange} value={email} variant="outlined" />
-                            <TextField name='overview' id="outlined-multiline-static" label="Multiline" onChange={onChange} value={overview} multiline rows={4} bdefaultValue="Default Value" />
+                            <TextField name='overview' id="outlined-multiline-static" label="Multiline" onChange={onChange} value={overview} multiline rows={3} bdefaultValue="Default Value" />
+                            <TextField name='phonenumber' id="outlined-multiline-static" label="phonenumber" onChange={onChange} value={phonenumber} bdefaultValue="Default Value" />
                             <MultiSelect
-
                                 options={options}
                                 name='name'
                                 value={selected}
@@ -156,7 +154,9 @@ const Profile = () => {
                             <TextField name='state' id="outlined-basic" label="State" onChange={onChange} value={state} variant="outlined" />
 
                         </Box>
-                        <Button variant='contained' size='large'>Edit Details</Button>
+
+                        <Button style={{marginTop:"1rem"}} onClick={onSubmit} variant='contained' size='large'>Edit Details</Button>
+
                     </div>
                 </form>
             </div>

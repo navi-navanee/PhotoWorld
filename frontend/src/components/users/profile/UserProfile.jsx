@@ -13,7 +13,6 @@ function UserProfile() {
 
   const dispatch = useDispatch();
 
-
   const [Loading, setLoading] = useState(false);
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
@@ -21,10 +20,10 @@ function UserProfile() {
   );
   const [Pic, setPic] = useState( user? user.profile_image : '');
 
-
   const [formData, setFormData] = useState({
     name: user.name || '',
     email: user.email || '',
+    phonenumber: user.phonenumber || ''
   });
 
   const postDetails = async (ProfilePicture) => {
@@ -38,12 +37,7 @@ function UserProfile() {
       console.log(error);
     }
   };
-
-
-  const { name, email, } = formData;
-
-  console.log("im the user...............", name, email);
-
+  const { name, email, phonenumber } = formData;
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -64,6 +58,7 @@ function UserProfile() {
       name,
       email,
       profile_image: Pic ? Pic : user.profile_image,
+      phonenumber
     };
     console.log("im submitted", userData);
 
@@ -75,16 +70,11 @@ function UserProfile() {
     return <Spinner />;
   }
 
-
-
-
-
-
   return (
     <div>
       <h2>User Profile</h2>
 
-      <div className="card">
+      <div className="userprofile">
         <form className='form' onSubmit={onSubmit}>
           <div className='right'>
             <IconButton color="primary" aria-label="upload picture" component="label">
@@ -120,7 +110,7 @@ function UserProfile() {
           >
             <TextField name='name' id="outlined-basic" label="Name" onChange={onChange} value={name} variant="outlined" />
             <TextField name='email' value={email} id="outlined-basic" label="Email" onChange={onChange} variant="outlined" />
-            <TextField id="outlined-basic" label="Phonenumber" variant="outlined" />
+            <TextField name='phonenumber' label="phonenumber" onChange={onChange} value={phonenumber} variant="outlined" />
 
           </Box>
 

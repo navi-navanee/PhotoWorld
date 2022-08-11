@@ -19,12 +19,8 @@ const Pmain = () => {
     const dispatch = useDispatch()
     const loading = useSelector(isLoading)
     const data= useSelector(photographerDetails)
-    
-    
+
   const category =data.category
-
-
-
  const navigate=useNavigate()
 
     useEffect(() => {
@@ -53,8 +49,6 @@ const Pmain = () => {
                     </div>
                     <div className='right'>
                         <h1>{data.name}</h1>
-                        <div className='address'>{data.address}</div>
-                        <div className='phone'>9497502035</div>
                         <div className='right-button'>
                             <Button className='call' variant="outlined">call</Button>
                             <Button onClick={onChat} className='chat' variant="outlined">Chat</Button>

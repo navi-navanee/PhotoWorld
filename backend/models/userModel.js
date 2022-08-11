@@ -17,10 +17,9 @@ const userSchema = mongoose .Schema ({
         type:String,
         require:[true,'please add a password']
     },
-    // Phonenumber: {
-    //     type:Number,
-    //     // require:[true,'please add a phonenumber']
-    // },
+    phonenumber: {
+        type:String,
+    },
     password2: {
         type:String,
         require:[true,'please add a password']

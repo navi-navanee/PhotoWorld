@@ -10,7 +10,6 @@ const OrderSchema = mongoose.Schema({
         paymentId: String,
         signature : String,
     },
-
 },
 { timestamps: true }
 )

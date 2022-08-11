@@ -7,15 +7,11 @@ const { getUser, editUser, transaction, usersCount,
 
 router.post('/register',registerAdmin)
 router.post('/login',loginAdmin)
-
 router.get('/getUser',getUser)
 router.patch('/blockuser/:id',editUser)
-
 router.get('/getPhotographer',getPhotographer)
 router.patch('/blockphotographer/:id',editPhtographer)
-
 router.get('/payment',fetchPayment)
-
 router.get('/transaction',transaction)
 router.get('/usersCount',usersCount)
 router.get('/photographerCount',photographerCount)

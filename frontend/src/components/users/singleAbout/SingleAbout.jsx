@@ -12,58 +12,52 @@ import { singleData } from '../../../features/user/details/userSlice'
 
 const SingleAbout = () => {
 
-    const {data}= useSelector(singleData)
+    const { data } = useSelector(singleData)
 
-    const category =data ? data.category : ''
+    const category = data ? data.category : ''
     const [value, setValue] = useState(new Date())
 
-    console.log("im the valuess",value);
+    console.log("im the valuess", value);
 
 
-  return (
-    <Container>
-    <div className='about'>
-        <div className='overview'>
-            <h1>Overview</h1>
-            <p>
-                {data ? data.overview : ''}
-            </p>
-        </div>
-
-        <div className='language'>
-
-            <h1>Language known</h1>
-            <Button variant="outlined" color="error">
-                Malayalm
-            </Button>
-
-        </div>
-
-        <div className='service'>
-            <h1>Services</h1>
-
-            {category && category.map((item) =>(
-                <Button variant="outlined" color="error">
-                {item.label}
-            </Button>
-            ))}
-            
-        </div>
-        <div>
-            <h1>Booking dates</h1>
-            <DatePicker
-             value={value}
-             onChange={setValue}
-                multiple
-                plugins={[
-                    <DatePanel />
-                 
-                ]}
-            />
-        </div>
-    </div>
-</Container>
-  )
+    return (
+        <Container>
+            <div className='about'>
+                <div className='address'>
+                    <h1>Address</h1>
+                    <p> {data?.phonenumber}</p>
+                    <p> {data?.address}</p>
+                    <p> {data?.city}</p>
+                    <p> {data?.state}</p>
+                </div>
+                <div className='overview'>
+                    <h1>Overview</h1>
+                    <p>
+                        {data ? data.overview : ''}
+                    </p>
+                </div>
+                <div className='service'>
+                    <h1>Services</h1>
+                    {category && category.map((item) => (
+                        <Button variant="outlined" color="error">
+                            {item.label}
+                        </Button>
+                    ))}
+                </div>
+                {/* <div>
+                    <h1>Booking dates</h1>
+                    <DatePicker
+                        value={value}
+                        onChange={setValue}
+                        multiple
+                        plugins={[
+                            <DatePanel />
+                        ]}
+                    />
+                </div> */}
+            </div>
+        </Container>
+    )
 }
 
 export default SingleAbout
